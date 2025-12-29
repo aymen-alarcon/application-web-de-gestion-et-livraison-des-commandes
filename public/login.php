@@ -9,83 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <style>
-        body {
-            font-family: "Inter", sans-serif;
-            background: #101922;
-            color: #fff;
-            min-height: 100vh;
-        }
-
-        .chip-select {
-            border: 1px solid #283039;
-            border-radius: 1rem;
-            background: #0d141c;
-            transition: 0.2s;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .chip-select input {
-            display: none;
-        }
-
-        .chip-select.active,
-        .chip-select:hover {
-            border: 2px solid #137fec;
-            background: rgba(19, 127, 236, 0.08);
-            color: #137fec;
-            font-weight: 600;
-        }
-
-        .nav-chip-select {
-            border: 1px solid #283039;
-            border-radius: 0.75rem;
-            background: #0d141c;
-            transition: 0.2s;
-            cursor: pointer;
-            text-decoration: none !important;
-            color: #6c757d !important;
-            padding: 0.75rem 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 0.5rem;
-        }
-
-        .nav-chip-select.active,
-        .nav-chip-select:hover {
-            border: 2px solid #137fec;
-            background: rgba(19, 127, 236, 0.08);
-            color: #137fec !important;
-            font-weight: 600;
-        }
-
-        .form-control,
-        .form-select {
-            border: 1px solid #283039;
-        }
-
-        .form-control:focus {
-            border-color: #137fec;
-            box-shadow: 0 0 0 0.2rem rgba(19, 127, 236, 0.25);
-            background: #0d141c;
-            color: #fff;
-        }
-
-        .form-control::placeholder{
-            color: lightgoldenrodyellow;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="d-flex flex-column">
-    <header class="w-100 py-3 px-4 px-lg-5 position-fixed"
-        style="background: rgba(26, 34, 45, 0.5);backdrop-filter: blur(6px);border-color: #283039;">
+    <header class="w-100 py-3 px-4 px-lg-5 position-fixed">
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
                 <div class="text-primary">

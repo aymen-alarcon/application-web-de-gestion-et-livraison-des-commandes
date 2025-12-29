@@ -2,12 +2,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Document</title>
+    <title>Client Dashboard: My Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav></nav>
+    <header class="sticky-top dark border-border-light shadow-sm py-3 px-4 d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center justify-content-center rounded bg-primary text-white"
+                style="width:40px; height:40px;">
+                <span class="material-symbols-outlined">local_shipping</span>
+            </div>
+            <h2 class="h5 m-0">QuickShip</h2>
+        </div>
+        <nav class="d-none d-md-flex gap-3">
+            <a href="#" class="text-secondary text-decoration-none">Dashboard</a>
+            <a href="#" class="text-primary text-decoration-none">My Orders</a>
+            <a href="#" class="text-secondary text-decoration-none">Profile</a>
+        </nav>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-link text-secondary p-0"><span
+                    class="material-symbols-outlined">notifications</span></button>
+            <div class="rounded-circle border border-secondary"
+                style="width:32px; height:32px; background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgdPsxEb_o40PLBjgEcATgAPr2fVGIkzaeqIloTOEWr0mgLQn9sJh8R4_zC93QjoGMvmUdHOwHr6r9cLVUXk0fkiZ9VzQ8TM7UuFr0KhjuqEkjyldEPTTlyIwgBKIJUFHzmCz7j1MTo2UVyGx70bjyy1GKeY7CE0H_3Xa-gx_SToe17h5WYVP483jW6JX_O2tt2qtKzY5K5a9GC7A9o64Y1pkBxwNNLH9XqqVTOUwHTBe-nZiw6RCoJbkEH4Mno7sVmUwaq7Jff9E'); background-size: cover;">
+            </div>
+        </div>
     </header>
