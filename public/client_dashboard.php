@@ -1,191 +1,130 @@
-    <?php require __DIR__ . '/includes/header.php'; ?>
-
-    <main class="container pt-5 vh-100">
-        <div
-            class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
-            <div>
-                <h1 class="h3">My Orders</h1>
-                <p class="text-secondary">Track, manage and create new delivery requests.</p>
-            </div>
-            <button class="btn btn-primary d-flex align-items-center gap-2">
-                <span class="material-symbols-outlined">add</span> Create New Order
-            </button>
-        </div>
-        <div class="row mb-4 g-2">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-text bg-white"><span
-                            class="material-symbols-outlined text-secondary">search</span></span>
-                    <input type="text" class="form-control" placeholder="Search by Order ID, Item, or Location...">
+<?php require __DIR__ . '/includes/header.php'; ?>
+    <div class="container-fluid vh-100">
+        <main class="container container-max py-5">
+            <p class="text-secondary mb-5">
+                Real-time performance metrics for today's logistics operations.
+            </p>
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4 position-relative">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary fw-semibold">Total Orders</small>
+                            <span class="kpi-icon bg-primary bg-opacity-25 text-primary">
+                                <i class="bi bi-archive"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">15,234</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4 border-left-warning">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase fw-bold text-warning">Pending Orders</small>
+                            <span class="kpi-icon bg-warning bg-opacity-25 text-warning">
+                                <i class="bi bi-hourglass-split"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white">42</h2>
+                            <span class="text-warning small fw-medium">Requires Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Completed Orders</small>
+                            <span class="kpi-icon bg-success bg-opacity-25 text-success">
+                                <i class="bi bi-check-circle"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">14,800</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Canceled Orders</small>
+                            <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
+                                <i class="bi bi-x-lg"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">392</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Offers Sent</small>
+                            <span class="kpi-icon bg-indigo bg-opacity-25 text-primary">
+                                <i class="bi bi-send"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">1,250</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Active Deliverers</small>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="bg-success rounded-circle" style="width:8px;height:8px;"></span>
+                                <small class="text-success fw-semibold">LIVE</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white">85</h2>
+                            <span class="text-secondary small">/ 120 Total</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 d-flex flex-wrap gap-2">
-                <button class="btn btn-primary rounded-pill">All Orders</button>
-                <button class="btn btn-outline-secondary rounded-pill position-relative">
-                    Active
-                    <span
-                        class="badge bg-primary rounded-circle position-absolute top-0 start-100 translate-middle p-1">3</span>
-                </button>
-                <button class="btn btn-outline-secondary rounded-pill">Completed</button>
-                <button class="btn btn-outline-secondary rounded-pill">Canceled</button>
+            <h4 class="mt-5 mb-3 fw-semibold">Quick Management</h4>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card p-4 quick-card h-100">
+                            <div class="kpi-icon bg-primary bg-opacity-25 text-primary mb-3">
+                                <i class="bi bi-person-gear"></i>
+                            </div>
+                            <h5 class="fw-bold text-white">User Management</h5>
+                            <p class="text-secondary small">
+                                Manage client profiles, administrator roles, and access permissions.
+                            </p>
+                            <span class="text-primary fw-medium">Go to Users →</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card p-4 quick-card h-100">
+                            <div class="kpi-icon bg-danger bg-opacity-25 text-primary mb-3">
+                                <i class="bi bi-list-task text-danger"></i>
+                            </div>
+                            <h5 class="fw-bold text-white">Order Management</h5>
+                            <p class="text-secondary small">
+                                Access the full database of orders. Filter by status, date, or ID.
+                            </p>
+                            <span class="text-primary text-danger fw-medium">View All Orders →</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card p-4 quick-card h-100">
+                            <div class="kpi-icon bg-success bg-opacity-25 text-success mb-3">
+                                <i class="bi bi-scooter"></i>
+                            </div>
+                            <h5 class="fw-bold text-white">Deliverer Performance</h5>
+                            <p class="text-secondary small">
+                                Track deliverer ratings, delivery times, and active shifts.
+                            </p>
+                            <span class="text-success fw-medium">Analyze Fleet →</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="table-responsive rounded shadow-sm border border-border-light bg-surface-light">
-            <table class="table table-hover mb-0 dark">
-                <thead class="table-light">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Route</th>
-                        <th>Date Created</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th class="text-end">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div>#ORD-5829</div>
-                            <div class="text-secondary small">Box of Electronics</div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column gap-1">
-                                <div class="d-flex align-items-center gap-1 small text-success"><span
-                                        class="material-symbols-outlined">trip_origin</span>123 Main St, New York</div>
-                                <div class="d-flex align-items-center gap-1 small text-danger"><span
-                                        class="material-symbols-outlined">location_on</span>456 Elm St, Brooklyn</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>Oct 25, 2023</div>
-                            <div class="small">10:30 AM</div>
-                        </td>
-                        <td>--</td>
-                        <td><span class="badge bg-warning text-dark">Waiting for offers</span></td>
-                        <td class="text-end">
-                            <button class="btn btn-link text-primary p-0 me-2">Review Offers</button>
-                            <button class="btn btn-link text-secondary p-0"><span
-                                    class="material-symbols-outlined">more_vert</span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>#ORD-4921</div>
-                            <div class="text-secondary small">Office Supplies</div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column gap-1">
-                                <div class="d-flex align-items-center gap-1 small text-success"><span
-                                        class="material-symbols-outlined">trip_origin</span>789 Oak Ave, Jersey City
-                                </div>
-                                <div class="d-flex align-items-center gap-1 small text-danger"><span
-                                        class="material-symbols-outlined">location_on</span>101 Pine Rd, Newark</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>Oct 24, 2023</div>
-                            <div class="small">02:15 PM</div>
-                        </td>
-                        <td>$45.00</td>
-                        <td><span class="badge bg-primary">In Progress</span></td>
-                        <td class="text-end">
-                            <button class="btn btn-link text-primary p-0 me-2">Track</button>
-                            <button class="btn btn-link text-secondary p-0"><span
-                                    class="material-symbols-outlined">more_vert</span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>#ORD-4920</div>
-                            <div class="text-secondary small">Furniture Parts</div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column gap-1">
-                                <div class="d-flex align-items-center gap-1 small text-success"><span
-                                        class="material-symbols-outlined">trip_origin</span>Warehouse 4B, Queens</div>
-                                <div class="d-flex align-items-center gap-1 small text-danger"><span
-                                        class="material-symbols-outlined">location_on</span>Store 22, Manhattan</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>Oct 22, 2023</div>
-                            <div class="small">09:00 AM</div>
-                        </td>
-                        <td>$120.50</td>
-                        <td><span class="badge bg-purple text-white">Shipped</span></td>
-                        <td class="text-end">
-                            <button class="btn btn-link text-primary p-0 me-2">View Details</button>
-                            <button class="btn btn-link text-secondary p-0"><span
-                                    class="material-symbols-outlined">more_vert</span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>#ORD-4915</div>
-                            <div class="text-secondary small">Documents</div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column gap-1">
-                                <div class="d-flex align-items-center gap-1 small text-success"><span
-                                        class="material-symbols-outlined">trip_origin</span>Legal Office, Midtown</div>
-                                <div class="d-flex align-items-center gap-1 small text-danger"><span
-                                        class="material-symbols-outlined">location_on</span>Court House, Downtown</div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>Oct 20, 2023</div>
-                            <div class="small">11:45 AM</div>
-                        </td>
-                        <td>$28.00</td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                        <td class="text-end">
-                            <button class="btn btn-link text-primary p-0 me-2">View Invoice</button>
-                            <button class="btn btn-link text-secondary p-0"><span
-                                    class="material-symbols-outlined">more_vert</span></button>
-                        </td>
-                    </tr>
-                    <tr class="text-secondary">
-                        <td>
-                            <div class="text-decoration-line-through">#ORD-4890</div>
-                            <div class="small text-secondary">Perishables</div>
-                        </td>
-                        <td>
-                            <div class="d-flex flex-column gap-1 opacity-50">
-                                <div class="d-flex align-items-center gap-1 small"><span
-                                        class="material-symbols-outlined">trip_origin</span>Farmer's Market</div>
-                                <div class="d-flex align-items-center gap-1 small"><span
-                                        class="material-symbols-outlined">location_on</span>Restaurant 5</div>
-                            </div>
-                        </td>
-                        <td>Oct 18, 2023</td>
-                        <td>$55.00</td>
-                        <td><span class="badge bg-danger">Canceled</span></td>
-                        <td class="text-end">
-                            <button class="btn btn-link text-primary p-0 me-2">Re-Order</button>
-                            <button class="btn btn-link text-secondary p-0"><span
-                                    class="material-symbols-outlined">more_vert</span></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <nav aria-label="Page navigation" class="mt-3 d-flex justify-content-between align-items-center">
-            <p class="mb-0 small text-secondary">Showing 1 to 5 of 24 results</p>
-            <ul class="pagination mb-0">
-                <li class="page-item">
-                    <a class="page-link h-100" href="#"><span class="material-symbols-outlined">chevron_left</span></a>
-                </li>
-                <li class="page-item active"><a class="page-link h-100" href="#">1</a></li>
-                <li class="page-item"><a class="page-link h-100" href="#">2</a></li>
-                <li class="page-item"><a class="page-link h-100" href="#">3</a></li>
-                <li class="page-item disabled"><a class="page-link h-100">...</a></li>
-                <li class="page-item">
-                    <a class="page-link h-100" href="#"><span class="material-symbols-outlined">chevron_right</span></a>
-                </li>
-            </ul>
-        </nav>
-        <div class="text-center text-secondary small mt-2 d-md-none">Swipe left to view more details</div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        </main>
+    </div>
+<?php require __DIR__ . '/includes/footer.php'; ?>
