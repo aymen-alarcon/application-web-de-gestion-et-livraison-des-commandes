@@ -1,0 +1,126 @@
+<?php require __DIR__ . '/includes/header.php'; ?>
+<div class="container-fluid min-vh-100 pb-5">
+  <main class="container py-4" style="max-width: 900px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="fw-bold text-white">Account Settings</h1>
+      <small class="text-muted-dark">Last updated: Oct 24, 2023</small>
+    </div>
+
+    <div class="card card-dark shadow-sm mb-4 text-white">
+      <div class="card-body d-flex flex-column flex-sm-row gap-4 align-items-center">
+
+        <div class="position-relative">
+          <div class="rounded-circle border border-4"
+               style="width:96px;height:96px;background:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxzQQa4emB3FPTf7FcsHRiWtT0q6LZIS3_tp02juukCmsQZFKYPU0Ns5dNxJekP8jmDlPZbpLW_5dWRSpK-oiczBzGPzxgQOLmluQwuQw0o-R48Ek-uMkt0n1NEgjVVODfKY8q09ahefWfbhR3J1oZL25uZAbK5RF4C89WZ44fYX6gACL6fMuR7wsn5-jhemCiV9_z0XfTmwuOqPhtlkNqSrk7oRVhAGlYQ8wbNWmCtZKvP7CIMcz4UDo9kES03ZMJzmVNg6oI6Hc') center/cover">
+          </div>
+          <button class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0">
+            <i class="bi bi-pencil"></i>
+          </button>
+        </div>
+
+        <div class="flex-fill">
+          <h5 class="fw-bold text-white mb-1">John Doe</h5>
+          <p class="text-muted-dark mb-2">Member since September 2023</p>
+          <span class="badge bg-success bg-opacity-25 text-success">Client</span>
+        </div>
+
+        <button class="btn btn-outline-secondary text-white">
+          Change Password
+        </button>
+
+      </div>
+    </div>
+
+    <h5 class="fw-bold text-white mb-3">Personal Information</h5>
+    <div class="card card-dark mb-4 text-white">
+      <div class="card-body">
+        <div class="row g-4">
+
+          <div class="col-md-6">
+            <label class="form-label text-white">First Name</label>
+            <input class="form-control bg-dark text-white border-secondary" value="John">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Last Name</label>
+            <input class="form-control bg-dark text-white border-secondary" value="Doe">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Username</label>
+            <input class="form-control bg-dark text-white border-secondary" value="JohnDoe">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Email</label>
+            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled value="john.doe@example.com">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Phone</label>
+            <input class="form-control bg-dark text-white border-secondary" value="+1 (555) 123-4567">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label text-white">Date of Birth</label>
+            <input type="date" class="form-control bg-dark text-white border-secondary" value="1990-05-15">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="fw-bold text-white">Saved Addresses</h5>
+      <a href="#" class="link-action text-decoration-none">+ Add New</a>
+    </div>
+
+    <div class="row g-3 mb-5">
+
+      <div class="col-md-6">
+        <div class="card border-primary bg-primary bg-opacity-10 text-white">
+          <div class="card-body">
+            <h6 class="fw-bold text-white">
+              Home
+              <span class="badge bg-primary ms-2">Default</span>
+            </h6>
+            <p class="text-white-50 mb-2">
+              123 Market Street, Apt 4B<br>San Francisco, CA 94103
+            </p>
+            <a href="#" class="link-action text-decoration-none me-3">Edit</a>
+            <a href="#" class="link-action text-decoration-none link-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-dark text-white">
+          <div class="card-body">
+            <h6 class="fw-bold text-white">Office</h6>
+            <p class="text-white-50 mb-2">
+              450 Mission Bay Blvd<br>San Francisco, CA 94158
+            </p>
+            <a href="#" class="link-action text-decoration-none me-3">Edit</a>
+            <a href="#" class="link-action text-decoration-none link-danger me-3">Delete</a>
+            <a href="#" class="link-action text-decoration-none">Set Default</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<div class="footer-bar position-fixed bottom-0 start-0 end-0 z-3
+            border-top border-secondary bg-dark bg-opacity-75 py-3">
+  <div class="container d-flex justify-content-end gap-3">
+    <button class="btn btn-outline-secondary text-white">
+      Cancel
+    </button>
+    <button class="btn btn-primary fw-bold px-4">
+      Save Changes
+    </button>
+  </div>
+</div>
+<?php require __DIR__ . '/includes/footer.php'; ?>

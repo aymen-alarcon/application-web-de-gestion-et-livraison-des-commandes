@@ -13,16 +13,26 @@
 <body>
     <header class="sticky-top dark border-border-light shadow-sm py-3 px-4 d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-3">
-            <div class="d-flex align-items-center justify-content-center rounded bg-primary text-white"
-                style="width:40px; height:40px;">
-                <span class="material-symbols-outlined">local_shipping</span>
+            <div class="d-flex align-items-center justify-content-center rounded bg-primary text-white" style="width:40px; height:40px;">
+                <i class="bi bi-truck"></i>
             </div>
             <h2 class="h5 m-0">QuickShip</h2>
         </div>
         <nav class="d-none d-md-flex gap-3">
-            <a href="client_dashboard.php" class="text-secondary text-decoration-none">Dashboard</a>
-            <a href="client_order_dashboard.php" class="text-primary text-decoration-none">My Orders</a>
-            <a href="#" class="text-secondary text-decoration-none">Profile</a>
+            <a href="client_dashboard.php"
+            class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+                Dashboard
+            </a>
+
+            <a href="client_order_dashboard.php"
+            class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+                My Orders
+            </a>
+
+            <a href="client_profile.php"
+            class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
+                Profile
+            </a>
         </nav>
         <div class="d-flex align-items-center gap-3">
             <button class="btn btn-link text-secondary p-0"><i class="bi bi-bell"></i></button>

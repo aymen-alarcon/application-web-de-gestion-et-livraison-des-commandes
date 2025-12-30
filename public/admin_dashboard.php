@@ -1,309 +1,130 @@
-<!DOCTYPE html>
+<?php require __DIR__ . '/includes/header.php'; ?>
+    <div class="container-fluid vh-100">
+        <main class="container container-max py-5">
+            <p class="text-secondary mb-5">
+                Real-time performance metrics for today's logistics operations.
+            </p>
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4 position-relative">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary fw-semibold">Total Orders</small>
+                            <span class="kpi-icon bg-primary bg-opacity-25 text-primary">
+                                <i class="bi bi-archive"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">15,234</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4 border-left-warning">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase fw-bold text-warning">Pending Orders</small>
+                            <span class="kpi-icon bg-warning bg-opacity-25 text-warning">
+                                <i class="bi bi-hourglass-split"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white">42</h2>
+                            <span class="text-warning small fw-medium">Requires Action</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Completed Orders</small>
+                            <span class="kpi-icon bg-success bg-opacity-25 text-success">
+                                <i class="bi bi-check-circle"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">14,800</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Canceled Orders</small>
+                            <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
+                                <i class="bi bi-x-lg"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">392</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Offers Sent</small>
+                            <span class="kpi-icon bg-indigo bg-opacity-25 text-primary">
+                                <i class="bi bi-send"></i>
+                            </span>
+                        </div>
+                        <h2 class="fw-extrabold text-white">1,250</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Active Deliverers</small>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="bg-success rounded-circle" style="width:8px;height:8px;"></span>
+                                <small class="text-success fw-semibold">LIVE</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white">85</h2>
+                            <span class="text-secondary small">/ 120 Total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="mt-5 mb-3 fw-semibold">Quick Management</h4>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Create New Order - Delivery App</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Theme Configuration -->
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#137fec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
-                        "surface-dark": "#1c2127",
-                        "border-dark": "#3b4754",
-                        "text-secondary": "#9dabb9"
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"],
-                        "body": ["Noto Sans", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "2xl": "1rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-<style>
-        /* Custom scrollbar for better look in dark mode */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #101922; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3b4754; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4b5966; 
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
-<!-- Navigation Bar -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-[#283039] px-4 lg:px-10 py-3 bg-white dark:bg-[#111418] sticky top-0 z-50">
-<div class="flex items-center gap-4 text-[#111418] dark:text-white">
-<div class="size-8 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-3xl">local_shipping</span>
-</div>
-<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Delivery App</h2>
-</div>
-<div class="flex flex-1 justify-end gap-8">
-<div class="hidden lg:flex items-center gap-9">
-<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
-<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">My Orders</a>
-<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Track Order</a>
-<a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Profile</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/20">
-<span class="truncate">New Order</span>
-</button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-gray-200 dark:ring-[#283039]" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuClrUC0ZbBf4QUfggYCzNQSG-9Owesdgwdu_eRsPQW7z9dmBKsdEh7tW4FVzTbO_SB1KSti23Mtw7vgvJ9OnX0bdwIsVFABUL-jDNg-GyaYR2HmeoOBIE2Jhu-Np1zY00feyp0YrLJL_TiZFcN-1DsSgLdjrJkNv1ab5TgwtniUC13F7rC4vVdA0fNynpgtxaChUrtcd5O_zYgXE8iMKmLqeCRSLIPEIlpIiqTOKhNs1oMi5ElKxNAV9zijDJEcikyEEApJPqPBNVY");'>
-</div>
-</div>
-</div>
-</header>
-<!-- Main Content -->
-<main class="flex-1 flex justify-center py-5 px-4 lg:px-8">
-<div class="w-full max-w-[1200px] flex flex-col">
-<!-- Breadcrumbs -->
-<div class="flex flex-wrap gap-2 py-4 mb-2">
-<a class="text-text-secondary text-sm font-medium leading-normal hover:text-white transition-colors" href="#">Dashboard</a>
-<span class="text-text-secondary text-sm font-medium leading-normal">/</span>
-<span class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Create New Order</span>
-</div>
-<!-- Page Header -->
-<div class="flex flex-col gap-3 mb-8">
-<h1 class="text-[#111418] dark:text-white text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em]">Create New Order</h1>
-<p class="text-text-secondary text-base font-normal leading-normal max-w-2xl">Fill in the details below to request a new delivery. Our drivers are ready to pick up your package.</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-<!-- Left Column: Form -->
-<div class="lg:col-span-8 flex flex-col gap-8">
-<!-- Section 1: Route Details -->
-<section class="flex flex-col gap-4 bg-white dark:bg-surface-dark p-6 rounded-xl border border-gray-200 dark:border-border-dark shadow-sm">
-<div class="flex items-center gap-3 border-b border-gray-100 dark:border-border-dark pb-4 mb-2">
-<span class="material-symbols-outlined text-primary">map</span>
-<h2 class="text-[#111418] dark:text-white text-xl font-bold">1. Route Details</h2>
-</div>
-<div class="flex flex-col gap-6">
-<div class="flex flex-col sm:flex-row gap-4">
-<label class="flex flex-col flex-1 gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Pickup Address</span>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-secondary">
-<span class="material-symbols-outlined text-lg">trip_origin</span>
-</div>
-<input class="form-input w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm transition-all" placeholder="Enter pickup location"/>
-</div>
-</label>
-<label class="flex flex-col flex-1 gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Contact Person (Pickup)</span>
-<input class="form-input w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm transition-all" placeholder="Name &amp; Phone"/>
-</label>
-</div>
-<div class="flex items-center justify-center -my-2">
-<span class="material-symbols-outlined text-text-secondary text-opacity-50 rotate-90 sm:rotate-0">arrow_downward</span>
-</div>
-<div class="flex flex-col sm:flex-row gap-4">
-<label class="flex flex-col flex-1 gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Delivery Address</span>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-primary">
-<span class="material-symbols-outlined text-lg">location_on</span>
-</div>
-<input class="form-input w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm transition-all" placeholder="Enter drop-off location"/>
-</div>
-</label>
-<label class="flex flex-col flex-1 gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Contact Person (Drop-off)</span>
-<input class="form-input w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm transition-all" placeholder="Name &amp; Phone"/>
-</label>
-</div>
-</div>
-</section>
-<!-- Section 2: Package Details -->
-<section class="flex flex-col gap-4 bg-white dark:bg-surface-dark p-6 rounded-xl border border-gray-200 dark:border-border-dark shadow-sm">
-<div class="flex items-center gap-3 border-b border-gray-100 dark:border-border-dark pb-4 mb-2">
-<span class="material-symbols-outlined text-primary">inventory_2</span>
-<h2 class="text-[#111418] dark:text-white text-xl font-bold">2. Package Details</h2>
-</div>
-<div class="flex flex-col gap-6">
-<!-- Vehicle Selection -->
-<div>
-<span class="text-[#111418] dark:text-white text-sm font-medium mb-3 block">Select Vehicle Type</span>
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-<label class="cursor-pointer group relative">
-<input checked="" class="peer sr-only" name="vehicle" type="radio"/>
-<div class="p-4 rounded-lg border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#12161b] flex flex-col items-center gap-2 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:ring-1 peer-checked:ring-primary transition-all hover:bg-gray-100 dark:hover:bg-[#1a2026]">
-<span class="material-symbols-outlined text-2xl text-text-secondary peer-checked:text-primary group-hover:text-primary">pedal_bike</span>
-<span class="text-xs font-semibold text-[#111418] dark:text-white">Bike</span>
-</div>
-</label>
-<label class="cursor-pointer group relative">
-<input class="peer sr-only" name="vehicle" type="radio"/>
-<div class="p-4 rounded-lg border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#12161b] flex flex-col items-center gap-2 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:ring-1 peer-checked:ring-primary transition-all hover:bg-gray-100 dark:hover:bg-[#1a2026]">
-<span class="material-symbols-outlined text-2xl text-text-secondary peer-checked:text-primary group-hover:text-primary">two_wheeler</span>
-<span class="text-xs font-semibold text-[#111418] dark:text-white">Scooter</span>
-</div>
-</label>
-<label class="cursor-pointer group relative">
-<input class="peer sr-only" name="vehicle" type="radio"/>
-<div class="p-4 rounded-lg border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#12161b] flex flex-col items-center gap-2 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:ring-1 peer-checked:ring-primary transition-all hover:bg-gray-100 dark:hover:bg-[#1a2026]">
-<span class="material-symbols-outlined text-2xl text-text-secondary peer-checked:text-primary group-hover:text-primary">directions_car</span>
-<span class="text-xs font-semibold text-[#111418] dark:text-white">Car</span>
-</div>
-</label>
-<label class="cursor-pointer group relative">
-<input class="peer sr-only" name="vehicle" type="radio"/>
-<div class="p-4 rounded-lg border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#12161b] flex flex-col items-center gap-2 peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:ring-1 peer-checked:ring-primary transition-all hover:bg-gray-100 dark:hover:bg-[#1a2026]">
-<span class="material-symbols-outlined text-2xl text-text-secondary peer-checked:text-primary group-hover:text-primary">local_shipping</span>
-<span class="text-xs font-semibold text-[#111418] dark:text-white">Van</span>
-</div>
-</label>
-</div>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<label class="flex flex-col gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Item Category</span>
-<select class="form-select w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm transition-all">
-<option>Documents</option>
-<option>Food / Groceries</option>
-<option>Electronics</option>
-<option>Clothing</option>
-<option>Fragile Items</option>
-</select>
-</label>
-<label class="flex flex-col gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Approx. Weight (kg)</span>
-<input class="form-input w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm transition-all" placeholder="e.g. 2.5" type="number"/>
-</label>
-</div>
-<label class="flex flex-col gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Item Description</span>
-<textarea class="form-textarea w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white p-4 h-24 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm resize-none transition-all" placeholder="Describe the items clearly for the driver..."></textarea>
-</label>
-</div>
-</section>
-<!-- Section 3: Schedule & Notes -->
-<section class="flex flex-col gap-4 bg-white dark:bg-surface-dark p-6 rounded-xl border border-gray-200 dark:border-border-dark shadow-sm">
-<div class="flex items-center gap-3 border-b border-gray-100 dark:border-border-dark pb-4 mb-2">
-<span class="material-symbols-outlined text-primary">schedule</span>
-<h2 class="text-[#111418] dark:text-white text-xl font-bold">3. Schedule &amp; Instructions</h2>
-</div>
-<div class="flex flex-col gap-6">
-<div class="flex flex-col sm:flex-row gap-4">
-<label class="flex flex-col flex-1 gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Pickup Time</span>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-secondary">
-<span class="material-symbols-outlined text-lg">calendar_today</span>
-</div>
-<input class="form-input w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white h-12 pl-10 pr-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm transition-all" type="datetime-local"/>
-</div>
-<div class="flex items-center gap-2 mt-1">
-<input class="rounded border-gray-300 dark:border-border-dark text-primary focus:ring-primary bg-transparent" id="asap" type="checkbox"/>
-<label class="text-sm text-text-secondary cursor-pointer select-none" for="asap">Pickup ASAP</label>
-</div>
-</label>
-</div>
-<label class="flex flex-col gap-2">
-<span class="text-[#111418] dark:text-white text-sm font-medium">Special Instructions</span>
-<textarea class="form-textarea w-full rounded-lg bg-gray-50 dark:bg-[#12161b] border border-gray-300 dark:border-border-dark text-[#111418] dark:text-white p-4 h-24 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-text-secondary text-sm resize-none transition-all" placeholder="Gate codes, ring doorbell, leave at front desk, etc."></textarea>
-</label>
-</div>
-</section>
-</div>
-<!-- Right Column: Summary & Map -->
-<div class="lg:col-span-4 flex flex-col gap-6 sticky top-24">
-<!-- Map Preview Card -->
-<div class="bg-white dark:bg-surface-dark rounded-xl border border-gray-200 dark:border-border-dark overflow-hidden shadow-sm flex flex-col">
-<div class="w-full h-48 bg-gray-200 dark:bg-[#12161b] relative group">
-<!-- Map Image -->
-<div class="w-full h-full bg-cover bg-center" data-alt="Map showing route between two city points" data-location="City Map" style='background-image: url("https://placeholder.pics/svg/300"); filter: grayscale(30%) contrast(1.1) brightness(0.9);'>
-</div>
-<div class="absolute inset-0 bg-black/10"></div>
-<!-- Route Overlay Elements -->
-<div class="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-surface-dark p-1.5 rounded-full shadow-lg">
-<span class="material-symbols-outlined text-primary text-sm block">trip_origin</span>
-</div>
-<div class="absolute bottom-1/3 right-1/3 transform translate-x-1/2 translate-y-1/2 bg-white dark:bg-surface-dark p-1.5 rounded-full shadow-lg">
-<span class="material-symbols-outlined text-red-500 text-sm block">location_on</span>
-</div>
-<!-- Dotted Line (simulated) -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
-<line stroke="#137fec" stroke-dasharray="6,4" stroke-width="3" x1="25%" x2="66%" y1="25%" y2="66%"></line>
-</svg>
-</div>
-<div class="p-4 flex items-center justify-between border-t border-gray-200 dark:border-border-dark bg-gray-50/50 dark:bg-[#151a20]">
-<div class="flex flex-col">
-<span class="text-text-secondary text-xs uppercase tracking-wider font-semibold">Distance</span>
-<span class="text-[#111418] dark:text-white font-bold text-lg">5.2 km</span>
-</div>
-<div class="flex flex-col text-right">
-<span class="text-text-secondary text-xs uppercase tracking-wider font-semibold">Est. Time</span>
-<span class="text-[#111418] dark:text-white font-bold text-lg">18 mins</span>
-</div>
-</div>
-</div>
-<!-- Order Summary Card -->
-<div class="bg-white dark:bg-surface-dark p-6 rounded-xl border border-gray-200 dark:border-border-dark shadow-sm">
-<h3 class="text-[#111418] dark:text-white text-lg font-bold mb-4">Order Summary</h3>
-<div class="flex flex-col gap-3 border-b border-gray-100 dark:border-border-dark pb-4 mb-4">
-<div class="flex justify-between items-center text-sm">
-<span class="text-text-secondary">Base Fare (Bike)</span>
-<span class="text-[#111418] dark:text-white font-medium">$4.50</span>
-</div>
-<div class="flex justify-between items-center text-sm">
-<span class="text-text-secondary">Distance Charge</span>
-<span class="text-[#111418] dark:text-white font-medium">$5.20</span>
-</div>
-<div class="flex justify-between items-center text-sm">
-<span class="text-text-secondary">Service Fee</span>
-<span class="text-[#111418] dark:text-white font-medium">$1.80</span>
-</div>
-<div class="flex justify-between items-center text-sm">
-<span class="text-text-secondary">Taxes</span>
-<span class="text-[#111418] dark:text-white font-medium">$1.00</span>
-</div>
-</div>
-<div class="flex justify-between items-end mb-6">
-<span class="text-[#111418] dark:text-white font-bold text-lg">Total</span>
-<span class="text-primary font-black text-3xl">$12.50</span>
-</div>
-<div class="flex flex-col gap-3">
-<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-lg transition-all shadow-lg shadow-blue-500/20 active:scale-[0.98]">
-<span class="material-symbols-outlined text-[20px]">check_circle</span>
-                                Submit Order
-                            </button>
-<button class="w-full flex items-center justify-center gap-2 bg-transparent hover:bg-gray-100 dark:hover:bg-white/5 text-text-secondary hover:text-[#111418] dark:hover:text-white font-medium py-3 px-4 rounded-lg transition-all border border-transparent hover:border-gray-200 dark:hover:border-border-dark">
-                                Save Draft
-                            </button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</body></html>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card p-4 quick-card h-100">
+                            <div class="kpi-icon bg-primary bg-opacity-25 text-primary mb-3">
+                                <i class="bi bi-person-gear"></i>
+                            </div>
+                            <h5 class="fw-bold text-white">User Management</h5>
+                            <p class="text-secondary small">
+                                Manage client profiles, administrator roles, and access permissions.
+                            </p>
+                            <span class="text-primary fw-medium">Go to Users →</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card p-4 quick-card h-100">
+                            <div class="kpi-icon bg-danger bg-opacity-25 text-primary mb-3">
+                                <i class="bi bi-list-task text-danger"></i>
+                            </div>
+                            <h5 class="fw-bold text-white">Order Management</h5>
+                            <p class="text-secondary small">
+                                Access the full database of orders. Filter by status, date, or ID.
+                            </p>
+                            <span class="text-primary text-danger fw-medium">View All Orders →</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card p-4 quick-card h-100">
+                            <div class="kpi-icon bg-success bg-opacity-25 text-success mb-3">
+                                <i class="bi bi-scooter"></i>
+                            </div>
+                            <h5 class="fw-bold text-white">Deliverer Performance</h5>
+                            <p class="text-secondary small">
+                                Track deliverer ratings, delivery times, and active shifts.
+                            </p>
+                            <span class="text-success fw-medium">Analyze Fleet →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+<?php require __DIR__ . '/includes/footer.php'; ?>

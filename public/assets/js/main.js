@@ -1,4 +1,5 @@
-        document.addEventListener('DOMContentLoaded', function() {
+if (window.location.href.includes("login.php")) {
+            document.addEventListener('DOMContentLoaded', function() {
             let loginTab = document.getElementById('loginTab');
             let registerTab = document.getElementById('registerTab');
             let loginForm = document.getElementById('loginForm');
@@ -134,3 +135,19 @@
             
             console.log(`Current selected role: ${selectedRoleInput.value}`);
         });
+}
+
+if (window.location.href.includes("client_add_new_commande_dashboard.php")) {
+    document.querySelector(".add-product").addEventListener("click", ()=>{
+        let container = document.getElementById("itemsContainer");            
+        container.innerHTML += `
+            <div class="col-md-6">
+                <input type="text" class="form-control bg-black text-white" placeholder="e.g. Apples">
+            </div>
+    
+            <div class="col-md-6">
+              <input type="number" class="form-control bg-black text-white" placeholder="e.g. 2">
+            </div>
+        `;        
+    })
+}

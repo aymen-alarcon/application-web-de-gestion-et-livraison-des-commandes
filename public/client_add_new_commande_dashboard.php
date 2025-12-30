@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/includes/header.php'; ?>
   <main class="container py-4">
     <div class="mb-3 text-secondary-custom">
-      Dashboard / <span class="text-white">Create New Order</span>
+      My Orders / <span class="text-white">Create New Order</span>
     </div>
     <div class="mb-5">
       <h1 class="fw-black">Create New Order</h1>
@@ -36,42 +36,42 @@
             <div class="col-6 col-sm-3 text-center">
               <input type="radio" name="vehicle" id="bike" checked>
               <label for="bike" class="p-3 rounded w-100 d-block text-white">
-                <span class="icon">pedal_bike</span><br>Bike
+                <i class="fw-bold fs-4 bi bi-bicycle"></i>
               </label>
             </div>
             <div class="col-6 col-sm-3 text-center">
               <input type="radio" name="vehicle" id="scooter">
               <label for="scooter" class="p-3 rounded w-100 d-block text-white">
-                <span class="icon">two_wheeler</span><br>Scooter
+                <i class="fw-bold fs-4 bi bi-scooter"></i>
               </label>
             </div>
             <div class="col-6 col-sm-3 text-center">
               <input type="radio" name="vehicle" id="car">
               <label for="car" class="p-3 rounded w-100 d-block text-white">
-                <span class="icon">directions_car</span><br>Car
+                <i class="fw-bold fs-4 bi bi-car-front"></i>
               </label>
             </div>
             <div class="col-6 col-sm-3 text-center">
               <input type="radio" name="vehicle" id="van">
               <label for="van" class="p-3 rounded w-100 d-block text-white">
-                <span class="icon">local_shipping</span><br>Van
+                <i class="fw-bold fs-4 bi bi-truck"></i>
               </label>
             </div>
           </div>
 
-          <div class="row g-3">
+          <div class="row g-3" id="itemsContainer">
             <div class="col-md-6">
-              <label class="form-label text-white">Item Category</label>
-              <select class="form-select bg-black text-white">
-                <option class="text-white">Documents</option>
-                <option class="text-white">Food / Groceries</option>
-                <option class="text-white">Electronics</option>
-              </select>
+              <label class="form-label text-white">What do you want?</label>
+              <input type="text" class="form-control bg-black text-white" placeholder="e.g. Apples">
             </div>
+
             <div class="col-md-6">
-              <label class="form-label text-white">Approx. Weight (kg)</label>
-              <input type="number" class="form-control bg-black">
+              <label class="form-label text-white">Quantity</label>
+              <input type="number" class="form-control bg-black text-white" placeholder="e.g. 2">
             </div>
+          </div>
+          <div class="mt-3">
+            <button type="button" class="btn btn-success w-100 add-product">+</button>
           </div>
 
           <div class="mt-3">
@@ -93,17 +93,12 @@
 
           <div class="d-flex justify-content-between mb-2">
             <span class="text-secondary-custom">Base Fare</span>
-            <span>$4.50</span>
+            <span class="text-white">$4.50</span>
           </div>
           <div class="d-flex justify-content-between mb-2">
             <span class="text-secondary-custom">Distance</span>
-            <span>$5.20</span>
+            <span class="text-white">$5.20</span>
           </div>
-          <div class="d-flex justify-content-between mb-3">
-            <span class="text-secondary-custom">Taxes</span>
-            <span>$1.00</span>
-          </div>
-
           <hr>
 
           <div class="d-flex justify-content-between align-items-end mb-4">
@@ -112,7 +107,6 @@
           </div>
 
           <button class="btn btn-primary w-100 mb-2">Submit Order</button>
-          <button class="btn btn-outline-secondary w-100">Save Draft</button>
         </div>
       </div>
 

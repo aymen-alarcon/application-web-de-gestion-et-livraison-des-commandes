@@ -2,7 +2,7 @@
     <div class="container-fluid vh-100">
         <main class="container container-max py-5">
             <p class="text-secondary mb-5">
-                Real-time performance metrics for today's logistics operations.
+                Real-time performance metrics for logistics operations.
             </p>
             <div class="row g-4">
                 <div class="col-sm-6 col-xl-4">
@@ -77,52 +77,6 @@
                             <span class="text-secondary small">/ 120 Total</span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <h4 class="mt-5 mb-3 fw-semibold">Quick Management</h4>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <a href="#" class="text-decoration-none text-white">
-                        <div class="card p-4 quick-card h-100">
-                            <div class="kpi-icon bg-primary bg-opacity-25 text-primary mb-3">
-                                <i class="bi bi-person-gear"></i>
-                            </div>
-                            <h5 class="fw-bold text-white">User Management</h5>
-                            <p class="text-secondary small">
-                                Manage client profiles, administrator roles, and access permissions.
-                            </p>
-                            <span class="text-primary fw-medium">Go to Users →</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="text-decoration-none text-white">
-                        <div class="card p-4 quick-card h-100">
-                            <div class="kpi-icon bg-danger bg-opacity-25 text-primary mb-3">
-                                <i class="bi bi-list-task text-danger"></i>
-                            </div>
-                            <h5 class="fw-bold text-white">Order Management</h5>
-                            <p class="text-secondary small">
-                                Access the full database of orders. Filter by status, date, or ID.
-                            </p>
-                            <span class="text-primary text-danger fw-medium">View All Orders →</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="text-decoration-none text-white">
-                        <div class="card p-4 quick-card h-100">
-                            <div class="kpi-icon bg-success bg-opacity-25 text-success mb-3">
-                                <i class="bi bi-scooter"></i>
-                            </div>
-                            <h5 class="fw-bold text-white">Deliverer Performance</h5>
-                            <p class="text-secondary small">
-                                Track deliverer ratings, delivery times, and active shifts.
-                            </p>
-                            <span class="text-success fw-medium">Analyze Fleet →</span>
-                        </div>
-                    </a>
                 </div>
             </div>
         </main>
