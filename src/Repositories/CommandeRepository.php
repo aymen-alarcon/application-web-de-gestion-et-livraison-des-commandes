@@ -9,7 +9,8 @@ class CommandeRepository{
     }
 
     function create($commande){
-        $sql = "INSERT INTO commandes (titre, address, phone, statu, is_deleted, created_at) VALUES (:titre, :address, :phone, :statu, :is_deleted, now())";
+        session_start();
+        $sql = "INSERT INTO commandes (titre, address, phone, statu, is_deleted, created_at, user_id) VALUES (:titre, :address, :phone, :statu, :is_deleted, now(), :user_id)";
         $stmt = $this->conn->prepare($sql);
         $titre = $commande->getTitre();
         $address = $commande->getAddress();
@@ -21,6 +22,7 @@ class CommandeRepository{
         $stmt->bindParam(":phone", $phone);
         $stmt->bindParam(":statu", $statu);
         $stmt->bindParam(":is_deleted", $is_deleted);
+        $stmt->bindParam(":user_id", $_SESSION["id"]);
         $stmt->execute();
         header("Location: ../../public/client_dashboard.php");
     }
