@@ -59,53 +59,19 @@
             <label class="form-label text-white">Phone</label>
             <input class="form-control bg-dark text-white border-secondary" name = "phone" value="<?= $_COOKIE["phone"] ?>">
           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h5 class="fw-bold text-white">Saved Addresses</h5>
-      <a href="#" class="link-action text-decoration-none">+ Add New</a>
-    </div>
-
-    <div class="row g-3 mb-5">
-
-      <div class="col-md-6">
-        <div class="card border-primary bg-primary bg-opacity-10 text-white">
-          <div class="card-body">
-            <h6 class="fw-bold text-white">
-              Home
-              <span class="badge bg-primary ms-2">Default</span>
-            </h6>
-            <p class="text-white-50 mb-2">
-              123 Market Street, Apt 4B<br>San Francisco, CA 94103
-            </p>
-            <a href="#" class="link-action text-decoration-none me-3">Edit</a>
-            <a href="#" class="link-action text-decoration-none link-danger">Delete</a>
+          <div class="col-md-6">
+            <label class="form-label text-white">address</label>
+            <input class="form-control bg-dark text-white border-secondary" name = "address" value="<?= $_COOKIE["address"] ?>">
           </div>
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="card card-dark text-white">
-          <div class="card-body">
-            <h6 class="fw-bold text-white">Office</h6>
-            <p class="text-white-50 mb-2">
-              450 Mission Bay Blvd<br>San Francisco, CA 94158
-            </p>
-            <a href="#" class="link-action text-decoration-none me-3">Edit</a>
-            <a href="#" class="link-action text-decoration-none link-danger me-3">Delete</a>
-            <a href="#" class="link-action text-decoration-none">Set Default</a>
-          </div>
-        </div>
-      </div>
-
     </div>
 
   </main>
 </div>
 
-<div class="footer-bar position-fixed bottom-0 start-0 end-0 z-3 bg-dark bg-opacity-75 py-3">
+<div class="footer-bar position-fixed bottom-0 start-0 end-0 z-3 bg-opacity-75 py-3">
   <div class="container d-flex justify-content-end gap-3">
     <button class="btn btn-outline-secondary text-white">
       Cancel

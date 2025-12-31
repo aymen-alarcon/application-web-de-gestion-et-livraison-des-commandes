@@ -55,16 +55,11 @@ class UserRepository{
         $stmt->bindParam(":id", $id);
         $stmt->execute();    
         $userInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($userInfo);
-        $expiration = time() + 3600;
 
-        setcookie("username", $userInfo[0]["username"], $expiration, "/");
-        setcookie("first_name", $userInfo[0]["first_name"], $expiration, "/");
-        setcookie("last_name", $userInfo[0]["last_name"], $expiration, "/");
-        setcookie("email", $userInfo[0]["email"], $expiration, "/");
-        setcookie("phone", $userInfo[0]["phone"], $expiration, "/");
-        setcookie("address", $userInfo[0]["address"], $expiration, "/");
-        setcookie("created_at", $userInfo[0]["created_at"], $expiration, "/");
+        foreach ($userInfo[0] as $key => $value) {
+            setcookie($key, $value, time() + 3600, "/");
+        }
+
         header("Location: ../../public/client_profile.php?id=" . urldecode($_SESSION["id"]));
     }
 }

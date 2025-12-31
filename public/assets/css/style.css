@@ -173,3 +173,9 @@ input input[type="text"] {
 .quick-icon {
   font-size: 32px;
 }
+
+.footer-bar{
+  background: rgba(26, 34, 45, 0.5);
+  backdrop-filter: blur(6px);
+  border-color: #283039;
+}

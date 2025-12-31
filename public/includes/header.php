@@ -40,8 +40,6 @@
         </nav>
         <div class="d-flex align-items-center gap-3">
             <button class="btn btn-link text-secondary p-0"><i class="bi bi-bell"></i></button>
-            <div class="rounded-circle border border-secondary"
-                style="width:32px; height:32px; background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgdPsxEb_o40PLBjgEcATgAPr2fVGIkzaeqIloTOEWr0mgLQn9sJh8R4_zC93QjoGMvmUdHOwHr6r9cLVUXk0fkiZ9VzQ8TM7UuFr0KhjuqEkjyldEPTTlyIwgBKIJUFHzmCz7j1MTo2UVyGx70bjyy1GKeY7CE0H_3Xa-gx_SToe17h5WYVP483jW6JX_O2tt2qtKzY5K5a9GC7A9o64Y1pkBxwNNLH9XqqVTOUwHTBe-nZiw6RCoJbkEH4Mno7sVmUwaq7Jff9E'); background-size: cover;">
-            </div>
+            <a href="logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
         </div>
     </header>
