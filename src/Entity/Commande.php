@@ -5,11 +5,12 @@ class Commande{
     protected $id;
     protected $titre;
     protected $address;
+    protected $phone;
     protected $statu;
     protected $created_at;
     protected $is_deleted;
 
-    function __construct($conn, $id, $titre, $address, $statu, $created_at, $is_deleted)
+    function __construct($conn = NULL, $id = NULL, $titre = NULL, $address = NULL, $phone = NULL, $statu = "pending", $created_at = NULL, $is_deleted = 0)
     {
         $this->conn = $conn;
         $this->id = $id;
@@ -18,7 +19,7 @@ class Commande{
         $this->statu = $statu;
         $this->created_at = $created_at;
         $this->is_deleted = $is_deleted;
-
+        $this->phone = $phone;
     }
 
     public function getId()
@@ -79,5 +80,15 @@ class Commande{
     public function setIs_deleted($is_deleted)
     {
         $this->is_deleted = $is_deleted;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class CommandeRepository implements InterfaceCrud{
+class CommandeRepository{
     protected $conn;
 
     function __construct($conn)
@@ -9,13 +9,20 @@ class CommandeRepository implements InterfaceCrud{
     }
 
     function create($commande){
-        $sql = "INSERT INTO commandes (usernatitreme, address, statu, is_deleted, created_at) VALUES (:titre, :address, :statu, :is_deleted, now())";
+        $sql = "INSERT INTO commandes (titre, address, phone, statu, is_deleted, created_at) VALUES (:titre, :address, :phone, :statu, :is_deleted, now())";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":titre", $commande->getTitre());
-        $stmt->bindParam(":address", $commande->getAddress());
-        $stmt->bindParam(":statu", $commande->getStatu());
-        $stmt->bindParam(":is_deleted", $commande->getIs_deleted());
+        $titre = $commande->getTitre();
+        $address = $commande->getAddress();
+        $phone = $commande->getPhone();
+        $statu =  $commande->getStatu();
+        $is_deleted = $commande->getIs_deleted();
+        $stmt->bindParam(":titre", $titre);
+        $stmt->bindParam(":address", $address);
+        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":statu", $statu);
+        $stmt->bindParam(":is_deleted", $is_deleted);
         $stmt->execute();
+        header("Location: ../../public/client_dashboard.php");
     }
 
     function update($commande){
