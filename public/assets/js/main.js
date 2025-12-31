@@ -35,36 +35,7 @@ if (window.location.href.includes("login.php")) {
                 showRegisterForm();
                 saveTabState('register');
             });
-            
-            document.getElementById('registerFormContent').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                let formData = {
-                    fullName: this.querySelector('input[placeholder="e.g. John Doe"]').value,
-                    email: this.querySelector('input[type="email"]').value,
-                    password: this.querySelector('input[type="password"]').value,
-                    role: selectedRoleInput.value
-                };
-                
-                alert(`Registration submitted!\n\nFull Name: ${formData.fullName}\nEmail: ${formData.email}\nRole: ${formData.role}\n\n(This is a demo)`);
-                
-                console.log('Registration data:', formData);
-            });
-            
-            document.getElementById('loginFormContent').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                let formData = {
-                    email: this.querySelector('input[type="email"]').value,
-                    password: this.querySelector('input[type="password"]').value,
-                    rememberMe: this.querySelector('#rememberMe').checked
-                };
-                
-                alert(`Login submitted!\n\nEmail: ${formData.email}\nRemember me: ${formData.rememberMe ? 'Yes' : 'No'}\n\n(This is a demo)`);
-                
-                console.log('Login data:', formData);
-            });
-            
+                                    
             document.querySelectorAll('.input-group button').forEach(button => {
                 button.addEventListener('click', function() {
                     let input = this.parentElement.querySelector('input');

@@ -1,0 +1,34 @@
+<?php
+require_once "../Entity/User.php";
+require_once "../Repositories/UserRepository.php";
+require_once "../Database/DatabaseConnection.php";
+
+$db = new DatabaseConnection();
+$conn = $db->connect();
+
+class RegisterHandler {
+    protected $conn;
+
+    function __construct($conn)
+    {
+        $this->conn = $conn;
+    }
+
+    function register() {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $user = new User();
+            $user->setUsername($_POST["username"]);
+            $user->setFirstName($_POST["first_name"]);
+            $user->setLastName($_POST["last_name"]);
+            $user->setPhone($_POST["phone"]);
+            $user->setPassword($_POST["password"]);
+            $user->setEmail($_POST["email"]);
+
+            $repo = new UserRepository($this->conn);
+            $repo->register($user);
+        }
+    }
+}
+
+$handler = new RegisterHandler($conn);
+$handler->register();

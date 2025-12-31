@@ -1,4 +1,6 @@
-<?php require __DIR__ . '/includes/header.php'; ?>
+<?php 
+    require __DIR__ . '/includes/header.php'; 
+?>
 <main class="container pt-5 vh-100">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
         <div>
@@ -61,8 +63,6 @@
                     <td>--</td>
                     <td><span class="badge bg-warning text-dark">Waiting for offers</span></td>
                     <td class="text-end">
-                        <button class="btn btn-link text-primary p-0 me-2">Review Offers</button>
-                        <button class="btn btn-link text-secondary p-0"><i class="bi bi-three-dots-vertical"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -87,8 +87,6 @@
                     <td>$45.00</td>
                     <td><span class="badge bg-primary">In Progress</span></td>
                     <td class="text-end">
-                        <button class="btn btn-link text-primary p-0 me-2">Track</button>
-                        <button class="btn btn-link text-secondary p-0"><i class="bi bi-three-dots-vertical"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -113,8 +111,6 @@
                     <td>$120.50</td>
                     <td><span class="badge bg-purple text-white">Shipped</span></td>
                     <td class="text-end">
-                        <button class="btn btn-link text-primary p-0 me-2">View Details</button>
-                        <button class="btn btn-link text-secondary p-0"><i class="bi bi-three-dots-vertical"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -139,8 +135,6 @@
                     <td>$28.00</td>
                     <td><span class="badge bg-success">Completed</span></td>
                     <td class="text-end">
-                        <button class="btn btn-link text-primary p-0 me-2">View Invoice</button>
-                        <button class="btn btn-link text-secondary p-0"><i class="bi bi-three-dots-vertical"></i></button>
                     </td>
                 </tr>
                 <tr class="text-secondary">
@@ -158,8 +152,6 @@
                     <td>$55.00</td>
                     <td><span class="badge bg-danger">Canceled</span></td>
                     <td class="text-end">
-                        <button class="btn btn-link text-primary p-0 me-2">Re-Order</button>
-                        <button class="btn btn-link text-secondary p-0"><i class="bi bi-three-dots-vertical"></i></button>
                     </td>
                 </tr>
             </tbody>

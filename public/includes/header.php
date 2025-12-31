@@ -1,4 +1,8 @@
-<?php require "../src/Database/DatabaseConnection.php" ;?>
+<?php 
+    require "../src/Database/DatabaseConnection.php" ;
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

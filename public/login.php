@@ -91,32 +91,46 @@
 
                     <input type="hidden" id="selectedRole" name="selectedRole" value="client">
 
-                    <form class="d-flex flex-column gap-4" id="registerFormContent">
+                    <form class="d-flex flex-column gap-4" id="registerFormContent" method="POST" action="../src/Controller/RegisterHandler.php">
                         <div class="d-flex flex-column gap-3">
-                            <label class="small text-secondary-custom fw-bold text-uppercase">first Name</label>
+                            <label class="small text-secondary-custom fw-bold text-uppercase">Username</label>
                             <div class="input-group">
-                                <input class="form-control border-0 p-3 bg-dark text-white" placeholder="e.g. John Doe" required />
+                                <input class="form-control border-0 p-3 bg-dark text-white" name="username" placeholder="e.g. John Doe" required />
                             </div>
                         </div>
 
                         <div class="d-flex flex-column gap-3">
                             <label class="small text-secondary-custom fw-bold text-uppercase">first Name</label>
                             <div class="input-group">
-                                <input class="form-control border-0 p-3 bg-dark text-white" placeholder="e.g. John Doe" required />
+                                <input class="form-control border-0 p-3 bg-dark text-white" name="first_name" placeholder="e.g. John Doe" required />
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3">
+                            <label class="small text-secondary-custom fw-bold text-uppercase">first Name</label>
+                            <div class="input-group">
+                                <input class="form-control border-0 p-3 bg-dark text-white" name="last_name" placeholder="e.g. John Doe" required />
                             </div>
                         </div>
 
                         <div class="d-flex flex-column gap-3">
                             <label class="small text-secondary-custom fw-bold text-uppercase">Email Address</label>
                             <div class="input-group">
-                                <input type="email" class="form-control border-0 p-3 bg-dark text-white" placeholder="name@company.com" required />
+                                <input type="email" class="form-control border-0 p-3 bg-dark text-white" name="email" placeholder="name@company.com" required />
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3">
+                            <label class="small text-secondary-custom fw-bold text-uppercase">Phone</label>
+                            <div class="input-group">
+                                <input type="phone" class="form-control border-0 p-3 bg-dark text-white" name="phone" placeholder="name@company.com" required />
                             </div>
                         </div>
 
                         <div class="d-flex flex-column gap-3">
                             <label class="small text-secondary-custom fw-bold text-uppercase">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-0 p-3 bg-dark text-white" placeholder="Min. 8 characters" required />
+                                <input type="password" class="form-control border-0 p-3 bg-dark text-white" name="password" placeholder="Min. 8 characters" required />
                                 <button class="btn text-white border-0 d-flex align-items-center" type="button">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
@@ -133,17 +147,17 @@
                     <p class="text-secondary-custom mb-4">
                         Sign in to your account to continue.
                     </p>
-                    <form class="d-flex flex-column gap-4" id="loginFormContent">
+                    <form class="d-flex flex-column gap-4" id="loginFormContent" method="POST" action="../src/Controller/LoginHandler.php">
                         <div class="d-flex flex-column gap-3">
                             <label class="small text-secondary-custom fw-bold text-uppercase">Email Address</label>
                             <div class="input-group">
-                                <input type="email" class="form-control border-0 p-3 bg-dark text-white" placeholder="name@company.com" required />
+                                <input type="email" class="form-control border-0 p-3 bg-dark text-white" name="email" placeholder="name@company.com" required />
                             </div>
                         </div>
                         <div class="d-flex flex-column gap-3">
                             <label class="small text-secondary-custom fw-bold text-uppercase">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control border-0 p-3 bg-dark text-white" placeholder="Enter your password" required />
+                                <input type="password" class="form-control border-0 p-3 bg-dark text-white" name="password" placeholder="Enter your password" required />
                                 <button class="btn text-white border-0 d-flex align-items-center" type="button">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
