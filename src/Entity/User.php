@@ -8,8 +8,9 @@ class User{
     protected $email;
     protected $password;
     protected $phone;
+    protected $address;
 
-    function __construct($id = NULL, $username = NULL, $firstName = NULL, $lastName = NULL, $email = NULL, $password = NULL, $phone = NULL)
+    function __construct($id = NULL, $username = NULL, $firstName = NULL, $lastName = NULL, $email = NULL, $password = NULL, $phone = NULL, $address = NULL)
     {
         $this->id = $id;
         $this->username = $username;
@@ -88,5 +89,15 @@ class User{
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 }

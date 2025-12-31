@@ -7,7 +7,7 @@
             <h1 class="h3">My Orders</h1>
             <p class="text-secondary">Track, manage and create new delivery requests.</p>
         </div>
-        <a href="client_add_new_commande_dashboard.php" class="btn btn-primary text-white text-decoration-none"> + add Create New Order</a>
+        <a href="client_add_new_commande_dashboard.php" class="btn btn-primary text-white text-decoration-none"> + Add Create New Order</a>
     </div>
 
     <div class="row mb-4 g-2">

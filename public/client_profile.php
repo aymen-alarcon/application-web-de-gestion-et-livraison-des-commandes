@@ -3,7 +3,6 @@
   <main class="container py-4" style="max-width: 900px;">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h1 class="fw-bold text-white">Account Settings</h1>
-      <small class="text-muted-dark">Last updated: Oct 24, 2023</small>
     </div>
 
     <div class="card card-dark shadow-sm mb-4 text-white">
@@ -19,7 +18,7 @@
         </div>
 
         <div class="flex-fill">
-          <h5 class="fw-bold text-white mb-1">John Doe</h5>
+          <h5 class="fw-bold text-white mb-1"><?= $_COOKIE["first_name"] . " " . $_COOKIE["last_name"]  ?></h5>
           <p class="text-muted-dark mb-2">Member since September 2023</p>
           <span class="badge bg-success bg-opacity-25 text-success">Client</span>
         </div>
@@ -38,34 +37,28 @@
 
           <div class="col-md-6">
             <label class="form-label text-white">First Name</label>
-            <input class="form-control bg-dark text-white border-secondary" value="John">
+            <input class="form-control bg-dark text-white border-secondary" name = "first_name" value="<?= $_COOKIE["first_name"] ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Last Name</label>
-            <input class="form-control bg-dark text-white border-secondary" value="Doe">
+            <input class="form-control bg-dark text-white border-secondary" name = "last_name" value="<?= $_COOKIE["last_name"] ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Username</label>
-            <input class="form-control bg-dark text-white border-secondary" value="JohnDoe">
+            <input class="form-control bg-dark text-white border-secondary" name = "username" value="<?= $_COOKIE["username"] ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Email</label>
-            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled value="john.doe@example.com">
+            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled name = "email" value="<?= $_COOKIE["email"] ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Phone</label>
-            <input class="form-control bg-dark text-white border-secondary" value="+1 (555) 123-4567">
+            <input class="form-control bg-dark text-white border-secondary" name = "phone" value="<?= $_COOKIE["phone"] ?>">
           </div>
-
-          <div class="col-md-6">
-            <label class="form-label text-white">Date of Birth</label>
-            <input type="date" class="form-control bg-dark text-white border-secondary" value="1990-05-15">
-          </div>
-
         </div>
       </div>
     </div>
@@ -112,8 +105,7 @@
   </main>
 </div>
 
-<div class="footer-bar position-fixed bottom-0 start-0 end-0 z-3
-            border-top border-secondary bg-dark bg-opacity-75 py-3">
+<div class="footer-bar position-fixed bottom-0 start-0 end-0 z-3 bg-dark bg-opacity-75 py-3">
   <div class="container d-flex justify-content-end gap-3">
     <button class="btn btn-outline-secondary text-white">
       Cancel

@@ -15,18 +15,22 @@ class RegisterHandler {
     }
 
     function register() {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = new User();
-            $user->setUsername($_POST["username"]);
-            $user->setFirstName($_POST["first_name"]);
-            $user->setLastName($_POST["last_name"]);
-            $user->setPhone($_POST["phone"]);
-            $user->setPassword($_POST["password"]);
-            $user->setEmail($_POST["email"]);
-
-            $repo = new UserRepository($this->conn);
-            $repo->register($user);
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+            header("Location: ../../public/login.php");
         }
+
+        $user = new User();
+        
+        $user->setUsername($_POST["username"]);
+        $user->setFirstName($_POST["first_name"]);
+        $user->setLastName($_POST["last_name"]);
+        $user->setPhone($_POST["phone"]);
+        $user->setPassword($_POST["password"]);
+        $user->setEmail($_POST["email"]);
+        $user->setAddress($_POST["address"]);
+
+        $repo = new UserRepository($this->conn);
+        $repo->register($user);
     }
 }
 

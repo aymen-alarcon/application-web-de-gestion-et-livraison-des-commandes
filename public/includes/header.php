@@ -33,7 +33,7 @@
                 My Orders
             </a>
 
-            <a href="client_profile.php"
+            <a href="../src/Controller/ReadHandler.php"
             class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
                 Profile
             </a>
