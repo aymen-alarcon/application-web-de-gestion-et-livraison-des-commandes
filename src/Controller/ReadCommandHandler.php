@@ -18,10 +18,8 @@ class ReadCommandHandler{
 
     function read(){
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            $commandeCredentials = new Commande();
-            $commandeCredentials->setId($_SESSION["id"]); 
             $repo = new CommandeRepository($this->conn);
-            $repo->read($commandeCredentials);
+            $repo->read();
         }
     }
 }

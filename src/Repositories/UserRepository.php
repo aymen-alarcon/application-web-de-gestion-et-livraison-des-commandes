@@ -20,6 +20,9 @@ class UserRepository{
         if ($userCredentials && $password === $userCredentials["password"]) {
             session_start();
             foreach ($userCredentials as $key => $value) {
+                if ($key === 'password' || $key === 'id') {
+                    continue;
+                }
                 setcookie($key, $value, time() + 3600, "/");
             }
             $_SESSION["id"] = $userCredentials["id"];
@@ -60,6 +63,9 @@ class UserRepository{
         $userInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($userInfo[0] as $key => $value) {
+            if ($key === 'password' || $key === 'id') {
+                continue;
+            }
             setcookie($key, $value, time() + 3600, "/");
         }
 

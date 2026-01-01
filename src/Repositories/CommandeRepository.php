@@ -8,6 +8,7 @@ class CommandeRepository{
     }
 
     function create($commande){
+        session_start();
         $sql = "INSERT INTO commandes (titre, address, phone, statu, is_deleted, created_at, user_id) VALUES (:titre, :address, :phone, :statu, :is_deleted, now(), :user_id)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":titre", $commande->getTitre());
@@ -20,19 +21,15 @@ class CommandeRepository{
         header("Location: ../../public/client_dashboard.php");
     }
 
-    function read($commande){
-        $sql = "SELECT * FROM commandes WHERE user_id = :id";
+    function read(){
+        session_start();
+        $sql = "SELECT * FROM commandes WHERE user_id = :id AND is_deleted = '0'";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $_SESSION["id"]);
         $stmt->execute();
-        $commande = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        setcookie("titre", $commande[0]["titre"], time() + 3600, "\\");
-        setcookie("address", $commande[0]["address"], time() + 3600, "\\");
-        setcookie("phone", $commande[0]["phone"], time() + 3600, "\\");
-        setcookie("statu", $commande[0]["statu"], time() + 3600, "\\");
-        setcookie("user_id", $commande[0]["user_id"], time() + 3600, "\\");
-        setcookie("created_at", $commande[0]["created_at"], time() + 3600, "\\");
+        $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         header("Location: ../../public/client_order_dashboard.php");
+        exit;
     }
 
     function update($commande){

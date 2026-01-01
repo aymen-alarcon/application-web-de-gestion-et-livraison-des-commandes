@@ -18,7 +18,7 @@
         </div>
 
         <div class="flex-fill">
-          <h5 class="fw-bold text-white mb-1"><?= $_COOKIE["first_name"] . " " . $_COOKIE["last_name"]  ?></h5>
+          <h5 class="fw-bold text-white mb-1"><?= htmlspecialchars($_COOKIE["first_name"] . " " . $_COOKIE["last_name"])  ?></h5>
           <p class="text-muted-dark mb-2">Member since September 2023</p>
           <span class="badge bg-success bg-opacity-25 text-success">Client</span>
         </div>
@@ -37,32 +37,32 @@
 
           <div class="col-md-6">
             <label class="form-label text-white">First Name</label>
-            <input class="form-control bg-dark text-white border-secondary" name = "first_name" value="<?= $_COOKIE["first_name"] ?>">
+            <input class="form-control bg-dark text-white border-secondary" name = "first_name" value="<?= htmlspecialchars($_COOKIE["first_name"]) ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Last Name</label>
-            <input class="form-control bg-dark text-white border-secondary" name = "last_name" value="<?= $_COOKIE["last_name"] ?>">
+            <input class="form-control bg-dark text-white border-secondary" name = "last_name" value="<?= htmlspecialchars($_COOKIE["last_name"]) ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Username</label>
-            <input class="form-control bg-dark text-white border-secondary" name = "username" value="<?= $_COOKIE["username"] ?>">
+            <input class="form-control bg-dark text-white border-secondary" name = "username" value="<?= htmlspecialchars($_COOKIE["username"]) ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Email</label>
-            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled name = "email" value="<?= $_COOKIE["email"] ?>">
+            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled name = "email" value="<?= htmlspecialchars($_COOKIE["email"]) ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">Phone</label>
-            <input class="form-control bg-dark text-white border-secondary" name = "phone" value="<?= $_COOKIE["phone"] ?>">
+            <input class="form-control bg-dark text-white border-secondary" name = "phone" value="<?= htmlspecialchars($_COOKIE["phone"]) ?>">
           </div>
 
           <div class="col-md-6">
             <label class="form-label text-white">address</label>
-            <input class="form-control bg-dark text-white border-secondary" name = "address" value="<?= $_COOKIE["address"] ?>">
+            <input class="form-control bg-dark text-white border-secondary" name = "address" value="<?= htmlspecialchars($_COOKIE["address"]) ?>">
           </div>
         </div>
       </div>
