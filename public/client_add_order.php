@@ -1,15 +1,4 @@
 <?php
-  session_start();
-
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $_SESSION['package'] = $_POST;
-  }
-
-  if (!isset($_SESSION['package'])) {
-      header('Location: client_add_package.php');
-      exit;
-  }
-
   require __DIR__ . '/includes/header.php';
 ?>
 
@@ -59,11 +48,6 @@
           <strong>Total</strong>
           <span class="text-primary fs-3 fw-bold">$12.50</span>
         </div>
-
-        <?php foreach ($_SESSION['package'] as $key => $value): ?>
-            <input type="hidden" name="<?= htmlspecialchars($key) ?>" value="<?= htmlspecialchars($value) ?>">
-        <?php endforeach; ?>
-
         <button type="submit" class="btn btn-primary w-100 mb-2">Submit Order</button>
       </div>
     </div>

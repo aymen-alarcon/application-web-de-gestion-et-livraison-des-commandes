@@ -18,6 +18,7 @@ class InsertCommandeHandler{
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             header("Location: ../../public/client_dashboard.php");
         }
+
         $commande = new Commande();
         $commande->setTitre($_POST["titre"]);
         $commande->setAddress($_POST["address"]);

@@ -47,3 +47,12 @@ CREATE TABLE role (
     role_name VARCHAR(70) NOT NULL,
     permissions VARCHAR(70) NOT NULL,
 )
+
+
+ALTER TABLE commande_items
+ADD COLUMN commande_id INT NOT NULL,
+ADD CONSTRAINT fk_commande
+    FOREIGN KEY (commande_id) REFERENCES commandes(id)
+    ON DELETE CASCADE;
+
+ALTER TABLE commande_items ADD price INT NOT NULL AFTER quantity

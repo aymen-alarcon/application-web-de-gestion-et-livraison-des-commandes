@@ -18,7 +18,10 @@ class CommandeRepository{
         $stmt->bindValue(":is_deleted", $commande->getIs_deleted());
         $stmt->bindValue(":user_id", $_SESSION["id"]);
         $stmt->execute();
-        header("Location: ../../public/client_dashboard.php");
+        // $this->read();
+        $commande_id = $this->conn->lastInsertId();
+        var_dump($commande_id);
+        header("Location: ../../public/client_add_package.php?commande_id=" . urlencode($commande_id));
     }
 
     function read(){
@@ -49,6 +52,6 @@ class CommandeRepository{
         $stmt->bindValue(":id", $commande->getId());
         $stmt->execute();    
         $this->read();
-        header("Location: ../../public/client_order_dashboard.php");
+        header("Location: ../../public/client_add_package.php");
     }
 }

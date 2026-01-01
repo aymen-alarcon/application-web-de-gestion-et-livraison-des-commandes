@@ -27,8 +27,7 @@
                 Dashboard
             </a>
 
-            <a href="../src/Controller/ReadCommandHandler.php"
-            class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 My Orders
             </a>
 

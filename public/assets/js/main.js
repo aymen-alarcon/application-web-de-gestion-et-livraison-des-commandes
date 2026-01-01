@@ -112,18 +112,18 @@ if (window.location.href.includes("client_add_package.php")) {
     document.querySelector(".add-product").addEventListener("click", ()=>{
         let container = document.getElementById("itemsContainer");            
         container.innerHTML += `
-              <div class="row g-3" id="itemsContainer">
+              <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label text-white">What do you want?</label>
-                  <input type="text" class="form-control bg-black text-white" name="product" placeholder="e.g. Apples">
+                  <input type="text" class="form-control bg-black text-white" name="product[]" placeholder="e.g. Apples">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label text-white">Quantity</label>
-                  <input type="number" class="form-control bg-black text-white" name="quantity" placeholder="e.g. 2">
+                  <input type="number" class="form-control bg-black text-white" name="quantity[]" placeholder="e.g. 2">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label text-white">Price</label>
-                  <input type="number" class="form-control bg-black text-white" name="price" placeholder="e.g. 2">
+                  <input type="number" class="form-control bg-black text-white" name="price[]" placeholder="e.g. 2">
                 </div>
               </div>
         `;        
