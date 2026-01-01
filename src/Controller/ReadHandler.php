@@ -16,8 +16,6 @@ class ReadHandler{
         $this->conn = $conn;
     }
 
-   
-
     function read(){
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             $userCredentials = new User();

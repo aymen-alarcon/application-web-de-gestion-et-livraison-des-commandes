@@ -19,7 +19,7 @@ class LoginHandler {
             $user = new User();
             $user->setEmail($_POST["email"]);
             $user->setPassword($_POST["password"]);
-
+            
             $repo = new UserRepository($this->conn);
             $repo->login($user);
         }
