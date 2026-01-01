@@ -61,17 +61,28 @@
                     </td>
                     <td>--</td>
                     <td>
-                        <?php if ($commande['statu'] === 'accepted'): ?>
-                            <span class="badge bg-success">Completed</span>
-                        <?php elseif ($commande['statu'] === 'canceled'): ?>
+                        <?php if ($commande['statu'] === 'In Progress'): ?>
+                            <span class="badge bg-success">In Progress</span>
+                        <?php elseif ($commande['statu'] === 'Canceled'): ?>
                             <span class="badge bg-danger">Canceled</span>
-                        <?php elseif ($commande['statu'] === 'refused'): ?>
-                            <span class="badge bg-primary">In Progress</span>
-                        <?php elseif ($commande['statu'] === 'pending'): ?>
+                        <?php elseif ($commande['statu'] === 'Completed'): ?>
+                            <span class="badge bg-primary">Completed</span>
+                        <?php elseif ($commande['statu'] === 'Pending'): ?>
                             <span class="badge bg-warning text-dark">Waiting for offers</span>
                         <?php endif; ?>
                     </td>
-                    <td class="text-end"></td>
+                    <td class="text-end">
+                        <a href="" class="text-decoration-none">
+                            <span class="kpi-icon bg-success bg-opacity-25 text-success">
+                                <i class="bi bi-pencil"></i>
+                            </span>
+                        </a>
+                        <a href="../src/Controller/DeleteCommandHandler.php?id=<?= $commande["id"] ?>" class="text-decoration-none">
+                            <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
+                                <i class="bi bi-trash3"></i>
+                            </span>
+                        </a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

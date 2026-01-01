@@ -1,4 +1,32 @@
-<?php require __DIR__ . '/includes/header.php'; ?>
+<?php 
+    require __DIR__ . '/includes/header.php'; 
+    $commandes = $_SESSION['commandes'] ?? [];
+    $countOrders = count($commandes);
+    $countPendingOrders = 0;
+    $countCompletedOrders = 0;
+    $countInProgressOrders = 0;
+    $countCanceledOrders = 0;
+
+    foreach ($commandes as $commande) {
+        switch ($commande['statu']) {
+            case 'Pending':
+                $countPendingOrders++;
+                break;
+
+            case 'Completed':
+                $countCompletedOrders++;
+                break;
+
+            case 'In Progress':
+                $countInProgressOrders++;
+                break;
+
+            case 'Canceled':
+                $countCanceledOrders++;
+                break;
+        }
+    }
+?>
     <div class="container-fluid vh-100">
         <main class="container container-max py-5">
             <p class="text-secondary mb-5">
@@ -13,7 +41,7 @@
                                 <i class="bi bi-archive"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">15,234</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countOrders ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
@@ -25,7 +53,7 @@
                             </span>
                         </div>
                         <div class="d-flex align-items-baseline gap-2">
-                            <h2 class="fw-extrabold text-white">42</h2>
+                            <h2 class="fw-extrabold text-white"><?= $countPendingOrders ?></h2>
                             <span class="text-warning small fw-medium">Requires Action</span>
                         </div>
                     </div>
@@ -38,7 +66,7 @@
                                 <i class="bi bi-check-circle"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">14,800</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countCompletedOrders ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
@@ -49,7 +77,19 @@
                                 <i class="bi bi-x-lg"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">392</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countCanceledOrders ?></h2>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">In Progress Orders</small>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="kpi-icon bg-success rounded-circle" style="width:8px;height:8px;"></span>
+                                <small class="text-success fw-semibold">LIVE</small>
+                            </div>
+                        </div>
+                        <h2 class="fw-extrabold text-white"><?= $countInProgressOrders ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
@@ -61,21 +101,6 @@
                             </span>
                         </div>
                         <h2 class="fw-extrabold text-white">1,250</h2>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary">Active Deliverers</small>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="bg-success rounded-circle" style="width:8px;height:8px;"></span>
-                                <small class="text-success fw-semibold">LIVE</small>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-baseline gap-2">
-                            <h2 class="fw-extrabold text-white">85</h2>
-                            <span class="text-secondary small">/ 120 Total</span>
-                        </div>
                     </div>
                 </div>
             </div>

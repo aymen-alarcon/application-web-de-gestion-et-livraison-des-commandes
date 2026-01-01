@@ -44,9 +44,11 @@ class CommandeRepository{
     }
 
     function delete($commande){
-        $sql = "DELETE FROM commandes WHERE id = :id";
+        $sql = "UPDATE commandes SET is_deleted = '1' WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
         $stmt->execute();    
+        $this->read();
+        header("Location: ../../public/client_order_dashboard.php");
     }
 }

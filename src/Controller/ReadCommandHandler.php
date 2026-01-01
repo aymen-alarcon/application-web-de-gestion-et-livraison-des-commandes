@@ -1,6 +1,4 @@
 <?php 
-
-require_once "../Entity/Commande.php";
 require_once "../Repositories/CommandeRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
