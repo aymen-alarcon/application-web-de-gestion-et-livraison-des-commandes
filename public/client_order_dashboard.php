@@ -95,7 +95,7 @@
                 ?>
                 <tr class="productInfo">
                     <td><?= htmlspecialchars($commande['id']) ?></td>
-                    <td><a href="" class="text-black text-decoration-none"><?= htmlspecialchars($commande['titre']) ?></a></td>
+                    <td><a href="../src/Controller/ReadCommandeItemHandler.php?commande_id=<?= $commande['id'] ?>" class="text-black text-decoration-none"><?= htmlspecialchars($commande['titre']) ?></a></td>
                     <td><?= htmlspecialchars($commande['address']) ?></td>
                     <td><?= htmlspecialchars($commande['phone']) ?></td>
                     <td>

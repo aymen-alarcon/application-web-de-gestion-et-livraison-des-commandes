@@ -56,3 +56,5 @@ ADD CONSTRAINT fk_commande
     ON DELETE CASCADE;
 
 ALTER TABLE commande_items ADD price INT NOT NULL AFTER quantity
+
+ALTER TABLE commande_items ADD COLUMN descritption TEXT AFTER quantity

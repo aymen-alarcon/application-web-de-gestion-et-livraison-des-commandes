@@ -1,478 +1,248 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin: Detailed Order Overview</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#137fec",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101922",
-                        "surface-dark": "#1c252e", // Slightly lighter than background-dark for cards
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        /* Custom scrollbar for better aesthetics in dark mode */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        :root {
+            --primary: #137fec;
+            --bg-dark: #101922;
+            --bg-light: #f6f7f8;
+            --surface-dark: #1c252e;
+            --border-dark: #3b4754;
+            --text-muted-dark: #9dabb9;
+            --radius-lg: .75rem;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #111418;
+        body {
+            font-family: Inter, sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #3b4754;
-            border-radius: 4px;
+        .bg-surface {
+            background-color: var(--surface-dark);
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4b5966;
+        .text-muted-dark {
+            color: var(--text-muted-dark);
+        }
+
+        .card {
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-dark);
+        }
+
+        .badge-status {
+            background: rgba(19, 127, 236, .15);
+            color: #7cb3ff;
+            border: 1px solid rgba(124, 179, 255, .25);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-dark);
+        }
+
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(19, 127, 236, .6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(19, 127, 236, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(19, 127, 236, 0);
+            }
+        }
+
+        table img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: .5rem;
+        }
+
+        .deliverer-status {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, .25);
         }
     </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
-    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
-        <!-- Top Navigation -->
-        <header
-            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e7eb] dark:border-b-[#283039] bg-white dark:bg-[#111418] px-10 py-3 sticky top-0 z-50">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-4 text-[#111418] dark:text-white">
-                    <div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
-                        <span class="material-symbols-outlined text-xl">local_shipping</span>
-                    </div>
-                    <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Delivery Admin</h2>
-                </div>
-                <label class="flex flex-col min-w-40 !h-10 max-w-64 hidden md:flex">
-                    <div
-                        class="flex w-full flex-1 items-stretch rounded-lg h-full border border-[#e5e7eb] dark:border-none">
-                        <div
-                            class="text-[#6b7280] dark:text-[#9dabb9] flex bg-[#f9fafb] dark:bg-[#283039] items-center justify-center pl-4 rounded-l-lg border-r-0">
-                            <span class="material-symbols-outlined text-[20px]">search</span>
-                        </div>
-                        <input
-                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-l-none border-l-0 text-[#111418] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#f9fafb] dark:bg-[#283039] focus:border-none h-full placeholder:text-[#6b7280] dark:placeholder:text-[#9dabb9] px-4 pl-2 text-sm font-normal leading-normal"
-                            placeholder="Search orders, clients..." value="" />
-                    </div>
-                </label>
+<body>
+    <nav class="navbar navbar-dark bg-black border-bottom px-4 sticky-top">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-primary text-white rounded p-2">
+                <span class="material-symbols-outlined">local_shipping</span>
             </div>
-            <div class="flex flex-1 justify-end gap-8">
-                <div class="hidden lg:flex items-center gap-9">
-                    <a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#">Dashboard</a>
-                    <a class="text-primary text-sm font-medium leading-normal" href="#">Orders</a>
-                    <a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#">Deliverers</a>
-                    <a class="text-[#111418] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
-                        href="#">Clients</a>
+            <strong>Delivery Admin</strong>
+        </div>
+    </nav>
+    <div class="container-fluid py-4">
+        <div class="container-xl">
+            <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+                <div>
+                    <h1 class="fw-black">Order #ORD-2023-889</h1>
+                    <span class="badge badge-status">Processing</span>
+                    <div class="text-muted-dark mt-1">
+                        Created on Oct 24, 2023 at 14:30 • via Mobile App
+                    </div>
                 </div>
-                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-[#283039]"
-                    data-alt="Administrator profile picture"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhL2qBC3EVVRCuruK7T9935DEl_NdnQZw5axOrqLkxWT9uidSzALRz2CJEjl82C_8aNSg7RE0aFmt3xBshZKSJbXDwZptoXT1L9jJSQIkMhEmHhKv0r7UO1bBBorPKHd0ncTR9Y2nKZ15Vs-M-HCEUwgdpT0tkyawromqh9vg2Apse-kCtLOoPxTGv98xXwDEC8Pkbp-0WrBu06IxCRraRijkGC5MDdiZSEw-g88SWZUQQqf7jQAMOPPHthsApqglYLK1ROiUrjFA");'>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-light btn-sm">Edit</button>
+                    <button class="btn btn-primary btn-sm">Update Status</button>
                 </div>
             </div>
-        </header>
-        <main class="layout-container flex h-full grow flex-col py-5 px-4 md:px-10 lg:px-20 xl:px-40">
-            <div class="layout-content-container flex flex-col max-w-[1200px] flex-1 w-full mx-auto">
-                <!-- Breadcrumbs -->
-                <div class="flex flex-wrap gap-2 px-4 py-2">
-                    <a class="text-[#6b7280] dark:text-[#9dabb9] text-sm font-medium leading-normal flex items-center gap-1 hover:text-primary"
-                        href="#">
-                        <span class="material-symbols-outlined text-[18px]">receipt_long</span> Orders
-                    </a>
-                    <span class="text-[#6b7280] dark:text-[#9dabb9] text-sm font-medium leading-normal">/</span>
-                    <span class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Order
-                        #ORD-2023-889</span>
-                </div>
-                <!-- Page Heading & Main Actions -->
-                <div class="flex flex-wrap justify-between items-end gap-3 p-4 mb-4">
-                    <div class="flex flex-col gap-2">
-                        <div class="flex items-center gap-3">
-                            <h1
-                                class="text-[#111418] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
-                                Order #ORD-2023-889</h1>
-                            <span
-                                class="inline-flex items-center rounded-full bg-blue-100 dark:bg-blue-900/30 px-3 py-1 text-xs font-bold text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10 dark:ring-blue-400/20">
-                                Processing
-                            </span>
-                        </div>
-                        <p class="text-[#6b7280] dark:text-[#9dabb9] text-sm md:text-base font-normal leading-normal">
-                            Created on Oct 24, 2023 at 14:30 • via Mobile App</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button
-                            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f3f4f6] dark:bg-[#283039] text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#e5e7eb] dark:hover:bg-[#3b4754] transition-colors border border-[#e5e7eb] dark:border-transparent">
-                            <span class="material-symbols-outlined mr-2 text-[18px]">edit</span>
-                            <span class="truncate">Edit</span>
-                        </button>
-                        <button
-                            class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-600 transition-colors shadow-lg shadow-blue-900/20">
-                            <span class="truncate">Update Status</span>
-                        </button>
+            <div class="row g-3 mb-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-surface p-3">
+                        <div class="text-muted-dark">Total Cost</div>
+                        <div class="fs-3 fw-bold">$45.50</div>
                     </div>
                 </div>
-                <!-- Stats Overview -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4 mb-8">
-                    <div
-                        class="flex flex-col gap-2 rounded-xl p-5 border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark shadow-sm">
-                        <div class="flex items-center gap-2 text-[#6b7280] dark:text-[#9dabb9]">
-                            <span class="material-symbols-outlined text-[20px]">payments</span>
-                            <p class="text-sm font-medium leading-normal">Total Cost</p>
-                        </div>
-                        <p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold leading-tight">$45.50
-                        </p>
-                    </div>
-                    <div
-                        class="flex flex-col gap-2 rounded-xl p-5 border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark shadow-sm">
-                        <div class="flex items-center gap-2 text-[#6b7280] dark:text-[#9dabb9]">
-                            <span class="material-symbols-outlined text-[20px]">credit_card</span>
-                            <p class="text-sm font-medium leading-normal">Payment Status</p>
-                        </div>
-                        <p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold leading-tight">Paid
-                            (Visa)</p>
-                    </div>
-                    <div
-                        class="flex flex-col gap-2 rounded-xl p-5 border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark shadow-sm">
-                        <div class="flex items-center gap-2 text-[#6b7280] dark:text-[#9dabb9]">
-                            <span class="material-symbols-outlined text-[20px]">schedule</span>
-                            <p class="text-sm font-medium leading-normal">Est. Delivery</p>
-                        </div>
-                        <p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold leading-tight">15:15
-                            PM</p>
-                    </div>
-                    <div
-                        class="flex flex-col gap-2 rounded-xl p-5 border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark shadow-sm">
-                        <div class="flex items-center gap-2 text-[#6b7280] dark:text-[#9dabb9]">
-                            <span class="material-symbols-outlined text-[20px]">verified</span>
-                            <p class="text-sm font-medium leading-normal">Order Type</p>
-                        </div>
-                        <p class="text-[#111418] dark:text-white tracking-tight text-2xl font-bold leading-tight">
-                            Standard</p>
-                    </div>
-                </div>
-                <!-- Main Content Grid -->
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 px-4">
-                    <!-- Left Column: Products & Timeline -->
-                    <div class="xl:col-span-2 flex flex-col gap-6">
-                        <!-- Products Card -->
-                        <div
-                            class="flex flex-col rounded-xl border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark overflow-hidden shadow-sm">
-                            <div
-                                class="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#3b4754] flex justify-between items-center">
-                                <h3 class="text-[#111418] dark:text-white font-bold text-lg">Products Ordered</h3>
-                                <span class="text-xs font-medium text-[#6b7280] dark:text-[#9dabb9]">3 items</span>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-sm text-[#111418] dark:text-white">
-                                    <thead
-                                        class="bg-[#f9fafb] dark:bg-[#111418] text-xs uppercase text-[#6b7280] dark:text-[#9dabb9]">
-                                        <tr>
-                                            <th class="px-6 py-3 font-medium" scope="col">Product</th>
-                                            <th class="px-6 py-3 font-medium" scope="col">Notes</th>
-                                            <th class="px-6 py-3 font-medium text-right" scope="col">Qty</th>
-                                            <th class="px-6 py-3 font-medium text-right" scope="col">Price</th>
-                                            <th class="px-6 py-3 font-medium text-right" scope="col">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-[#e5e7eb] dark:divide-[#3b4754]">
-                                        <tr class="hover:bg-[#f9fafb] dark:hover:bg-[#283039]/50 transition-colors">
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center gap-3">
-                                                    <div class="h-10 w-10 rounded-lg bg-gray-200 bg-cover bg-center"
-                                                        data-alt="Pepperoni Pizza"
-                                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfzWb6XQtiNUInK_SztH4fd_XWpsJf66ipFN5ACSBWnncl7RkAalP68Z5EsY51XzGvU0GnlaplwgYGfuthfb6qAtB4gSW4KsWby4siNZRxuZllj9aTwbWxKA8n3aYucHETwy03R1c5t6E93mTsF4TNFLXs2L7bY48CtfneXt-ljLDwkb5-Mg_soFNDUJZid2xyWOYA_U8_UcHTXsnv8M5o0qs35UA-zKIzpiPl8CKQUWyNYOdWepeDjAQoZYAP8BpWmpEsbfX9lL8');">
-                                                    </div>
-                                                    <div class="font-medium">Pepperoni Pizza</div>
-                                                </div>
-                                            </td>
-                                            <td
-                                                class="px-6 py-4 text-[#6b7280] dark:text-[#9dabb9] italic max-w-xs truncate">
-                                                Extra crispy crust please</td>
-                                            <td class="px-6 py-4 text-right">1</td>
-                                            <td class="px-6 py-4 text-right text-[#6b7280] dark:text-[#9dabb9]">$18.50
-                                            </td>
-                                            <td class="px-6 py-4 text-right font-medium">$18.50</td>
-                                        </tr>
-                                        <tr class="hover:bg-[#f9fafb] dark:hover:bg-[#283039]/50 transition-colors">
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center gap-3">
-                                                    <div class="h-10 w-10 rounded-lg bg-gray-200 bg-cover bg-center"
-                                                        data-alt="Coke Zero Can"
-                                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC53kjwX-wU-CyZkONkpK939z78R9oRmR6s-xj2XJoJQ6347EBhhBTEYxXJBS8ALL-C5AcCCPPGTruWDd34EufXP94b6yoKzP6w-OTBL-ByaCWg9sGG7QwRobtaDOe5cOpb0Wr4RPFsMWrQQb33aSuqY_LmbgyFYGQsUYexMXnxe2aV63u5UmvJjWEfXWaT38C3YxJJ5NWvU8cxjoWaMvuZyUxGQw2XOnckovV-2wk2Wy-YGagwAFd5I1R_UDU_3Eq_XG5wJ7f4JIA');">
-                                                    </div>
-                                                    <div class="font-medium">Coke Zero</div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 text-[#6b7280] dark:text-[#9dabb9] italic">-</td>
-                                            <td class="px-6 py-4 text-right">2</td>
-                                            <td class="px-6 py-4 text-right text-[#6b7280] dark:text-[#9dabb9]">$2.50
-                                            </td>
-                                            <td class="px-6 py-4 text-right font-medium">$5.00</td>
-                                        </tr>
-                                        <tr class="hover:bg-[#f9fafb] dark:hover:bg-[#283039]/50 transition-colors">
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center gap-3">
-                                                    <div class="h-10 w-10 rounded-lg bg-gray-200 bg-cover bg-center"
-                                                        data-alt="Garlic Knots"
-                                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0s90ezZDXbFW9gYTEYoEFYx2VenmVZitnR__buE6UHRPkJCIfHmrOacWLNWsVMlzqVm9hVVOcBBLdhsSFD65HO_vjXd5Bv-1xA5wamoQbH0p9AMigRnKfmMO4wpSCe2RDhgJ5RuMFPYobCDlj7STOlJ57j9-KwoaERrpnpXrEbhdsATBH3Tx_ASITothn9Io7XmweMCZZeNLsjPOtG8NO3stiQ1G8qPCrznke_XunE-yCFJKI6FydiyruJSMdWi_3cC3KGjV96tU');">
-                                                    </div>
-                                                    <div class="font-medium">Garlic Knots (6pc)</div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 text-[#6b7280] dark:text-[#9dabb9] italic">Include
-                                                marinara sauce</td>
-                                            <td class="px-6 py-4 text-right">1</td>
-                                            <td class="px-6 py-4 text-right text-[#6b7280] dark:text-[#9dabb9]">$6.00
-                                            </td>
-                                            <td class="px-6 py-4 text-right font-medium">$6.00</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot class="border-t border-[#e5e7eb] dark:border-[#3b4754]">
-                                        <tr>
-                                            <td class="px-6 py-4 text-right text-sm font-medium text-[#6b7280] dark:text-[#9dabb9]"
-                                                colspan="4">Subtotal</td>
-                                            <td class="px-6 py-4 text-right text-sm font-medium">$29.50</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-6 py-1 text-right text-sm font-medium text-[#6b7280] dark:text-[#9dabb9]"
-                                                colspan="4">Delivery Fee</td>
-                                            <td class="px-6 py-1 text-right text-sm font-medium">$5.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-6 py-1 text-right text-sm font-medium text-[#6b7280] dark:text-[#9dabb9]"
-                                                colspan="4">Tax</td>
-                                            <td class="px-6 py-1 text-right text-sm font-medium">$3.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="px-6 py-4 text-right text-base font-bold text-[#111418] dark:text-white"
-                                                colspan="4">Total</td>
-                                            <td class="px-6 py-4 text-right text-base font-bold text-primary">$37.50
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- Order Timeline -->
-                        <div
-                            class="flex flex-col rounded-xl border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark p-6 shadow-sm">
-                            <h3 class="text-[#111418] dark:text-white font-bold text-lg mb-6">Order Status Timeline</h3>
-                            <div class="relative">
-                                <!-- Connecting Line -->
-                                <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-[#e5e7eb] dark:bg-[#3b4754]"></div>
-                                <div class="space-y-8 relative z-10">
-                                    <!-- Step 1: Completed -->
-                                    <div class="flex gap-4">
-                                        <div
-                                            class="flex-none h-12 w-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                            <span class="material-symbols-outlined">shopping_cart</span>
-                                        </div>
-                                        <div class="flex-1 pt-1">
-                                            <h4 class="text-[#111418] dark:text-white font-bold text-base">Order Placed
-                                            </h4>
-                                            <p class="text-sm text-[#6b7280] dark:text-[#9dabb9]">Oct 24, 14:30</p>
-                                        </div>
-                                    </div>
-                                    <!-- Step 2: Completed -->
-                                    <div class="flex gap-4">
-                                        <div
-                                            class="flex-none h-12 w-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                            <span class="material-symbols-outlined">skillet</span>
-                                        </div>
-                                        <div class="flex-1 pt-1">
-                                            <h4 class="text-[#111418] dark:text-white font-bold text-base">Prepared by
-                                                Merchant</h4>
-                                            <p class="text-sm text-[#6b7280] dark:text-[#9dabb9]">Oct 24, 14:55</p>
-                                        </div>
-                                    </div>
-                                    <!-- Step 3: Current -->
-                                    <div class="flex gap-4">
-                                        <div
-                                            class="flex-none h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900 border-2 border-primary text-primary dark:text-blue-300 flex items-center justify-center animate-pulse">
-                                            <span class="material-symbols-outlined">local_shipping</span>
-                                        </div>
-                                        <div class="flex-1 pt-1">
-                                            <h4 class="text-primary font-bold text-base">Out for Delivery</h4>
-                                            <p class="text-sm text-[#6b7280] dark:text-[#9dabb9]">Oct 24, 15:05 - Driver
-                                                is on the way</p>
-                                        </div>
-                                    </div>
-                                    <!-- Step 4: Pending -->
-                                    <div class="flex gap-4 opacity-50">
-                                        <div
-                                            class="flex-none h-12 w-12 rounded-full bg-[#f3f4f6] dark:bg-[#283039] border border-[#e5e7eb] dark:border-[#3b4754] text-[#9dabb9] flex items-center justify-center">
-                                            <span class="material-symbols-outlined">check_circle</span>
-                                        </div>
-                                        <div class="flex-1 pt-1">
-                                            <h4 class="text-[#111418] dark:text-white font-bold text-base">Delivered
-                                            </h4>
-                                            <p class="text-sm text-[#6b7280] dark:text-[#9dabb9]">Estimated: 15:15</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Right Column: People Information -->
-                    <div class="flex flex-col gap-6">
-                        <!-- Client Card -->
-                        <div
-                            class="rounded-xl border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark overflow-hidden shadow-sm">
-                            <div class="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#3b4754]">
-                                <h3 class="text-[#111418] dark:text-white font-bold text-lg">Client Information</h3>
-                            </div>
-                            <div class="p-6 flex flex-col gap-6">
-                                <div class="flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-full bg-cover bg-center border-2 border-[#e5e7eb] dark:border-[#3b4754]"
-                                        data-alt="Client profile photo"
-                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtvMVe5_droAXi0peOk1QpzOlkg0akgBJkJ-clbn-671axPMjnl6ABkuAb8hd7bWK5mPW5JRlpFs8Z2aV7idvB8_zYGJAIr410KyDVQ_vgjBa3qe5c602Y-rLZteWCkJS-POq-bi2rpAlDD00pBQrMlw1W59cgzkYAkGi5JOt7xcLjwXe8XKDqbbpDGmm58YZNxsZmUqpbS4Fq02A0VWvmBpx-WV-aBTHP8RPGiWlaaHZGQ46THuNjpUxRRfj9-WePWtdx3WvcZQY');">
-                                    </div>
-                                    <div>
-                                        <p class="text-[#111418] dark:text-white font-bold text-lg">Sarah Jenkins</p>
-                                        <a class="text-sm text-primary hover:underline" href="#">View Profile</a>
-                                    </div>
-                                </div>
-                                <div class="space-y-4">
-                                    <div class="flex gap-3 items-start">
-                                        <span class="material-symbols-outlined text-[#9dabb9] mt-0.5">call</span>
-                                        <div>
-                                            <p
-                                                class="text-xs text-[#6b7280] dark:text-[#9dabb9] uppercase font-bold tracking-wider">
-                                                Phone</p>
-                                            <p class="text-[#111418] dark:text-white">+1 (555) 123-4567</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <span class="material-symbols-outlined text-[#9dabb9] mt-0.5">mail</span>
-                                        <div>
-                                            <p
-                                                class="text-xs text-[#6b7280] dark:text-[#9dabb9] uppercase font-bold tracking-wider">
-                                                Email</p>
-                                            <p class="text-[#111418] dark:text-white">sarah.j@example.com</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex gap-3 items-start">
-                                        <span class="material-symbols-outlined text-[#9dabb9] mt-0.5">location_on</span>
-                                        <div>
-                                            <p
-                                                class="text-xs text-[#6b7280] dark:text-[#9dabb9] uppercase font-bold tracking-wider">
-                                                Delivery Address</p>
-                                            <p class="text-[#111418] dark:text-white">123 Maple Ave, Apt 4B<br />San
-                                                Francisco, CA 94102</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Mini Map -->
-                                <div class="h-32 w-full rounded-lg bg-cover bg-center border border-[#e5e7eb] dark:border-[#3b4754] relative"
-                                    data-alt="Map showing delivery location in San Francisco"
-                                    data-location="San Francisco"
-                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMN50gIJYUSmEAdFWEy8-GW4rWMqNAApSlRlc-aZihHI8zphNLXDqw8C2kuk2bHY0158pxXcFUYWuMpaksZMxZh4hf3xtJMXj_c7oU6tB53ILA1fbw3eN4BPmLqJse40QcpPwNd7J6LxC55yxCha523pFL2xdGs1hrI7QTLqbfIZxoMceHbqtYIHY3VKS-crhf4n18Bdp52pSflTwIDz2GUm6IctkvO-mAzDUw_OaPsd0qyLzNTuQgddz8PsWIrhtygf6VJmLDr7c');">
-                                    <div class="absolute inset-0 bg-black/10"></div>
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span
-                                            class="material-symbols-outlined text-red-500 text-4xl drop-shadow-md">location_on</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Deliverer Card -->
-                        <div
-                            class="rounded-xl border border-[#e5e7eb] dark:border-[#3b4754] bg-white dark:bg-surface-dark overflow-hidden shadow-sm">
-                            <div
-                                class="px-6 py-4 border-b border-[#e5e7eb] dark:border-[#3b4754] flex justify-between items-center">
-                                <h3 class="text-[#111418] dark:text-white font-bold text-lg">Deliverer Info</h3>
-                                <span class="flex h-2 w-2 rounded-full bg-green-500 ring-4 ring-green-500/20"></span>
-                            </div>
-                            <div class="p-6 flex flex-col gap-6">
-                                <div class="flex items-center gap-4">
-                                    <div class="h-14 w-14 rounded-full bg-cover bg-center border-2 border-[#e5e7eb] dark:border-[#3b4754]"
-                                        data-alt="Deliverer profile photo"
-                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSa89HZlQBooNrO3iByi8Dmslso8JvJnt7uJWJ030Lf_sC3VVqBSEtKcbVm0BiXM_K2wa2uFE_V120l41EPOhohHb2ZKNptssGyXUgFfgOzGJev7GJeaDsupktl5r6oshjO6-0I6MjMvg5lSjJJpnJQqLC69W-D2trIY7_FD0rdwxhIh3DOc6X2ui24tQ11WYdMZtFKZOgvFRhST18AMEsri7Gt-LCW6VdU4hl2WIp00nFgbfbUnM_jEEwsm8bb6MBNPSQo0zKFlc');">
-                                    </div>
-                                    <div>
-                                        <p class="text-[#111418] dark:text-white font-bold text-lg">Mike Ross</p>
-                                        <div class="flex items-center gap-1 text-sm text-[#6b7280] dark:text-[#9dabb9]">
-                                            <span class="material-symbols-outlined text-sm">moped</span>
-                                            <span>Scooter • 4.9 <span class="text-yellow-500">★</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="p-3 bg-[#f9fafb] dark:bg-[#111418] rounded-lg border border-[#e5e7eb] dark:border-[#3b4754]">
-                                    <div class="flex justify-between items-center mb-1">
-                                        <span class="text-xs font-medium text-[#6b7280] dark:text-[#9dabb9]">Current
-                                            Status</span>
-                                        <span class="text-xs font-bold text-primary">In Transit</span>
-                                    </div>
-                                    <div class="w-full bg-[#e5e7eb] dark:bg-[#3b4754] rounded-full h-1.5">
-                                        <div class="bg-primary h-1.5 rounded-full w-2/3"></div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button
-                                        class="flex-1 cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-white dark:bg-[#283039] text-[#111418] dark:text-white text-sm font-bold border border-[#e5e7eb] dark:border-[#3b4754] hover:bg-[#f9fafb] dark:hover:bg-[#3b4754] transition-colors">
-                                        Call Driver
-                                    </button>
-                                    <button
-                                        class="flex-1 cursor-pointer items-center justify-center rounded-lg h-9 px-3 bg-white dark:bg-[#283039] text-[#111418] dark:text-white text-sm font-bold border border-[#e5e7eb] dark:border-[#3b4754] hover:bg-[#f9fafb] dark:hover:bg-[#3b4754] transition-colors">
-                                        Reassign
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Footer Actions -->
-                <div class="flex justify-stretch mt-8 px-4">
-                    <div
-                        class="flex flex-1 gap-3 flex-wrap py-3 justify-start border-t border-[#e5e7eb] dark:border-[#3b4754] pt-6">
-                        <button
-                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white dark:bg-[#283039] text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] border border-[#e5e7eb] dark:border-[#3b4754] hover:bg-[#f9fafb] dark:hover:bg-[#3b4754]">
-                            <span class="material-symbols-outlined mr-2 text-[18px]">print</span>
-                            <span class="truncate">Print Invoice</span>
-                        </button>
-                        <button
-                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white dark:bg-[#283039] text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] border border-[#e5e7eb] dark:border-[#3b4754] hover:bg-[#f9fafb] dark:hover:bg-[#3b4754]">
-                            <span class="material-symbols-outlined mr-2 text-[18px]">support_agent</span>
-                            <span class="truncate">Contact Support</span>
-                        </button>
-                        <div class="flex-1"></div>
-                        <button
-                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm font-bold leading-normal tracking-[0.015em] hover:bg-red-100 dark:hover:bg-red-900/30 border border-red-200 dark:border-red-900/50">
-                            <span class="material-symbols-outlined mr-2 text-[18px]">cancel</span>
-                            <span class="truncate">Cancel Order</span>
-                        </button>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card bg-surface p-3">
+                        <div class="text-muted-dark">Est. Delivery</div>
+                        <div class="fs-3 fw-bold">15:15 PM</div>
                     </div>
                 </div>
             </div>
-        </main>
+            <div class="row g-4">
+                <div class="col-xl-8">
+                    <div class="card bg-surface mb-4">
+                        <div class="card-header d-flex justify-content-between">
+                            <strong>Products Ordered</strong>
+                            <small class="text-muted-dark">3 items</small>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="text-muted-dark small">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Notes</th>
+                                        <th class="text-end">Qty</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <img
+                                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfzWb6XQtiNUInK_SztH4fd_XWpsJf66ipFN5ACSBWnncl7RkAalP68Z5EsY51XzGvU0GnlaplwgYGfuthfb6qAtB4gSW4KsWby4siNZRxuZllj9aTwbWxKA8n3aYucHETwy03R1c5t6E93mTsF4TNFLXs2L7bY48CtfneXt-ljLDwkb5-Mg_soFNDUJZid2xyWOYA_U8_UcHTXsnv8M5o0qs35UA-zKIzpiPl8CKQUWyNYOdWepeDjAQoZYAP8BpWmpEsbfX9lL8">
+                                                Pepperoni Pizza
+                                            </div>
+                                        </td>
+                                        <td class="text-muted-dark fst-italic">Extra crispy crust please</td>
+                                        <td class="text-end">1</td>
+                                        <td class="text-end text-muted-dark">$18.50</td>
+                                        <td class="text-end fw-bold">$18.50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="px-4 py-3 text-end">
+                                <div class="d-flex justify-content-end gap-5 text-muted-dark mb-1">
+                                    <span>Subtotal</span>
+                                    <span>$29.50</span>
+                                </div>
+                                <div class="d-flex justify-content-end gap-5 text-muted-dark mb-1">
+                                    <span>Delivery Fee</span>
+                                    <span>$5.00</span>
+                                </div>
+                                <div class="d-flex justify-content-end gap-5 text-muted-dark mb-2">
+                                    <span>Tax</span>
+                                    <span>$3.00</span>
+                                </div>
+                                <div class="d-flex justify-content-end gap-5 fw-bold fs-5">
+                                    <span>Total</span>
+                                    <span class="text-primary">$37.50</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card bg-surface p-4 position-relative">
+                        <strong class="mb-4 d-block">Order Status Timeline</strong>
+
+                        <div class="d-flex gap-3 mb-4 position-relative">
+                            <div class="timeline-icon bg-primary text-white">
+                                <span class="material-symbols-outlined">shopping_cart</span>
+                            </div>
+                            <div>
+                                <strong>Order Placed</strong>
+                                <div class="text-muted-dark">Oct 24, 14:30</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mb-4 position-relative">
+                            <div class="timeline-icon bg-primary text-white">
+                                <span class="material-symbols-outlined">skillet</span>
+                            </div>
+                            <div>
+                                <strong>Prepared by Merchant</strong>
+                                <div class="text-muted-dark">Oct 24, 14:55</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 position-relative">
+                            <div class="timeline-icon active">
+                                <span class="material-symbols-outlined">local_shipping</span>
+                            </div>
+                            <div>
+                                <strong class="text-primary">Out for Delivery</strong>
+                                <div class="text-muted-dark">Driver is on the way</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card bg-surface mb-4">
+                        <div class="card-header"><strong>Client Information</strong></div>
+                        <div class="card-body">
+                            <strong>Sarah Jenkins</strong>
+                            <div class="text-muted-dark mt-1">sarah.j@example.com</div>
+                        </div>
+                    </div>
+                    <div class="card bg-surface">
+                        <div class="card-header d-flex justify-content-between">
+                            <strong>Deliverer Info</strong>
+                            <span class="badge bg-success rounded-pill">&nbsp;</span>
+                        </div>
+                        <div class="card-body">
+                            <strong>Mike Ross</strong>
+                            <div class="text-muted-dark">Scooter • 4.9 ★</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

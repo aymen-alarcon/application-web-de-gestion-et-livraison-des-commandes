@@ -19,14 +19,14 @@ class CommandeItemRepository{
         header("Location: ../../public/client_dashboard.php");
     }
 
-    function read(){
+    function read($commande){
         session_start();
-        $sql = "SELECT * FROM commande_items WHERE user_id = :id AND is_deleted = '0'";
+        $sql = "SELECT * FROM commande_items WHERE commande_id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $_SESSION["id"]);
+        $stmt->bindValue(":id", $commande->getCommandeId());
         $stmt->execute();
         $_SESSION['commande_items'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        header("Location: ../../public/client_order_dashboard.php");
+        header("Location: ../../public/client_order.php");
         exit;
     }
 
@@ -46,7 +46,7 @@ class CommandeItemRepository{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
         $stmt->execute();    
-        $this->read();
+        // $this->read();
         header("Location: ../../public/client_order_dashboard.php");
     }
 }
