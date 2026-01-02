@@ -20,14 +20,12 @@
                 <input type="text" class="form-control bg-dark" placeholder="Search by Order ID, Item, or Location...">
             </div>
         </div>
-        <div class="col-md-6 d-flex flex-wrap gap-2">
-            <button class="btn btn-primary rounded-pill">All Orders</button>
-            <button class="btn btn-outline-secondary rounded-pill position-relative">
-                Active
-                <span class="badge bg-primary rounded-circle position-absolute top-0 start-100 translate-middle p-1">3</span>
-            </button>
+        <div class="col-md-6 d-flex flex-wrap gap-2 filter-options">
+            <button class="btn btn-outline-secondary rounded-pill">All Orders</button>
             <button class="btn btn-outline-secondary rounded-pill">Completed</button>
             <button class="btn btn-outline-secondary rounded-pill">Canceled</button>
+            <button class="btn btn-outline-secondary rounded-pill">Waiting for offers</button>
+            <button class="btn btn-outline-secondary rounded-pill">In Progress</button>
         </div>
     </div>
 
@@ -51,9 +49,9 @@
                     $datePart = $date->format('d m Y');
                     $timePart = $date->format('H:i');
                 ?>
-                <tr>
+                <tr class="productInfo">
                     <td><?= htmlspecialchars($commande['id']) ?></td>
-                    <td><?= htmlspecialchars($commande['titre']) ?></td>
+                    <td><a href="" class="text-black text-decoration-none"><?= htmlspecialchars($commande['titre']) ?></a></td>
                     <td><?= htmlspecialchars($commande['address']) ?></td>
                     <td>
                         <div><?= $datePart ?></div>

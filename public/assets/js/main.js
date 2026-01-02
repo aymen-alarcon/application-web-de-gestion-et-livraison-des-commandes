@@ -129,3 +129,30 @@ if (window.location.href.includes("client_add_package.php")) {
         `;        
     })
 }
+
+if (window.location.href.includes("client_order_dashboard.php")) {
+    let buttons = document.querySelectorAll(".btn.btn-outline-secondary.rounded-pill");
+    let badges = document.querySelectorAll(".badge");
+        
+    buttons.forEach(btn =>{
+        btn.addEventListener('click', ()=>{
+            buttons.forEach(btns =>{
+                btns.classList.remove("btn-primary");
+                btns.classList.remove("text-white");
+            }) 
+
+            badges.forEach(badge =>{
+                if (btn.innerHTML === "All Orders") {
+                    badge.parentElement.parentElement.classList.remove("d-none");
+                } else if (badge.innerHTML === btn.innerHTML) {
+                    badge.parentElement.parentElement.classList.remove("d-none");
+                } else {
+                    badge.parentElement.parentElement.classList.add("d-none");
+                }
+            })
+            
+            btn.classList.add("btn-primary");
+            btn.classList.add("text-white");
+        })
+    })
+}

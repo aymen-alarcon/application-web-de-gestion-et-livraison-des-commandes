@@ -1,6 +1,9 @@
 <?php 
     require "../src/Database/DatabaseConnection.php" ;
     session_start();
+    if (!isset($_SESSION["id"])) {
+        header("Location: login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +25,7 @@
             <h2 class="h5 m-0">QuickShip</h2>
         </div>
         <nav class="d-none d-md-flex gap-3">
-            <a href="client_dashboard.php"
-            class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="client_dashboard.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 Dashboard
             </a>
 
@@ -31,8 +33,7 @@
                 My Orders
             </a>
 
-            <a href="../src/Controller/ReadHandler.php"
-            class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="../src/Controller/ReadHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
                 Profile
             </a>
         </nav>
