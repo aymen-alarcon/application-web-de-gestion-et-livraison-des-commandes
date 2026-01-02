@@ -18,9 +18,7 @@ class CommandeRepository{
         $stmt->bindValue(":is_deleted", $commande->getIs_deleted());
         $stmt->bindValue(":user_id", $_SESSION["id"]);
         $stmt->execute();
-        // $this->read();
         $commande_id = $this->conn->lastInsertId();
-        var_dump($commande_id);
         header("Location: ../../public/client_add_package.php?commande_id=" . urlencode($commande_id));
     }
 
@@ -36,14 +34,14 @@ class CommandeRepository{
     }
 
     function update($commande){
-        $sql = "UPDATE commandes set titre = :titre, address = :address, statu = :statu, is_deleted = :is_deleted, phone = :phone, password = :password WHERE id = :id";
+        $sql = "UPDATE commandes set titre = :titre, address = :address, phone = :phone WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
         $stmt->bindValue(":titre", $commande->gettitre());
         $stmt->bindValue(":address", $commande->getAddress());
-        $stmt->bindValue(":statu", $commande->getStatu());
-        $stmt->bindValue(":is_deleted", $commande->getis_deleted());
+        $stmt->bindValue(":phone", $commande->getPhone());
         $stmt->execute();    
+        $this->read();
     }
 
     function delete($commande){
@@ -52,6 +50,5 @@ class CommandeRepository{
         $stmt->bindValue(":id", $commande->getId());
         $stmt->execute();    
         $this->read();
-        header("Location: ../../public/client_add_package.php");
     }
 }

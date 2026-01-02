@@ -155,4 +155,14 @@ if (window.location.href.includes("client_order_dashboard.php")) {
             btn.classList.add("text-white");
         })
     })
+
+    document.querySelectorAll(".edit-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.getElementById("edit-id").value = btn.dataset.id;
+            document.getElementById("edit-title").value = btn.dataset.title;
+            document.getElementById("edit-address").value = btn.dataset.address;
+            document.getElementById("edit-phone").value = btn.dataset.phone;
+        });
+    });
+
 }

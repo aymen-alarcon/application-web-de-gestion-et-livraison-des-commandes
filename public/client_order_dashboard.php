@@ -1,9 +1,52 @@
 <?php 
     require __DIR__ . '/includes/header.php'; 
-    $commandes = $_SESSION['commandes'] ?? [];
+    $commandes = $_SESSION['commandes'] ?? []; 
     $countOrders = count($commandes);
     $pagination = ceil($countOrders / 5);
 ?>
+<div class="modal fade" style="backdrop-filter: blur(5px);" id="editOrderModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="background-color: rgba(26, 34, 45, 1);">
+      
+      <div class="modal-header">
+        <h5 class="modal-title text-white">Edit Order</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="../src/Controller/UpdateCommandHandler.php" method="POST">
+        <div class="modal-body">
+
+          <input type="hidden" name="id" id="edit-id">
+
+          <div class="mb-3">
+            <label class="form-label text-white">Title</label>
+            <input type="text" name="titre" id="edit-title" class="form-control bg-dark text-white" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-white">Address</label>
+            <input type="text" name="address" id="edit-address" class="form-control bg-dark text-white" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-white">Phone</label>
+            <input type="text" name="phone" id="edit-phone" class="form-control bg-dark text-white" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary text-white">
+            Save Changes
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 <main class="container pt-5 vh-100">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
         <div>
@@ -36,6 +79,7 @@
                     <th>Order ID</th>
                     <th>title</th>
                     <th>Route</th>
+                    <th>Phone</th>
                     <th>Date Created</th>
                     <th>Price</th>
                     <th>Status</th>
@@ -53,6 +97,7 @@
                     <td><?= htmlspecialchars($commande['id']) ?></td>
                     <td><a href="" class="text-black text-decoration-none"><?= htmlspecialchars($commande['titre']) ?></a></td>
                     <td><?= htmlspecialchars($commande['address']) ?></td>
+                    <td><?= htmlspecialchars($commande['phone']) ?></td>
                     <td>
                         <div><?= $datePart ?></div>
                         <div class="small text-secondary"><?= $timePart ?></div>
@@ -70,11 +115,19 @@
                         <?php endif; ?>
                     </td>
                     <td class="text-end">
-                        <a href="" class="text-decoration-none">
-                            <span class="kpi-icon bg-success bg-opacity-25 text-success">
-                                <i class="bi bi-pencil"></i>
-                            </span>
-                        </a>
+                        <?php if ($commande['statu'] === 'Pending'): ?>
+                            <a href="#" class="text-decoration-none edit-btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editOrderModal"
+                                data-id="<?= $commande['id'] ?>"
+                                data-title="<?= htmlspecialchars($commande['titre']) ?>"
+                                data-address="<?= htmlspecialchars($commande['address']) ?>"
+                                data-phone="<?= htmlspecialchars($commande['phone']) ?>">
+                                <span class="kpi-icon bg-success bg-opacity-25 text-success">
+                                    <i class="bi bi-pencil"></i>
+                                </span>
+                            </a>
+                        <?php endif; ?>
                         <a href="../src/Controller/DeleteCommandHandler.php?id=<?= $commande["id"] ?>" class="text-decoration-none">
                             <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
                                 <i class="bi bi-trash3"></i>
