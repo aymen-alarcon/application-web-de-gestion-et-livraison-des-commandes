@@ -164,5 +164,18 @@ if (window.location.href.includes("client_order_dashboard.php")) {
             document.getElementById("edit-phone").value = btn.dataset.phone;
         });
     });
+}
 
+if (window.location.href.includes("client_order.php")) {
+    document.addEventListener('DOMContentLoaded', function() {
+        let price = 0;
+        let productsPrice = document.querySelectorAll(".totalPrice")
+        productsPrice.forEach(productPrice => {
+            price += Number(productPrice.textContent);
+        });
+        document.querySelector(".Subtotal").textContent = "$" + price;
+
+        let totalPrice = price + 5
+        document.querySelector(".finalPrice").textContent = "$" + totalPrice
+    })
 }
