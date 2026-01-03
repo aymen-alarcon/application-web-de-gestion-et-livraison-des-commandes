@@ -16,7 +16,7 @@ class InsertCommandeHandler{
 
     function insertCommande(){
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            header("Location: ../../public/client_dashboard.php");
+            header("Location: ../../public/client/client_dashboard.php");
         }
 
         $commande = new Commande();

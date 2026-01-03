@@ -1,8 +1,8 @@
 <?php 
-    require __DIR__ . '/includes/header.php'; 
+    require '../includes/header.php'; 
     $commandeItems = $_SESSION["commande_items"] ?? [];
 ?>
-    <form action="../src/Controller/UpdateCommandItemHandler.php" method="post">
+    <form action="../../src/Controller/UpdateCommandItemHandler.php" method="post">
         <div class="container bg-white rounded mt-3">
             <div class="table-wrap">
                 <table id="productsTable" class="table table-hover table-borderless bg-white align-middle">
@@ -72,4 +72,4 @@
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
     </form>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

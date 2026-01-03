@@ -1,17 +1,17 @@
 <?php 
-    require __DIR__ . '/includes/header.php'; 
+    require '../includes/header.php'; 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['commandes'] = $_POST;
     }
 
     if (!isset($_SESSION['commandes'])) {
-        header('Location: client_add_order.php');
+        header('Location: client/client_add_order.php');
         exit;
     }
 ?>
     <main class="container py-4">
-        <form action="../src/Controller/InsertCommandeItemHandler.php" method="post" class="row g-4">
+        <form action="../../src/Controller/InsertCommandeItemHandler.php" method="post" class="row g-4">
             <div class="col-lg-12">
                 <div class="card card-dark mb-4 p-4">
                     <h5 class="text-white fw-bold mb-3">
@@ -45,4 +45,4 @@
             <button type="submit" class="btn btn-primary w-100">Next: Route Details</button>
         </form>
     </main>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

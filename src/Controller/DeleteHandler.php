@@ -20,12 +20,12 @@ class DeleteHandler{
 
     function deleteEntityById(string $entityClass, string $repositoryClass) {
         if ($_SERVER["REQUEST_METHOD"] !== "GET") {
-            header("Location: ../../public/client_order_dashboard.php");
+            header("Location: ../../public/client/client_order_dashboard.php");
             exit;
         }
 
         if (!isset($_GET['id'])) {
-            header("Location: ../../public/client_order_dashboard.php");
+            header("Location: ../../public/client/client_order_dashboard.php");
             exit;
         }
 
@@ -37,7 +37,7 @@ class DeleteHandler{
         $repo = new $repositoryClass($this->conn);
         $repo->delete($entity);
 
-        header("Location: ../../public/client_order_dashboard.php");
+        header("Location: ../../public/client/client_order_dashboard.php");
         exit;
     }
 

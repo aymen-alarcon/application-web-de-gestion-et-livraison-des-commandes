@@ -1,5 +1,5 @@
 <?php 
-    require __DIR__ . '/includes/header.php'; 
+    require '../includes/header.php'; 
     $commandes = $_SESSION['commandes'] ?? [];
     $countOrders = count($commandes);
     $countPendingOrders = 0;
@@ -106,4 +106,4 @@
             </div>
         </main>
     </div>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

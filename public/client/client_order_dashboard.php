@@ -1,5 +1,5 @@
 <?php 
-    require __DIR__ . '/includes/header.php'; 
+    require '../includes/header.php'; 
     $commandes = $_SESSION['commandes'] ?? []; 
     $countOrders = count($commandes);
     $pagination = ceil($countOrders / 5);
@@ -13,7 +13,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
-      <form action="../src/Controller/UpdateCommandHandler.php" method="POST">
+      <form action="../../src/Controller/UpdateCommandHandler.php" method="POST">
         <div class="modal-body">
 
           <input type="hidden" name="id" id="edit-id">
@@ -81,7 +81,6 @@
                     <th>Route</th>
                     <th>Phone</th>
                     <th>Date Created</th>
-                    <th>Price</th>
                     <th>Status</th>
                     <th class="text-end">Actions</th>
                 </tr>
@@ -95,14 +94,13 @@
                 ?>
                 <tr class="productInfo">
                     <td><?= htmlspecialchars($commande['id']) ?></td>
-                    <td><a href="../src/Controller/ReadCommandeItemHandler.php?commande_id=<?= $commande['id'] ?>" class="text-black text-decoration-none"><?= htmlspecialchars($commande['titre']) ?></a></td>
+                    <td><a href="../../src/Controller/ReadCommandeItemHandler.php?commande_id=<?= $commande['id'] ?>" class="text-black text-decoration-none"><?= htmlspecialchars($commande['titre']) ?></a></td>
                     <td><?= htmlspecialchars($commande['address']) ?></td>
                     <td><?= htmlspecialchars($commande['phone']) ?></td>
                     <td>
                         <div><?= $datePart ?></div>
                         <div class="small text-secondary"><?= $timePart ?></div>
                     </td>
-                    <td>--</td>
                     <td>
                         <?php if ($commande['statu'] === 'In Progress'): ?>
                             <span class="badge bg-success">In Progress</span>
@@ -128,7 +126,7 @@
                                 </span>
                             </a>
                         <?php endif; ?>
-                        <a href="../src/Controller/DeleteHandler.php?entityClass=Commande&repositoryClass=CommandeRepository&id=<?= $commande["id"] ?>" class="text-decoration-none">
+                        <a href="../../src/Controller/DeleteHandler.php?entityClass=Commande&repositoryClass=CommandeRepository&id=<?= $commande["id"] ?>" class="text-decoration-none">
                             <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
                                 <i class="bi bi-trash3"></i>
                             </span>
@@ -158,4 +156,4 @@
     </nav>
     <div class="text-center text-secondary small mt-2 d-md-none">Swipe left to view more details</div>
 </main>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

@@ -26,7 +26,7 @@ class UserRepository{
                 setcookie($key, $value, time() + 72000, "/");
             }
             $_SESSION["id"] = $userCredentials["id"];
-            header("Location: ../../public/client_dashboard.php?id=" . $userCredentials["id"]);
+            header("Location: ../../public/client/client_dashboard.php?id=" . $userCredentials["id"]);
             exit;
         } else {
             echo "Invalid email or password";
@@ -52,7 +52,7 @@ class UserRepository{
         $stmt->execute();
         session_start();
         $_SESSION["id"] = $this->conn->lastInsertId();
-        header("Location: ../../public/client_dashboard.php?id=" . urldecode($_SESSION["id"]));
+        header("Location: ../../public/client/client_dashboard.php?id=" . urldecode($_SESSION["id"]));
     }
 
     function read($user){
@@ -69,6 +69,6 @@ class UserRepository{
             setcookie($key, $value, time() + 3600, "/");
         }
 
-        header("Location: ../../public/client_profile.php?id=" . urldecode($_SESSION["id"]));
+        header("Location: ../../public/client/client_profile.php?id=" . urldecode($_SESSION["id"]));
     }
 }

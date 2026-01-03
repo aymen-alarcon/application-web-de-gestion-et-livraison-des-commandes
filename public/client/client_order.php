@@ -1,5 +1,5 @@
 <?php 
-    require __DIR__ . '/includes/header.php'; 
+    require '../includes/header.php'; 
     $commandes = $_SESSION['commandes'] ?? []; 
     $commandeItems = $_SESSION["commande_items"] ?? [];
 
@@ -179,4 +179,4 @@
         </div>
     </div>
 </div>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

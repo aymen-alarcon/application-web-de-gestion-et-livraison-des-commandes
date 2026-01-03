@@ -1,5 +1,5 @@
 <?php 
-    require "../src/Database/DatabaseConnection.php" ;
+    require "../../src/Database/DatabaseConnection.php" ;
     session_start();
     if (!isset($_SESSION["id"])) {
         header("Location: index.php");
@@ -13,7 +13,7 @@
     <title>Client Dashboard: My Orders</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,15 +25,15 @@
             <h2 class="h5 m-0">QuickShip</h2>
         </div>
         <nav class="d-none d-md-flex gap-3">
-            <a href="client_dashboard.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="client_dashboard.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 Dashboard
             </a>
 
-            <a href="../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="../../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 My Orders
             </a>
 
-            <a href="../src/Controller/ReadHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="../../src/Controller/ReadHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
                 Profile
             </a>
         </nav>

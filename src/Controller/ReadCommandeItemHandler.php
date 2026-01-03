@@ -21,7 +21,7 @@ class ReadCommandeItemHandler{
             $repo = new CommandeItemRepository($this->conn);
             $repo->read($commande);
 
-            header("Location: ../../public/client_order.php");
+            header("Location: ../../public/client/client_order.php");
             exit;
         }
 

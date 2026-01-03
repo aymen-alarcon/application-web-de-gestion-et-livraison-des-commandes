@@ -17,7 +17,7 @@ class CommandeItemRepository{
         $stmt->bindValue(":description", $commandeItem->getDescription());
         $stmt->bindValue(":commande_id", $commandeItem->getCommandeId());
         $stmt->execute();
-        header("Location: ../../public/client_dashboard.php");
+        header("Location: ../../public/client/client_dashboard.php");
     }
 
     function read($commandeItem){
@@ -38,7 +38,7 @@ class CommandeItemRepository{
         $stmt->bindValue(":price", $commandeItem->getPrice());
         $stmt->bindValue(":description", $commandeItem->getDescription());
         $stmt->execute();  
-        header("Location: ../../public/client_order_dashboard.php");
+        header("Location: ../../public/client/client_order_dashboard.php");
     }
 
     function delete($commandeItem){
@@ -46,6 +46,6 @@ class CommandeItemRepository{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commandeItem->getId());
         $stmt->execute(); 
-        header("Location: ../../public/client_order_dashboard.php");
+        header("Location: ../../public/client/client_order_dashboard.php");
     }
 }

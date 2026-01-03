@@ -19,7 +19,7 @@ class CommandeRepository{
         $stmt->bindValue(":user_id", $_SESSION["id"]);
         $stmt->execute();
         $commande_id = $this->conn->lastInsertId();
-        header("Location: ../../public/client_add_package.php?commande_id=" . urlencode($commande_id));
+        header("Location: ../../public/client/client_add_package.php?commande_id=" . urlencode($commande_id));
     }
 
     function read(){
@@ -29,7 +29,7 @@ class CommandeRepository{
         $stmt->bindParam(":id", $_SESSION["id"]);
         $stmt->execute();
         $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        header("Location: ../../public/client_order_dashboard.php");
+        header("Location: ../../public/client/client_order_dashboard.php");
         exit;
     }
 

@@ -1,9 +1,9 @@
 <?php
-  require __DIR__ . '/includes/header.php';
+  require '../includes/header.php';
 ?>
 
 <main class="container py-4">
-  <form action="../src/Controller/InsertCommandeHandler.php" method="post" class="row g-4">
+  <form action="../../src/Controller/InsertCommandeHandler.php" method="post" class="row g-4">
     <div class="col-lg-12">
       <div class="card card-dark mb-4 p-4">
         <h5 class="text-white fw-bold mb-3">
@@ -34,4 +34,4 @@
   </form>
 </main>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>
