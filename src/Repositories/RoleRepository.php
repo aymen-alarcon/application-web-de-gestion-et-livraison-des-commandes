@@ -1,6 +1,6 @@
 <?php
 
-class OffreRepository{
+class RoleRepository{
     protected $conn;
 
     function __construct($conn)
@@ -8,42 +8,53 @@ class OffreRepository{
         $this->conn = $conn;
     }
 
-    function create(User $user){
-        $sql = "INSERT INTO users (username, first_name, last_name, email, phone, password, created_at) VALUES (:username, :first_name, :last_name, :email, :phone, :password, now())";
+    function registerRole($role){
+        $sql = "INSERT INTO roles (role_name, user_id) VALUES (:role_name, :user_id)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":username", $user->getUsername());
-        $stmt->bindParam(":first_name", $user->getFirstName());
-        $stmt->bindParam(":last_name", $user->getLastName());
-        $stmt->bindParam(":email", $user->getEmail());
-        $stmt->bindParam(":phone", $user->getPhone());
-        $stmt->bindParam(":password", $user->getPassword());
+        $stmt->bindValue(":role_name", $role->getName());
+        $stmt->bindValue(":user_id", $role->getUser_id());
+        var_dump($role->getName());
+        var_dump($role->getUser_id());
         $stmt->execute();
+        if ($role->getName() === "admin") {
+            header("Location: ../../public/admin/admin_dashboard.php");
+        }
+        else if ($role->getName() === "client") {
+            header("Location: ../../public/client/client_dashboard.php");
+        }
+        else if ($role->getName() === "deliverer") {
+            header("Location: ../../public/deliverer/deliverer_dashboard.php");
+        }
     }
 
-    function update(User $user){
-        $sql = "UPDATE users set username = :username, first_name = :first_name, last_name = :last_name, email = :email, phone = :phone, password = :password WHERE id = :id";
+    function readRole($user){
+        $sql = "SELECT role_name FROM roles WHERE user_id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
-        $stmt->bindParam(":username", $user->getUsername());
-        $stmt->bindParam(":first_name", $user->getFirstName());
-        $stmt->bindParam(":last_name", $user->getLastName());
-        $stmt->bindParam(":email", $user->getEmail());
-        $stmt->bindParam(":phone", $user->getPhone());
-        $stmt->bindParam(":password", $user->getPassword());
-        $stmt->execute();    
+        $stmt->bindValue(":id", $user->getUser_id());
+        $stmt->execute(); 
+        $role = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($role);
+
+        if ($role[0]["role_name"] == "admin") {
+            header("Location: ../../public/admin/admin_dashboard.php");
+        }else if ($role[0]["role_name"] == "client") {
+            header("Location: ../../public/client/client_dashboard.php");
+        }else if ($role[0]["role_name"] == "deliverer") {
+            header("Location: ../../public/deliverer/deliverer_dashboard.php");
+        }
     }
 
     function delete(User $user){
         $sql = "DELETE FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
+        $stmt->bindValue(":id", $user->getId());
         $stmt->execute();    
     }
 
     function read(User $user, $columns){
         $sql = "SELECT $columns FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
+        $stmt->bindValue(":id", $user->getId());
         $stmt->execute();    
         $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

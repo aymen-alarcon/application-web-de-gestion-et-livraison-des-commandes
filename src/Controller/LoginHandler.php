@@ -15,14 +15,16 @@ class LoginHandler {
     }
 
     function login() {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = new User();
-            $user->setEmail($_POST["email"]);
-            $user->setPassword($_POST["password"]);
-            
-            $repo = new UserRepository($this->conn);
-            $repo->login($user);
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+            header("Location: ../../public/index.php");
         }
+
+        $user = new User();
+        $user->setEmail($_POST["email"]);
+        $user->setPassword($_POST["password"]);
+            
+        $repo = new UserRepository($this->conn);
+        $repo->login($user);
     }
 }
 

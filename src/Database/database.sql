@@ -58,3 +58,8 @@ ADD CONSTRAINT fk_commande
 ALTER TABLE commande_items ADD price INT NOT NULL AFTER quantity
 
 ALTER TABLE commande_items ADD COLUMN descritption TEXT AFTER quantity
+
+ALTER TABLE roles ADD COLUMN user_id INT;
+
+ALTER TABLE roles ADD CONSTRAINT fk_roles_user_id
+FOREIGN KEY (user_id) REFERENCES users(id);

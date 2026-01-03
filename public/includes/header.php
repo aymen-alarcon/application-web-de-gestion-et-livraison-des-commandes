@@ -40,6 +40,6 @@
         </nav>
         <div class="d-flex align-items-center gap-3">
             <button class="btn btn-link text-secondary p-0"><i class="bi bi-bell"></i></button>
-            <a href="logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
+            <a href="../logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
         </div>
     </header>

@@ -64,35 +64,32 @@
                         Choose your role and start your journey.
                     </p>
 
-                    <div class="d-flex flex-column flex-sm-row gap-2 mb-3">
-                        <label class="chip-select d-flex align-items-center justify-content-center py-2 px-3 flex-fill" data-role="client">
-                            <input type="radio" name="role" value="client" checked />
-                            <span class="d-flex align-items-center gap-2">
-                                <i class="bi bi-person"></i>
-                                I am a Client
-                            </span>
-                        </label>
-
-                        <label class="chip-select d-flex align-items-center justify-content-center py-2 px-3 flex-fill" data-role="deliverer">
-                            <input type="radio" name="role" value="deliverer" />
-                            <span class="d-flex align-items-center gap-2">
-                                <i class="bi bi-truck"></i>
-                                I am a Deliverer
-                            </span>
-                        </label>
-
-                        <label class="chip-select d-flex align-items-center justify-content-center py-2 px-3 flex-fill" data-role="admin">
-                            <input type="radio" name="role" value="admin" />
-                            <span class="d-flex align-items-center gap-2">
-                                <i class="bi bi-shield"></i>
-                                I am an Admin
-                            </span>
-                        </label>
-                    </div>
-
-                    <input type="hidden" id="selectedRole" name="selectedRole" value="client">
-
                     <form class="d-flex flex-column gap-4" id="registerFormContent" method="POST" action="../src/Controller/RegisterHandler.php">
+                        <div class="d-flex flex-column flex-sm-row gap-2 mb-3">
+                            <label class="chip-select d-flex align-items-center justify-content-center py-2 px-3 flex-fill" data-role="client">
+                                <input type="radio" name="role" value="client"/>
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-person"></i>
+                                    I am a Client
+                                </span>
+                            </label>
+    
+                            <label class="chip-select d-flex align-items-center justify-content-center py-2 px-3 flex-fill" data-role="deliverer">
+                                <input type="radio" name="role" value="deliverer"/>
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-truck"></i>
+                                    I am a Deliverer
+                                </span>
+                            </label>
+    
+                            <label class="chip-select d-flex align-items-center justify-content-center py-2 px-3 flex-fill" data-role="admin">
+                                <input type="radio" name="role" value="admin"/>
+                                <span class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-shield"></i>
+                                    I am an Admin
+                                </span>
+                            </label>
+                        </div>
                         <div class="d-flex flex-column gap-3">
                             <label class="small text-secondary-custom fw-bold text-uppercase">Username</label>
                             <div class="input-group">
@@ -108,16 +105,23 @@
                         </div>
 
                         <div class="d-flex flex-column gap-3">
-                            <label class="small text-secondary-custom fw-bold text-uppercase">first Name</label>
+                            <label class="small text-secondary-custom fw-bold text-uppercase">Last Name</label>
                             <div class="input-group">
                                 <input class="form-control border-0 p-3 bg-dark text-white" name="last_name" placeholder="e.g. John Doe" required />
                             </div>
                         </div>
 
                         <div class="d-flex flex-column gap-3">
-                            <label class="small text-secondary-custom fw-bold text-uppercase">Email Address</label>
+                            <label class="small text-secondary-custom fw-bold text-uppercase">Email</label>
                             <div class="input-group">
                                 <input type="email" class="form-control border-0 p-3 bg-dark text-white" name="email" placeholder="name@company.com" required />
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3">
+                            <label class="small text-secondary-custom fw-bold text-uppercase">Address</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control border-0 p-3 bg-dark text-white" name="address" placeholder="name@company.com" required />
                             </div>
                         </div>
 

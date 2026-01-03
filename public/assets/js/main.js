@@ -16,8 +16,6 @@ if (window.location.href.includes("index.php")) {
             showRegisterForm();
         }
 
-        setRole(savedRole);
-
         loginTab.addEventListener('click', function (e) {
             e.preventDefault();
             showLoginForm();
@@ -53,7 +51,6 @@ if (window.location.href.includes("index.php")) {
 
         document.querySelectorAll('.chip-select').forEach(chip => {
             chip.addEventListener('click', function () {
-                let role = this.getAttribute('data-role');
 
                 document.querySelectorAll('.chip-select').forEach(c => {
                     c.classList.remove('active');
@@ -81,32 +78,8 @@ if (window.location.href.includes("index.php")) {
             registerTab.classList.add('active');
             loginTab.classList.remove('active');
         }
-
-        function saveTabState(tab) {
-            localStorage.setItem('selectedTab', tab);
-        }
-
-        function setRole(role) {
-            let chip = document.querySelector(`.chip-select[data-role="${role}"]`);
-            if (chip) {
-                document.querySelectorAll('.chip-select').forEach(c => {
-                    c.classList.remove('active');
-                });
-
-                chip.classList.add('active');
-
-                let radioInput = chip.querySelector('input[type="radio"]');
-                if (radioInput) {
-                    radioInput.checked = true;
-                }
-
-                selectedRoleInput.value = role;
-            }
-        }
-
-        console.log(`Current selected role: ${selectedRoleInput.value}`);
-    });
-}
+    }
+)}
 
 if (window.location.href.includes("client_add_package.php")) {
     document.querySelector(".add-product").addEventListener("click", () => {

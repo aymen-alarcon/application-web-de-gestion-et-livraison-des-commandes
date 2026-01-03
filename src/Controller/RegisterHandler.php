@@ -28,9 +28,9 @@ class RegisterHandler {
         $user->setPassword($_POST["password"]);
         $user->setEmail($_POST["email"]);
         $user->setAddress($_POST["address"]);
-
+        
         $repo = new UserRepository($this->conn);
-        $repo->register($user);
+        $repo->register($user, $_POST["role"]);
     }
 }
 
