@@ -1,130 +1,144 @@
-<?php require __DIR__ . '/includes/header.php'; ?>
-    <div class="container-fluid vh-100">
-        <main class="container container-max py-5">
-            <p class="text-secondary mb-5">
-                Real-time performance metrics for today's logistics operations.
-            </p>
-            <div class="row g-4">
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4 position-relative">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary fw-semibold">Total Orders</small>
-                            <span class="kpi-icon bg-primary bg-opacity-25 text-primary">
-                                <i class="bi bi-archive"></i>
-                            </span>
-                        </div>
-                        <h2 class="fw-extrabold text-white">15,234</h2>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4 border-left-warning">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase fw-bold text-warning">Pending Orders</small>
-                            <span class="kpi-icon bg-warning bg-opacity-25 text-warning">
-                                <i class="bi bi-hourglass-split"></i>
-                            </span>
-                        </div>
-                        <div class="d-flex align-items-baseline gap-2">
-                            <h2 class="fw-extrabold text-white">42</h2>
-                            <span class="text-warning small fw-medium">Requires Action</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary">Completed Orders</small>
-                            <span class="kpi-icon bg-success bg-opacity-25 text-success">
-                                <i class="bi bi-check-circle"></i>
-                            </span>
-                        </div>
-                        <h2 class="fw-extrabold text-white">14,800</h2>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary">Canceled Orders</small>
-                            <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
-                                <i class="bi bi-x-lg"></i>
-                            </span>
-                        </div>
-                        <h2 class="fw-extrabold text-white">392</h2>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary">Offers Sent</small>
-                            <span class="kpi-icon bg-indigo bg-opacity-25 text-primary">
-                                <i class="bi bi-send"></i>
-                            </span>
-                        </div>
-                        <h2 class="fw-extrabold text-white">1,250</h2>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-4">
-                    <div class="card p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary">Active Deliverers</small>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="bg-success rounded-circle" style="width:8px;height:8px;"></span>
-                                <small class="text-success fw-semibold">LIVE</small>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-baseline gap-2">
-                            <h2 class="fw-extrabold text-white">85</h2>
-                            <span class="text-secondary small">/ 120 Total</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 class="mt-5 mb-3 fw-semibold">Quick Management</h4>
+<?php require "../includes/header_deliverer.php"; ?>
+    <main class="container py-4 py-md-5">
 
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <a href="#" class="text-decoration-none text-white">
-                        <div class="card p-4 quick-card h-100">
-                            <div class="kpi-icon bg-primary bg-opacity-25 text-primary mb-3">
-                                <i class="bi bi-person-gear"></i>
-                            </div>
-                            <h5 class="fw-bold text-white">User Management</h5>
-                            <p class="text-secondary small">
-                                Manage client profiles, administrator roles, and access permissions.
-                            </p>
-                            <span class="text-primary fw-medium">Go to Users →</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="text-decoration-none text-white">
-                        <div class="card p-4 quick-card h-100">
-                            <div class="kpi-icon bg-danger bg-opacity-25 text-primary mb-3">
-                                <i class="bi bi-list-task text-danger"></i>
-                            </div>
-                            <h5 class="fw-bold text-white">Order Management</h5>
-                            <p class="text-secondary small">
-                                Access the full database of orders. Filter by status, date, or ID.
-                            </p>
-                            <span class="text-primary text-danger fw-medium">View All Orders →</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="#" class="text-decoration-none text-white">
-                        <div class="card p-4 quick-card h-100">
-                            <div class="kpi-icon bg-success bg-opacity-25 text-success mb-3">
-                                <i class="bi bi-scooter"></i>
-                            </div>
-                            <h5 class="fw-bold text-white">Deliverer Performance</h5>
-                            <p class="text-secondary small">
-                                Track deliverer ratings, delivery times, and active shifts.
-                            </p>
-                            <span class="text-success fw-medium">Analyze Fleet →</span>
-                        </div>
-                    </a>
+        <div class="mb-4">
+            <h1 class="fw-black display-6 mb-1">Welcome back, Alex</h1>
+            <p class="text-muted-dark">Here is your daily summary and current tasks.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-medium">Average Rating</span>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                    <div class="d-flex align-items-end gap-2 mt-1">
+                        <h3 class="fw-bold mb-0">4.8</h3>
+                        <small class="text-success fw-medium">+0.2%</small>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-medium">Deliveries Today</span>
+                        <i class="bi bi-truck primary"></i>
+                    </div>
+                    <div class="d-flex align-items-end gap-2 mt-1">
+                        <h3 class="fw-bold mb-0">12</h3>
+                        <small class="text-success fw-medium">+2</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-medium">Earnings Today</span>
+                        <i class="bi bi-currency-dollar text-success"></i>
+                    </div>
+                    <div class="d-flex align-items-end gap-2 mt-1">
+                        <h3 class="fw-bold mb-0">$145.50</h3>
+                        <small class="text-success fw-medium">+$45.50</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-medium">Pending Orders</span>
+                        <i class="bi bi-hourglass-split text-warning"></i>
+                    </div>
+                    <div class="d-flex align-items-end gap-2 mt-1">
+                        <h3 class="fw-bold mb-0">2</h3>
+                        <small class="text-danger fw-medium">-1</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="bg-card-dark border-0 rounded-xl p-4 shadow">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h5 class="fw-bold mb-0">Notifications</h5>
+                        <button class="btn btn-link small p-0 primary fw-semibold text-uppercase">Mark all read</button>
+                    </div>
+                    <div class="d-flex gap-2 border-bottom pb-3">
+                        <div class="rounded-circle p-2" style="background:rgba(19,127,236,.12)">
+                            <i class="bi bi-truck primary"></i>
+                        </div>
+                        <div>
+                            <div class="fw-medium small">New Order Assigned</div>
+                            <div class="text-muted-dark small">You have been assigned order #3950</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="fw-bold mb-2">My Current Deliveries</h4>
+
+                <div class="bg-card-dark border-0 rounded-xl p-4 shadow mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-8 d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="pill badge-soft-blue">En Route</span>
+                                    <span class="fw-bold fs-5">Order #3942</span>
+                                </div>
+
+                                <div class="text-muted-dark small mb-2">
+                                    <i class="bi bi-person"></i> Client: Alice M.
+                                </div>
+
+                                <div class="small">
+                                    <div class="d-flex gap-2 mb-1">
+                                        <i class="bi bi-geo-alt"></i> Pickup: 123 Main St, Springfield
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <i class="bi bi-flag"></i> <strong>Dropoff:</strong> 456 Elm St, Springfield
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2 pt-2">
+                                <button class="btn btn-primary px-3">
+                                    Update Status <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-card-dark border-0 rounded-xl shadow mb-4">
+            <div class="d-flex justify-content-between p-3">
+                <h5 class="fw-bold mb-0">Completed Deliveries</h5>
+                <a href="#" class="primary small fw-medium">View All</a>
+            </div>
+
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr class="text-muted-dark text-uppercase small fw-semibold">
+                        <th class="ps-3">Order ID</th>
+                        <th>Date</th>
+                        <th>Address</th>
+                        <th class="text-end pe-3">Earnings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ps-3 fw-medium">#3940</td>
+                        <td>Today, 10:30 AM</td>
+                        <td>88 Broadway, City Center</td>
+                        <td class="fw-bold text-end pe-3">$12.50</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <?php require '../includes/footer.php'; ?>

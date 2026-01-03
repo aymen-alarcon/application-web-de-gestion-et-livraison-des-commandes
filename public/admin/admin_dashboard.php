@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/includes/header.php'; ?>
+<?php require '../includes/header.php'; ?>
     <div class="container-fluid vh-100">
         <main class="container container-max py-5">
             <p class="text-secondary mb-5">
@@ -116,7 +116,7 @@
                             <div class="kpi-icon bg-success bg-opacity-25 text-success mb-3">
                                 <i class="bi bi-scooter"></i>
                             </div>
-                            <h5 class="fw-bold text-white">Deliverer Performance</h5>
+                            <h5 class="fw-bold text-white">Deliverer Management</h5>
                             <p class="text-secondary small">
                                 Track deliverer ratings, delivery times, and active shifts.
                             </p>
@@ -127,4 +127,4 @@
             </div>
         </main>
     </div>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>
