@@ -20,7 +20,12 @@ class ReadCommandeItemHandler{
             $commande->setCommandeId($_GET["commande_id"]);
             $repo = new CommandeItemRepository($this->conn);
             $repo->read($commande);
+
+            header("Location: ../../public/client_order.php");
+            exit;
         }
+
+
     }
 }
 

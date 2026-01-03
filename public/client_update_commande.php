@@ -51,9 +51,9 @@
                                 </td>
     
                                 <td>
-                                    <button class="btn btn-outline-danger delete-row">
-                                        <span class="material-symbols-outlined">delete</span>
-                                    </button>
+                                    <a href="../src/Controller/DeleteCommandItemHandler.php?id=<?php if(isset($commandeItem["id"])): echo $commandeItem["id"] ; endif; ?>" class="btn btn-outline-danger delete-row">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -61,8 +61,7 @@
                 </table>
             </div>
     
-            <div class="d-flex justify-content-between align-items-center p-3">
-                <button id="addProductBtn" class="btn btn-outline-secondary">+ Add Product</button>
+            <div class="d-flex justify-content-end align-items-center p-3">
                 <div style="text-align:right">
                     <div class="total-label text-dark">Order Total</div>
                     <div id="orderTotal" class="text-dark">$10.00</div>

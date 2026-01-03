@@ -11,9 +11,8 @@
     }
 ?>
     <main class="container py-4">
-        <div class="mb-3 text-secondary-custom">My Orders / <span class="text-white">Create New Order</span></div>
         <form action="../src/Controller/InsertCommandeItemHandler.php" method="post" class="row g-4">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card card-dark mb-4 p-4">
                     <h5 class="text-white fw-bold mb-3">
                     <i class="bi bi-archive text-primary fs-4"></i> Package Details
@@ -43,9 +42,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
-                <button type="submit" class="btn btn-primary w-100">Next: Route Details</button>
-            </div>
+            <button type="submit" class="btn btn-primary w-100">Next: Route Details</button>
         </form>
     </main>
 <?php require __DIR__ . '/includes/footer.php'; ?>

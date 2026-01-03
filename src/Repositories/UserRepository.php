@@ -23,7 +23,7 @@ class UserRepository{
                 if ($key === 'password' || $key === 'id') {
                     continue;
                 }
-                setcookie($key, $value, time() + 3600, "/");
+                setcookie($key, $value, time() + 72000, "/");
             }
             $_SESSION["id"] = $userCredentials["id"];
             header("Location: ../../public/client_dashboard.php?id=" . $userCredentials["id"]);

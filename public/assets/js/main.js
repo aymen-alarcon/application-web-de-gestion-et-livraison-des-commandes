@@ -243,22 +243,6 @@ if (window.location.href.includes("client_update_commande.php")) {
         }
     };
 
-    document.getElementById("addProductBtn").onclick = function () {
-        var tbody = document.querySelector("#productsTable tbody");
-        var rows = tbody.querySelectorAll("tr");
-        var last = rows[rows.length - 1];
-        var newRow = last.cloneNode(true);
-
-        newRow.querySelector(".product-name").value = "New Product";
-        newRow.querySelector(".textarea").value = "Description";
-        newRow.querySelector(".unit-price").value = "0.00";
-        newRow.querySelector(".qty").value = "1";
-        newRow.querySelector(".subtotal").textContent = "$0.00";
-
-        tbody.appendChild(newRow);
-        recalcTotal();
-    };
-
     recalcTotal();
 
 }
