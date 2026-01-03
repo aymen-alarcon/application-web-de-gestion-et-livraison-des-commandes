@@ -51,7 +51,7 @@
                                 </td>
     
                                 <td>
-                                    <a href="../src/Controller/DeleteCommandItemHandler.php?id=<?php if(isset($commandeItem["id"])): echo $commandeItem["id"] ; endif; ?>" class="btn btn-outline-danger delete-row">
+                                    <a href="../src/Controller/DeleteHandler.php?entityClass=CommandeItem&repositoryClass=CommandeItemRepository&id=<?php if(isset($commandeItem["id"])): echo $commandeItem["id"] ; endif; ?>" class="btn btn-outline-danger delete-row">
                                         <i class="bi bi-trash3"></i>
                                     </a>
                                 </td>
