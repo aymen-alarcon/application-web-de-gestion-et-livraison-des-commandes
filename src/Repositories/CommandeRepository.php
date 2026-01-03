@@ -51,4 +51,13 @@ class CommandeRepository{
         $stmt->execute();    
         $this->read();
     }
+
+    function cancel($commande){
+        $sql = "UPDATE commandes SET statu = :statu WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":id", $commande->getId());
+        $stmt->bindValue(":statu", $commande->getStatu());
+        $stmt->execute();    
+        $this->read();
+    }
 }
