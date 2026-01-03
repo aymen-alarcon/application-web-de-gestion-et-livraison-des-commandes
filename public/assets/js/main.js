@@ -1,5 +1,5 @@
 if (window.location.href.includes("login.php")) {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         let loginTab = document.getElementById('loginTab');
         let registerTab = document.getElementById('registerTab');
         let loginForm = document.getElementById('loginForm');
@@ -18,26 +18,26 @@ if (window.location.href.includes("login.php")) {
 
         setRole(savedRole);
 
-        loginTab.addEventListener('click', function(e) {
+        loginTab.addEventListener('click', function (e) {
             e.preventDefault();
             showLoginForm();
             saveTabState('login');
         });
 
-        registerTab.addEventListener('click', function(e) {
+        registerTab.addEventListener('click', function (e) {
             e.preventDefault();
             showRegisterForm();
             saveTabState('register');
         });
 
-        switchToRegister.addEventListener('click', function(e) {
+        switchToRegister.addEventListener('click', function (e) {
             e.preventDefault();
             showRegisterForm();
             saveTabState('register');
         });
 
         document.querySelectorAll('.input-group button').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 let input = this.parentElement.querySelector('input');
                 let icon = this.querySelector('.bi-eye-slash');
 
@@ -52,7 +52,7 @@ if (window.location.href.includes("login.php")) {
         });
 
         document.querySelectorAll('.chip-select').forEach(chip => {
-            chip.addEventListener('click', function() {
+            chip.addEventListener('click', function () {
                 let role = this.getAttribute('data-role');
 
                 document.querySelectorAll('.chip-select').forEach(c => {
@@ -109,8 +109,8 @@ if (window.location.href.includes("login.php")) {
 }
 
 if (window.location.href.includes("client_add_package.php")) {
-    document.querySelector(".add-product").addEventListener("click", ()=>{
-        let container = document.getElementById("itemsContainer");            
+    document.querySelector(".add-product").addEventListener("click", () => {
+        let container = document.getElementById("itemsContainer");
         container.innerHTML += `
               <div class="row g-3">
                 <div class="col-md-6">
@@ -126,22 +126,22 @@ if (window.location.href.includes("client_add_package.php")) {
                   <input type="number" class="form-control bg-black text-white" name="price[]" placeholder="e.g. 2">
                 </div>
               </div>
-        `;        
+        `;
     })
 }
 
 if (window.location.href.includes("client_order_dashboard.php")) {
     let buttons = document.querySelectorAll(".btn.btn-outline-secondary.rounded-pill");
     let badges = document.querySelectorAll(".badge");
-        
-    buttons.forEach(btn =>{
-        btn.addEventListener('click', ()=>{
-            buttons.forEach(btns =>{
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(btns => {
                 btns.classList.remove("btn-primary");
                 btns.classList.remove("text-white");
-            }) 
+            })
 
-            badges.forEach(badge =>{
+            badges.forEach(badge => {
                 if (btn.innerHTML === "All Orders") {
                     badge.parentElement.parentElement.classList.remove("d-none");
                 } else if (badge.innerHTML === btn.innerHTML) {
@@ -150,7 +150,7 @@ if (window.location.href.includes("client_order_dashboard.php")) {
                     badge.parentElement.parentElement.classList.add("d-none");
                 }
             })
-            
+
             btn.classList.add("btn-primary");
             btn.classList.add("text-white");
         })
@@ -167,7 +167,7 @@ if (window.location.href.includes("client_order_dashboard.php")) {
 }
 
 if (window.location.href.includes("client_order.php")) {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         let price = 0;
         let productsPrice = document.querySelectorAll(".totalPrice")
         productsPrice.forEach(productPrice => {
@@ -178,4 +178,87 @@ if (window.location.href.includes("client_order.php")) {
         let totalPrice = price + 5
         document.querySelector(".finalPrice").textContent = "$" + totalPrice
     })
+}
+
+if (window.location.href.includes("client_update_commande.php")) {
+    function format(num) {
+        return "$" + num.toFixed(2);
+    }
+
+    function recalcRow(row) {
+        var price = parseFloat(row.querySelector(".unit-price").value) || 0;
+        var qty = parseInt(row.querySelector(".qty").value) || 0;
+        var subtotal = price * qty;
+
+        row.querySelector(".subtotal").textContent = format(subtotal);
+        recalcTotal();
+    }
+
+    function recalcTotal() {
+        var totals = document.querySelectorAll(".subtotal");
+        var sum = 0;
+
+        for (var i = 0; i < totals.length; i++) {
+            var value = totals[i].textContent.replace("$", "");
+            sum += parseFloat(value) || 0;
+        }
+
+        document.getElementById("orderTotal").textContent = format(sum);
+    }
+
+    document.getElementById("productsTable").onclick = function (e) {
+        var row = e.target.closest("tr");
+        if (!row) return;
+
+        if (e.target.classList.contains("qty-plus")) {
+            var input = row.querySelector(".qty");
+            var value = parseInt(input.value) || 0;
+            input.value = value + 1;
+            recalcRow(row);
+        }
+
+        if (e.target.classList.contains("qty-minus")) {
+            var input = row.querySelector(".qty");
+            var value = parseInt(input.value) || 0;
+            if (value > 1) input.value = value - 1;
+            recalcRow(row);
+        }
+
+        if (e.target.classList.contains("delete-row")) {
+            row.parentNode.removeChild(row);
+            recalcTotal();
+        }
+    };
+
+    document.getElementById("productsTable").oninput = function (e) {
+        var row = e.target.closest("tr");
+
+        if (!row) return;
+
+        if (
+            e.target.classList.contains("unit-price") ||
+            e.target.classList.contains("qty")
+        ) {
+            recalcRow(row);
+        }
+    };
+
+    document.getElementById("addProductBtn").onclick = function () {
+        var tbody = document.querySelector("#productsTable tbody");
+        var rows = tbody.querySelectorAll("tr");
+        var last = rows[rows.length - 1];
+        var newRow = last.cloneNode(true);
+
+        newRow.querySelector(".product-name").value = "New Product";
+        newRow.querySelector(".textarea").value = "Description";
+        newRow.querySelector(".unit-price").value = "0.00";
+        newRow.querySelector(".qty").value = "1";
+        newRow.querySelector(".subtotal").textContent = "$0.00";
+
+        tbody.appendChild(newRow);
+        recalcTotal();
+    };
+
+    recalcTotal();
+
 }
