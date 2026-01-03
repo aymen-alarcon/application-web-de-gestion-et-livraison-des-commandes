@@ -16,7 +16,7 @@ class RegisterHandler {
 
     function register() {
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            header("Location: ../../public/login.php");
+            header("Location: ../../public/index.php");
         }
 
         $user = new User();

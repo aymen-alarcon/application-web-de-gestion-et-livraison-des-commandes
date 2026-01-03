@@ -21,8 +21,8 @@ class UpdateCommandHandler{
         $newCommande->setTitre($_POST["titre"]);
         $newCommande->setAddress($_POST["address"]);
         $newCommande->setPhone($_POST["phone"]);
-        $updateCommande = new CommandeRepository($this->conn);
-        $updateCommande->update($newCommande);
+        $repo = new CommandeRepository($this->conn);
+        $repo->update($newCommande);
     }
 }
 

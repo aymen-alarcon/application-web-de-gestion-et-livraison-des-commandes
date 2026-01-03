@@ -9,11 +9,12 @@ class CommandeItemRepository{
 
     function create($commande){
         session_start();
-        $sql = "INSERT INTO commande_items (name, quantity, price, date, commande_id) VALUES (:name, :quantity, :price, now(), :commande_id)";
+        $sql = "INSERT INTO commande_items (name, quantity, price, date, description, commande_id) VALUES (:name, :quantity, :price, now(), :description, :commande_id)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":name", $commande->getName());
         $stmt->bindValue(":quantity", $commande->getQuantity());
         $stmt->bindValue(":price", $commande->getPrice());
+        $stmt->bindValue(":description", $commande->getDescription());
         $stmt->bindValue(":commande_id", $commande->getCommandeId());
         $stmt->execute();
         header("Location: ../../public/client_dashboard.php");
@@ -31,14 +32,15 @@ class CommandeItemRepository{
     }
 
     function update($commande){
-        $sql = "UPDATE commande_items set name = :name, quantity = :quantity, statu = :statu, is_deleted = :is_deleted, price = :price, password = :password WHERE id = :id";
+        $sql = "UPDATE commande_items set name = :name, quantity = :quantity, price = :price, description = :description WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
         $stmt->bindValue(":name", $commande->getName());
         $stmt->bindValue(":quantity", $commande->getQuantity());
-        $stmt->bindValue(":statu", $commande->getStatu());
-        $stmt->bindValue(":is_deleted", $commande->getis_deleted());
-        $stmt->execute();    
+        $stmt->bindValue(":price", $commande->getPrice());
+        $stmt->bindValue(":description", $commande->getDescription());
+        $stmt->execute();  
+        header("Location: ../../public/client_order_dashboard.php");
     }
 
     function delete($commande){
@@ -46,7 +48,6 @@ class CommandeItemRepository{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
         $stmt->execute();    
-        // $this->read();
         header("Location: ../../public/client_order_dashboard.php");
     }
 }

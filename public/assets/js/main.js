@@ -1,4 +1,4 @@
-if (window.location.href.includes("login.php")) {
+if (window.location.href.includes("index.php")) {
     document.addEventListener('DOMContentLoaded', function () {
         let loginTab = document.getElementById('loginTab');
         let registerTab = document.getElementById('registerTab');

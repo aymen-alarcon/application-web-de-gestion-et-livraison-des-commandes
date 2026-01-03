@@ -5,14 +5,16 @@ class CommandeItem{
     protected $name;
     protected $quantity;
     protected $price;
+    protected $description;
     protected $commande_id;
 
-    function __construct($id = NULL, $name = NULL, $quantity = NULL, $price = NULL, $commande_id = NULL)
+    function __construct($id = NULL, $name = NULL, $quantity = NULL, $price = NULL, $description = NULL, $commande_id = NULL)
     {
         $this->id = $id;
         $this->name = $name;
         $this->quantity = $quantity;
         $this->price = $price;
+        $this->description = $description;
         $this->commande_id = $commande_id;
     }
 
@@ -64,5 +66,15 @@ class CommandeItem{
     public function setCommandeId($commande_id)
     {
         $this->commande_id = $commande_id;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 }

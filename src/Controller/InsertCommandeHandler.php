@@ -24,8 +24,8 @@ class InsertCommandeHandler{
         $commande->setAddress($_POST["address"]);
         $commande->setPhone($_POST["phone"]);
 
-        $commandeClass = new CommandeRepository($this->conn);
-        $commandeClass->create($commande);
+        $repo = new CommandeRepository($this->conn);
+        $repo->create($commande);
     }
 }
 

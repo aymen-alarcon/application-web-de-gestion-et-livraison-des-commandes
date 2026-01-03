@@ -16,19 +16,15 @@ class InsertCommandeItemHandler{
     }
 
     function insertCommandeItem(){
-        if (!isset($_POST['product']) || !isset($_POST['quantity']) || !isset($_POST['price'])) {
-            return;
-        }
-
-        $commandeItemRepo = new CommandeItemRepository($this->conn);
-
+        $repo = new CommandeItemRepository($this->conn);
         foreach ($_POST['product'] as $index => $name) {
             $item = new CommandeItem();
             $item->setName($name);
             $item->setQuantity($_POST['quantity'][$index]);
             $item->setPrice($_POST['price'][$index]);
+            $item->setDescription($_POST["description"][$index]);
             $item->setCommandeId($_POST["commande_id"]);
-            $commandeItemRepo->create($item);
+            $repo->create($item);
         }
     }
 }

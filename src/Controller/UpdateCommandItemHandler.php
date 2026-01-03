@@ -1,13 +1,12 @@
 <?php
-
 require_once "../Entity/commandeItem.php";
-require_once "../Repositories/CommandeRepository.php";
+require_once "../Repositories/CommandeItemRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();
 $conn = $db->connect();
 
-class UpdateCommandHandler{
+class UpdateCommandItemHandler{
     protected $conn;
 
     function __construct($conn)
@@ -15,15 +14,19 @@ class UpdateCommandHandler{
         $this->conn = $conn;
     }
 
-    function updateCommande(){
-        $newCommande = new CommandeItem();
-        $newCommande->setName($_POST["name"]);
-        $newCommande->setPrice($_POST["price"]);
-        $newCommande->setQuantity($_POST["quantity"]);
-        $updateCommande = new CommandeRepository($this->conn);
-        $updateCommande->update($newCommande);
+    function updateCommandeItem(){
+        $repo = new CommandeItemRepository($this->conn);
+        foreach ($_POST["product"] as $index => $value) {
+            $item = new CommandeItem();
+            $item->setId($_POST["id"][$index]);
+            $item->setName($value);
+            $item->setPrice($_POST["price"][$index]);
+            $item->setQuantity($_POST["quantity"][$index]);
+            $item->setDescription($_POST["description"][$index]);
+            $repo->update($item);
+        }
     }
 }
 
-$updateCommandeHandler = new UpdateCommandHandler($conn);
-$updateCommandeHandler->updateCommande();
+$updateCommandeHandler = new UpdateCommandItemHandler($conn);
+$updateCommandeHandler->updateCommandeItem();

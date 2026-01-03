@@ -20,8 +20,8 @@ class DeleteCommandHandler{
         }
         $commandeItme = new Commande();
         $commandeItme->setId($_GET["id"]);
-        $commande = new CommandeRepository($this->conn);
-        $commande->delete($commandeItme);
+        $repo = new CommandeRepository($this->conn);
+        $repo->delete($commandeItme);
     }
 }
 

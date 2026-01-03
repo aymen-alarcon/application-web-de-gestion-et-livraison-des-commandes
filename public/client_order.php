@@ -59,7 +59,7 @@
                                             <?= $commandeItem["name"] ?>
                                         </div>
                                     </td>
-                                    <td class="text-white fst-italic">Extra crispy crust please</td>
+                                    <td class="text-white fst-italic"><?= $commandeItem["description"] ?></td>
                                     <td class="text-end"><?= $commandeItem["quantity"] ?></td>
                                     <td class="text-end text-white"><?= $commandeItem["price"] ?></td>
                                     <td class="text-end fw-bold totalPrice">
