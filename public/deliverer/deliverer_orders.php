@@ -62,7 +62,7 @@
                         <i class="bi bi-bicycle"></i>
                         5.2 km • Bike
                     </div>
-                    <button class="btn btn-primary w-100">View Details</button>
+                    <a href="deliverer_order_interaction.php" class="btn btn-primary w-100">View Details</a>
                 </div>
             </div>
         </div>

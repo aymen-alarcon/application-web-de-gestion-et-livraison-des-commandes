@@ -56,7 +56,7 @@
                         <a class="nav-link active fw-semibold border-bottom border-2 border-primary text-white" href="deliverer_orders.php">Available Orders</a>
                     </li>
                     <li class="nav-item"><a class="nav-link text-white" href="deliverer_acitivity.php">My Activity</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="deliverer_profile.php">Profile</a></li>
                 </ul>
                 <div class="ms-auto d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-3">
