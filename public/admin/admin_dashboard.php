@@ -1,4 +1,4 @@
-<?php require '../includes/header.php'; ?>
+<?php require '../includes/header_admin.php'; ?>
     <div class="container-fluid vh-100">
         <main class="container container-max py-5">
             <p class="text-secondary mb-5">
@@ -92,7 +92,7 @@
                             <p class="text-secondary small">
                                 Manage client profiles, administrator roles, and access permissions.
                             </p>
-                            <span class="text-primary fw-medium">Go to Users →</span>
+                            <a href="admin_user_management.php" class="text-primary fw-medium">Go to Users →</a>
                         </div>
                     </a>
                 </div>

@@ -30,7 +30,6 @@
         .text-muted {
             color: #9ca3af !important;
         }
-
         .list-group-item {
             background: transparent;
             border-color: #1f2a37;

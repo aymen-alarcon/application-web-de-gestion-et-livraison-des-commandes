@@ -1,91 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin: Deliverer Management</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <!-- Material Symbols -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Noto Sans', sans-serif;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Inter', sans-serif;
-    }
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    }
-    /* Scrollbar for dark mode */
-    body::-webkit-scrollbar {
-      width: 8px;
-    }
-    body::-webkit-scrollbar-track {
-      background: #f8f9fa;
-    }
-    body::-webkit-scrollbar-thumb {
-      background: #adb5bd;
-      border-radius: 4px;
-    }
-    body::-webkit-scrollbar-thumb:hover {
-      background: #868e96;
-    }
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-size: cover;
-      background-position: center;
-    }
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-  </style>
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-
-  <!-- Top Navigation -->
-  <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm px-4">
-    <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-2" style="width: 40px; height: 40px;">
-          <span class="material-symbols-outlined fs-5">local_shipping</span>
-        </div>
-        <span class="fw-bold fs-5 mb-0">Admin Portal</span>
-      </a>
-      <div class="d-flex align-items-center gap-3">
-        <ul class="navbar-nav d-none d-md-flex flex-row gap-3">
-          <li class="nav-item"><a class="nav-link text-muted" href="#">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold text-primary" href="#">Deliverers</a></li>
-          <li class="nav-item"><a class="nav-link text-muted" href="#">Orders</a></li>
-          <li class="nav-item"><a class="nav-link text-muted" href="#">Settings</a></li>
-        </ul>
-        <button class="btn btn-light rounded-circle">
-          <span class="material-symbols-outlined text-muted">notifications</span>
-        </button>
-        <div class="avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbmfCvC5lgm4O40qPmOIbjOMSyeo9SWibpxwnqOB-lZWDfOpvFABhd_DN_4cAZq_OvFMPEDDscZqH0B14K_jSs428d5SpuT2tySDYt0a0Z4dSg_PPeOganjiJrWyrZBEGH33wH1N6VFJpYwC1UZaQu_IkemnxzcCWjrWCmzIsp8zKVZeLRNaQK1EpLBVILhyb5NQz8sTAwl7oVIBZev9WE5_Se2HeZuA3FiBsoiZ77SYOS8gH-odISYbfn0C607uDR55Pu_3BvkYI');"></div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="flex-fill py-4">
+  <?php require '../includes/header_admin.php'; ?>
+  <main class="flex-fill py-4 bg-transparent">
     <div class="container-lg">
-
-      <!-- Page Heading & Actions -->
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end gap-3 mb-4">
         <div>
           <h1 class="fw-bold display-6">Deliverer Management</h1>
@@ -96,8 +11,6 @@
           Add New Deliverer
         </button>
       </div>
-
-      <!-- Stats Overview -->
       <div class="row g-3 mb-4">
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="card border-light shadow-sm">
@@ -246,8 +159,3 @@
 
     </div>
   </main>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
