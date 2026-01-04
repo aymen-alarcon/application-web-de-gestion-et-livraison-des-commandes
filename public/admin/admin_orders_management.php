@@ -1,0 +1,110 @@
+  <?php require '../includes/header_admin.php'; ?>
+<div class="container-xl py-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-black">Order Management</h1>
+            <p class="text-secondary mb-0">View, edit, and manage all orders across the platform.</p>
+        </div>
+        <div class="d-flex gap-2 mt-3 mt-md-0">
+            <button class="btn btn-primary">Create New Order</button>
+        </div>
+    </div>
+    <div class="card-dark p-4 mb-4">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Search Orders</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-dark border-secondary text-secondary">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input class="form-control bg-dark" placeholder="Order ID, Client, Deliverer">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Creation Date</label>
+                <input class="form-control bg-dark" placeholder="Filter by date range">
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span class="text-secondary small">Quick Filters:</span>
+            <button class="btn btn-primary btn-sm">Status: All</button>
+            <button class="btn btn-outline-light btn-sm">Zone: All</button>
+            <div class="vr bg-secondary"></div>
+            <button class="btn btn-outline-light btn-sm">Pending</button>
+            <button class="btn btn-outline-light btn-sm">In Progress</button>
+            <button class="btn btn-outline-light btn-sm">Delivered</button>
+            <a href="#" class="ms-auto text-primary text-decoration-none small">Clear all</a>
+        </div>
+    </div>
+    <div class="card-dark overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-dark-custom table mb-0 align-middle">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Client</th>
+                    <th>Deliverer</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Total</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>#ORD-3920</td>
+                    <td>John Doe</td>
+                    <td class="text-secondary fst-italic">Unassigned</td>
+                    <td><span class="badge badge-pending">Pending</span></td>
+                    <td>Oct 24, 10:30 AM</td>
+                    <td>$45.00</td>
+                    <td class="text-end">
+                        <button class="btn btn-primary btn-sm">View</button>
+                        <button class="btn btn-link text-info"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-link text-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#ORD-3919</td>
+                    <td>Sarah Smith</td>
+                    <td>Mike Driver</td>
+                    <td><span class="badge badge-transit">In Transit</span></td>
+                    <td>Oct 24, 09:15 AM</td>
+                    <td>$120.50</td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-light btn-sm">View</button>
+                        <button class="btn btn-link text-info"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-link text-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#ORD-3918</td>
+                    <td>Tech Corp</td>
+                    <td>Sarah Driver</td>
+                    <td><span class="badge badge-delivered">Delivered</span></td>
+                    <td>Oct 23, 04:00 PM</td>
+                    <td>$89.99</td>
+                    <td class="text-end">
+                        <button class="btn btn-outline-light btn-sm">View</button>
+                        <button class="btn btn-link text-info"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-link text-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center p-3 border-top border-secondary">
+            <small class="text-secondary">Showing 1–5 of 97</small>
+            <ul class="pagination mb-0">
+                <li class="page-item disabled"><a class="page-link">‹</a></li>
+                <li class="page-item active"><a class="page-link">1</a></li>
+                <li class="page-item"><a class="page-link">2</a></li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item"><a class="page-link">›</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

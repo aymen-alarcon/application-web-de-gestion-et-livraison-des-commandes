@@ -20,7 +20,7 @@
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <a class="navbar-brand d-flex align-items-center gap-2" href="#">
                 <div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-2" style="width: 40px; height: 40px;">
-                <span class="material-symbols-outlined fs-5">local_shipping</span>
+                <i class="bi bi-truck"></i>
                 </div>
                 <span class="fw-bold fs-5 mb-0">Admin Portal</span>
             </a>
@@ -29,7 +29,7 @@
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_dashboard.php">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link fw-bold text-primary" href="admin_deliverer_management.php">Deliverers</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_user_management.php">Users</a></li>
-                    <li class="nav-item"><a class="nav-link text-muted" href="#">Orders</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_orders_management.php">Orders</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="#">Settings</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3">
