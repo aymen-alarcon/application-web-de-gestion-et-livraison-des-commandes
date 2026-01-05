@@ -217,5 +217,14 @@ if (window.location.href.includes("client_update_commande.php")) {
     };
 
     recalcTotal();
+}
 
+if (window.location.href.includes("deliverer_order_interaction.php")) {
+    document.querySelectorAll('.vehicle-option').forEach(option => {
+        option.addEventListener('click', () => {
+            document.querySelectorAll('.vehicle-option').forEach(o => o.classList.remove('checked'));
+            option.classList.add('checked');
+            option.querySelector('input').checked = true;
+        });
+    });
 }

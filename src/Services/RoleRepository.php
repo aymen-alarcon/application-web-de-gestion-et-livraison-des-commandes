@@ -9,12 +9,11 @@ class RoleRepository{
     }
 
     function registerRole($role){
+        session_start();
         $sql = "INSERT INTO roles (role_name, user_id) VALUES (:role_name, :user_id)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":role_name", $role->getName());
         $stmt->bindValue(":user_id", $role->getUser_id());
-        var_dump($role->getName());
-        var_dump($role->getUser_id());
         $stmt->execute();
         if ($role->getName() === "admin") {
             $_SESSION["role"] = $role->getName();

@@ -25,7 +25,7 @@
             </button>
         </div>
     </div>
-    <?php if(!empty($commandes)): foreach($commandes as $commande): if($commande["statu"] === "Completed" || $commande["statu"] === "Canceled") {continue;};?>
+    <?php if(!empty($commandes)): foreach($commandes as $commande): if($commande["statu"] === "Pending"):?>
         <div class="card shadow-sm mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
@@ -54,10 +54,12 @@
                         <div class="mb-2">
                             <span class="badge bg-success-subtle text-success"><?= $commande["statu"] ?></span>
                         </div>
-                        <a href="deliverer_order_interaction.php" class="btn btn-primary w-100">View Details</a>
+                        <div class="fw-semibold my-2">Order By <?= $commande["username"] ?></div>
+                        <div class="fw-semibold my-2">Phone Number: <?= $commande["phone"] ?></div>
+                        <a href="../../src/Controller/ReadCommandeItemHandler.php?commande_id=<?= $commande['id'] ?>" class="btn btn-primary w-100">View Details</a>
                     </div>
                 </div>
             </div>
         </div>
-    <?php endforeach; endif;?>
+    <?php endif; endforeach; endif;?>
 </main>
