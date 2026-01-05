@@ -31,6 +31,14 @@ class CommandeRepository{
         $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function readAll(){
+        session_start();
+        $sql = "SELECT * FROM commandes WHERE is_deleted = '0' ORDER BY created_at DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function update($commande){
         $sql = "UPDATE commandes set titre = :titre, address = :address, phone = :phone WHERE id = :id";
         $stmt = $this->conn->prepare($sql);

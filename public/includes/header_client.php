@@ -26,13 +26,13 @@
             <h2 class="h5 m-0">QuickShip</h2>
         </div>
         <nav class="d-none d-md-flex gap-3">
-            <a href="client_dashboard.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="client_dashboard.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 Dashboard
             </a>
-            <a href="../../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="../../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 My Orders
             </a>
-            <a href="client_profile.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="client_profile.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
                 Profile
             </a>
         </nav>

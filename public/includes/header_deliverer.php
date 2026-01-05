@@ -56,13 +56,13 @@
                 </a>
                 <ul class="navbar-nav ms-4">
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold text-white" href="deliverer_dashboard.php">Dashboard</a>
+                        <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'deliverer_dashboard.php' ? 'active fw-semibold border-bottom border-2 border-primary text-white' : 'text-white' ?>" href="deliverer_dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-semibold border-bottom border-2 border-primary text-white" href="deliverer_orders.php">Available Orders</a>
+                        <a href="../../src/Controller/ReadAllCommandesHandler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'deliverer_orders.php' ? 'active fw-semibold border-bottom border-2 border-primary text-white' : 'text-white' ?>" href="deliverer_orders.php">Available Orders</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link text-white" href="deliverer_acitivity.php">My Activity</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="deliverer_profile.php">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'deliverer_acitivity.php' ? 'active fw-semibold border-bottom border-2 border-primary text-white' : 'text-white' ?>" href="deliverer_acitivity.php">My Activity</a></li>
+                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'deliverer_profile.php' ? 'active fw-semibold border-bottom border-2 border-primary text-white' : 'text-white' ?>" href="deliverer_profile.php">Profile</a></li>
                 </ul>
                 <div class="ms-auto d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-3">

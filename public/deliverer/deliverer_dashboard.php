@@ -3,24 +3,11 @@
 
         <div class="mb-4">
             <h1 class="fw-black display-6 mb-1">Welcome back, Alex</h1>
-            <p class="text-muted-dark">Here is your daily summary and current tasks.</p>
+            <p class="text-muted-dark">Here is your summary and current tasks.</p>
         </div>
 
-        <!-- Stats -->
         <div class="row g-3 mb-4">
-            <div class="col-sm-6 col-lg-3">
-                <div class="border-0 rounded card p-4 shadow h-100">
-                    <div class="d-flex justify-content-between">
-                        <span class="fw-medium">Average Rating</span>
-                        <i class="bi bi-star-fill text-warning"></i>
-                    </div>
-                    <div class="d-flex align-items-end gap-2 mt-1">
-                        <h3 class="fw-bold mb-0">4.8</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-12 col-lg-6">
                 <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
                         <span class="fw-medium">Deliveries Today</span>
@@ -32,19 +19,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-lg-3">
-                <div class="border-0 rounded card p-4 shadow h-100">
-                    <div class="d-flex justify-content-between">
-                        <span class="fw-medium">Earnings Today</span>
-                        <i class="bi bi-currency-dollar text-success"></i>
-                    </div>
-                    <div class="d-flex align-items-end gap-2 mt-1">
-                        <h3 class="fw-bold mb-0">$145.50</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-12 col-lg-6">
                 <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
                         <span class="fw-medium">Pending Orders</span>

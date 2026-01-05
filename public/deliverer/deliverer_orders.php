@@ -1,4 +1,7 @@
-<?php require "../includes/header_deliverer.php"; ?>
+<?php 
+    require "../includes/header_deliverer.php"; 
+    $commandes = $_SESSION["commandes"];
+?>
 <main class="container py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
         <div>
@@ -22,49 +25,39 @@
             </button>
         </div>
     </div>
-    <div class="card shadow-sm mb-3">
-        <div class="card-body">
-            <div class="d-flex justify-content-between mb-3">
-                <div class="d-flex gap-2 align-items-center">
-                    <span class="badge badge-outline">#ORD-8921</span>
-                    <span class="small text-white d-flex align-items-center">
-                        <i class="bi bi-clock me-1"></i>
-                        2 mins ago
-                    </span>
-                </div>
-                <div class="text-end">
-                    <div class="fs-4 fw-bold">$15.00</div>
-                    <div class="price-label">Starting Bid</div>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-sm-8 timeline-line">
-                    <div class="mb-3">
-                        <div class="small text-white text-uppercase fw-semibold">Pickup</div>
-                        <div class="fw-semibold">123 Main St, Downtown</div>
-                        <div class="small text-white">Ready by 2:30 PM</div>
-                    </div>
-                    <div>
-                        <div class="small text-white text-uppercase fw-semibold">Drop-off (Client)</div>
-                        <div class="fw-semibold">456 Elm St, Suburbs</div>
-                        <div class="small text-white">Deliver before 3:15 PM</div>
+    <?php if(!empty($commandes)): foreach($commandes as $commande): if($commande["statu"] === "Completed" || $commande["statu"] === "Canceled") {continue;};?>
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex gap-2 align-items-center">
+                        <span class="badge badge-outline"><?= $commande["id"] ?></span>
+                        <span class="small text-white d-flex align-items-center">
+                            <i class="bi bi-clock me-1"></i>
+                            <?php
+                                $creationDate = DateTime::createFromFormat('Y-m-d H:i:s', $commande["created_at"]);
+                                $now = new DateTime;
+                                $diff = $creationDate->diff($now);
+                                echo $diff->format("%d days %h hours %m minutes");
+                            ?>
+                        </span>
                     </div>
                 </div>
-                <div class="col-sm-4 border-start">
-                    <div class="mb-2">
-                        <span class="badge bg-success-subtle text-success">Open for Bids</span>
+                <div class="row g-4">
+                    <div class="col-sm-8 timeline-line">
+                        <div>
+                            <div class="small text-white text-uppercase fw-semibold">Drop-off (Client)</div>
+                            <div class="fw-semibold"><?= $commande["address"] ?></div>
+                            <div class="small text-white">Deliver before 3:15 PM</div>
+                        </div>
                     </div>
-                    <div class="small mb-2 d-flex gap-2">
-                        <i class="bi bi-box-seam"></i>
-                        Electronics — Laptop & Accessories
+                    <div class="col-sm-4 border-start">
+                        <div class="mb-2">
+                            <span class="badge bg-success-subtle text-success"><?= $commande["statu"] ?></span>
+                        </div>
+                        <a href="deliverer_order_interaction.php" class="btn btn-primary w-100">View Details</a>
                     </div>
-                    <div class="small mb-3 d-flex gap-2">
-                        <i class="bi bi-bicycle"></i>
-                        5.2 km • Bike
-                    </div>
-                    <a href="deliverer_order_interaction.php" class="btn btn-primary w-100">View Details</a>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endforeach; endif;?>
 </main>

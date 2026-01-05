@@ -17,13 +17,19 @@ class RoleRepository{
         var_dump($role->getUser_id());
         $stmt->execute();
         if ($role->getName() === "admin") {
+            $_SESSION["role"] = $role->getName();
             header("Location: ../../public/admin/admin_dashboard.php");
+            exit;
         }
         else if ($role->getName() === "client") {
+            $_SESSION["role"] = $role->getName();
             header("Location: ../../public/client/client_dashboard.php");
+            exit;
         }
         else if ($role->getName() === "deliverer") {
+            $_SESSION["role"] = $role->getName();
             header("Location: ../../public/deliverer/deliverer_dashboard.php");
+            exit;
         }
     }
 
@@ -36,11 +42,17 @@ class RoleRepository{
         var_dump($role);
 
         if ($role[0]["role_name"] == "admin") {
+            $_SESSION["role"] = $role[0]["role_name"];
             header("Location: ../../public/admin/admin_dashboard.php");
+            exit;
         }else if ($role[0]["role_name"] == "client") {
+            $_SESSION["role"] = $role[0]["role_name"];
             header("Location: ../../public/client/client_dashboard.php");
+            exit;
         }else if ($role[0]["role_name"] == "deliverer") {
+            $_SESSION["role"] = $role[0]["role_name"];
             header("Location: ../../public/deliverer/deliverer_dashboard.php");
+            exit;
         }
     }
 
