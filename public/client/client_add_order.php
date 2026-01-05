@@ -1,5 +1,5 @@
 <?php
-  require '../includes/header.php';
+  require '../includes/header_client.php';
 ?>
 
 <main class="container py-4">

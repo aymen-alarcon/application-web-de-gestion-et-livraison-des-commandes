@@ -29,8 +29,6 @@ class CommandeRepository{
         $stmt->bindParam(":id", $_SESSION["id"]);
         $stmt->execute();
         $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        header("Location: ../../public/client/client_order_dashboard.php");
-        exit;
     }
 
     function update($commande){

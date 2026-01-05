@@ -9,53 +9,49 @@
         <!-- Stats -->
         <div class="row g-3 mb-4">
             <div class="col-sm-6 col-lg-3">
-                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
                         <span class="fw-medium">Average Rating</span>
                         <i class="bi bi-star-fill text-warning"></i>
                     </div>
                     <div class="d-flex align-items-end gap-2 mt-1">
                         <h3 class="fw-bold mb-0">4.8</h3>
-                        <small class="text-success fw-medium">+0.2%</small>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-6 col-lg-3">
-                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
                         <span class="fw-medium">Deliveries Today</span>
                         <i class="bi bi-truck primary"></i>
                     </div>
                     <div class="d-flex align-items-end gap-2 mt-1">
                         <h3 class="fw-bold mb-0">12</h3>
-                        <small class="text-success fw-medium">+2</small>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-6 col-lg-3">
-                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
                         <span class="fw-medium">Earnings Today</span>
                         <i class="bi bi-currency-dollar text-success"></i>
                     </div>
                     <div class="d-flex align-items-end gap-2 mt-1">
                         <h3 class="fw-bold mb-0">$145.50</h3>
-                        <small class="text-success fw-medium">+$45.50</small>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-6 col-lg-3">
-                <div class="bg-card-dark border-0 rounded-xl p-4 shadow h-100">
+                <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
                         <span class="fw-medium">Pending Orders</span>
                         <i class="bi bi-hourglass-split text-warning"></i>
                     </div>
                     <div class="d-flex align-items-end gap-2 mt-1">
                         <h3 class="fw-bold mb-0">2</h3>
-                        <small class="text-danger fw-medium">-1</small>
                     </div>
                 </div>
             </div>
@@ -63,7 +59,8 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="bg-card-dark border-0 rounded-xl p-4 shadow">
+                <h4 class="fw-bold mb-2">Deliverer Latest Notifications</h4>
+                <div class="border-0 rounded card p-4 shadow">
                     <div class="d-flex justify-content-between mb-3">
                         <h5 class="fw-bold mb-0">Notifications</h5>
                         <button class="btn btn-link small p-0 primary fw-semibold text-uppercase">Mark all read</button>
@@ -81,8 +78,7 @@
             </div>
             <div class="col-md-6">
                 <h4 class="fw-bold mb-2">My Current Deliveries</h4>
-
-                <div class="bg-card-dark border-0 rounded-xl p-4 shadow mb-4">
+                <div class="border-0 rounded card p-4 shadow mb-4">
                     <div class="row g-3">
                         <div class="col-md-8 d-flex flex-column justify-content-between">
                             <div>
@@ -115,7 +111,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-card-dark border-0 rounded-xl shadow mb-4">
+        <div class="border-0 rounded card shadow mb-4">
             <div class="d-flex justify-content-between p-3">
                 <h5 class="fw-bold mb-0">Completed Deliveries</h5>
                 <a href="#" class="primary small fw-medium">View All</a>

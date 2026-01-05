@@ -43,15 +43,32 @@ class UserRepository{
         $stmt->bindValue(":phone", $user->getPhone());
         $stmt->bindValue(":password", $user->getPassword());
         $stmt->bindValue(":address", $user->getAddress());
-        setcookie("username", $user->getUsername(), time() + 9999, "\\");
-        setcookie("first_name", $user->getFirstName(), time() + 9999, "\\");
-        setcookie("last_name", $user->getLastName(), time() + 9999, "\\");
-        setcookie("email", $user->getEmail(), time() + 9999, "\\");
-        setcookie("phone", $user->getPhone(), time() + 9999, "\\");
-        setcookie("address", $user->getAddress(), time() + 9999, "\\");
+        setcookie("username", $user->getUsername(), time() + 9999, "/");
+        setcookie("first_name", $user->getFirstName(), time() + 9999, "/");
+        setcookie("last_name", $user->getLastName(), time() + 9999, "/");
+        setcookie("email", $user->getEmail(), time() + 9999, "/");
+        setcookie("phone", $user->getPhone(), time() + 9999, "/");
+        setcookie("address", $user->getAddress(), time() + 9999, "/");
         $stmt->execute();
         session_start();
         $_SESSION["id"] = $this->conn->lastInsertId();
         header("Location: ../Controller/RegisterRoleHandler.php?id=" . $_SESSION["id"] . "&name=" . $role);
+    }
+
+    function Update($user){
+        $sql = "UPDATE users SET username = :username, first_name = :first_name, last_name = :last_name, phone = :phone, address = :address WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":username", $user->getUsername());
+        $stmt->bindValue(":first_name", $user->getFirstName());
+        $stmt->bindValue(":last_name", $user->getLastName());
+        $stmt->bindValue(":phone", $user->getPhone());
+        $stmt->bindValue(":address", $user->getAddress());
+        $stmt->bindValue(":id", $user->getId());
+        setcookie("username", $user->getUsername(), time() + 9999, "/");
+        setcookie("first_name", $user->getFirstName(), time() + 9999, "/");
+        setcookie("last_name", $user->getLastName(), time() + 9999, "/");
+        setcookie("phone", $user->getPhone(), time() + 9999, "/");
+        setcookie("address", $user->getAddress(), time() + 9999, "/");
+        $stmt->execute();
     }
 }

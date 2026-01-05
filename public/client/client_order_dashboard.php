@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header.php'; 
+    require '../includes/header_client.php'; 
     $commandes = $_SESSION['commandes'] ?? []; 
     $countOrders = count($commandes);
     $pagination = ceil($countOrders / 5);

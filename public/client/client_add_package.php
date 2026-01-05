@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header.php'; 
+    require '../includes/header_client.php'; 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['commandes'] = $_POST;

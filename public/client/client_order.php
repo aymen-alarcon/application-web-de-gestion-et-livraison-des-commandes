@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header.php'; 
+    require '../includes/header_client.php'; 
     $commandes = $_SESSION['commandes'] ?? []; 
     $commandeItems = $_SESSION["commande_items"] ?? [];
 

@@ -1,7 +1,7 @@
 <?php
 
 require_once "../Entity/commande.php";
-require_once "../Repositories/CommandeRepository.php";
+require_once "../Services/CommandeRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();

@@ -29,12 +29,10 @@
             <a href="client_dashboard.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 Dashboard
             </a>
-
             <a href="../../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
                 My Orders
             </a>
-
-            <a href="../../src/Controller/ReadHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
+            <a href="client_profile.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client/client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
                 Profile
             </a>
         </nav>

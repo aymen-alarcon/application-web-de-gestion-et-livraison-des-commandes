@@ -1,3 +1,10 @@
+<?php 
+    require "../../src/Database/DatabaseConnection.php" ;
+    session_start();
+    if (!isset($_SESSION["id"])) {
+        header("Location: index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

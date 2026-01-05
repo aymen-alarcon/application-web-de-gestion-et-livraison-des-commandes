@@ -1,6 +1,6 @@
 <?php
 require_once "../Entity/Role.php";
-require_once "../Repositories/RoleRepository.php";
+require_once "../Services/RoleRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();

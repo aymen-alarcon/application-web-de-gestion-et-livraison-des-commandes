@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header.php'; 
+    require '../includes/header_client.php'; 
     $commandeItems = $_SESSION["commande_items"] ?? [];
 ?>
     <form action="../../src/Controller/UpdateCommandItemHandler.php" method="post">

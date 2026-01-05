@@ -30,11 +30,12 @@
       </div>
     </div>
 
+    <form action="../../src/Controller/UpdateUserHandler.php" method="post">
     <h5 class="fw-bold text-white mb-3">Personal Information</h5>
     <div class="card card-dark mb-4 text-white">
       <div class="card-body">
         <div class="row g-4">
-
+          <input type="number" name="id" hidden value="<?= htmlspecialchars($_SESSION["id"]) ?>">
           <div class="col-md-6">
             <label class="form-label text-white">First Name</label>
             <input class="form-control bg-dark text-white border-secondary" name = "first_name" value="<?= htmlspecialchars($_COOKIE["first_name"]) ?>">
@@ -52,7 +53,7 @@
 
           <div class="col-md-6">
             <label class="form-label text-white">Email</label>
-            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled name = "email" value="<?= htmlspecialchars($_COOKIE["email"]) ?>">
+            <input class="form-control bg-secondary bg-opacity-25 text-white" disabled value="<?= htmlspecialchars($_COOKIE["email"]) ?>">
           </div>
 
           <div class="col-md-6">
@@ -76,9 +77,10 @@
     <button class="btn btn-outline-secondary text-white">
       Cancel
     </button>
-    <button class="btn btn-primary fw-bold px-4">
+    <button type="submit" class="btn btn-primary fw-bold px-4">
       Save Changes
     </button>
   </div>
 </div>
+</form>
 <?php require '../includes/footer.php'; ?>

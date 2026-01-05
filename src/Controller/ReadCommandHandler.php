@@ -1,5 +1,5 @@
 <?php 
-require_once "../Repositories/CommandeRepository.php";
+require_once "../Services/CommandeRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();
@@ -18,6 +18,8 @@ class ReadCommandHandler{
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
             $repo = new CommandeRepository($this->conn);
             $repo->read();
+            header("Location: ../../public/client/client_order_dashboard.php");
+            exit;
         }
     }
 }
