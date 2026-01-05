@@ -8,48 +8,48 @@ class OffreRepository{
         $this->conn = $conn;
     }
 
-    function create(User $user){
-        $sql = "INSERT INTO users (username, first_name, last_name, email, phone, password, created_at) VALUES (:username, :first_name, :last_name, :email, :phone, :password, now())";
+    function create($offre){
+        $sql = "INSERT INTO offers (vehicule, prix, durée_estimée, created_at, commande_id) VALUES (:vehicle, :prix, :duree_estimee, now(), :commande_id)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":username", $user->getUsername());
-        $stmt->bindParam(":first_name", $user->getFirstName());
-        $stmt->bindParam(":last_name", $user->getLastName());
-        $stmt->bindParam(":email", $user->getEmail());
-        $stmt->bindParam(":phone", $user->getPhone());
-        $stmt->bindParam(":password", $user->getPassword());
+        $stmt->bindValue(":vehicle", $offre->getVehicule());
+        $stmt->bindValue(":prix", $offre->getPrice());
+        $stmt->bindValue(":duree_estimee", $offre->getDuree());
+        $stmt->bindValue(":commande_id", $offre->getCommande_id());
         $stmt->execute();
+        header("Location: ../Controller/CreateNotification.php?commande_id=" .urlencode($offre->getCommande_id()));
+        exit;
     }
 
-    function update(User $user){
-        $sql = "UPDATE users set username = :username, first_name = :first_name, last_name = :last_name, email = :email, phone = :phone, password = :password WHERE id = :id";
+    function update($offre){
+        $sql = "UPDATE offres set offrename = :offrename, first_name = :first_name, last_name = :last_name, email = :email, phone = :phone, password = :password WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
-        $stmt->bindParam(":username", $user->getUsername());
-        $stmt->bindParam(":first_name", $user->getFirstName());
-        $stmt->bindParam(":last_name", $user->getLastName());
-        $stmt->bindParam(":email", $user->getEmail());
-        $stmt->bindParam(":phone", $user->getPhone());
-        $stmt->bindParam(":password", $user->getPassword());
+        $stmt->bindParam(":id", $offre->getId());
+        $stmt->bindParam(":offrename", $offre->getoffrename());
+        $stmt->bindParam(":first_name", $offre->getFirstName());
+        $stmt->bindParam(":last_name", $offre->getLastName());
+        $stmt->bindParam(":email", $offre->getEmail());
+        $stmt->bindParam(":phone", $offre->getPhone());
+        $stmt->bindParam(":password", $offre->getPassword());
         $stmt->execute();    
     }
 
-    function delete(User $user){
-        $sql = "DELETE FROM users WHERE id = :id";
+    function delete($offre){
+        $sql = "DELETE FROM offres WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
+        $stmt->bindParam(":id", $offre->getId());
         $stmt->execute();    
     }
 
-    function read(User $user, $columns){
-        $sql = "SELECT $columns FROM users WHERE id = :id";
+    function read($offre, $columns){
+        $sql = "SELECT $columns FROM offres WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
+        $stmt->bindParam(":id", $offre->getId());
         $stmt->execute();    
         $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function readAll(User $user){
-        $sql = "SELECT * FROM users";
+    function readAll($offre){
+        $sql = "SELECT * FROM offres";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();   
         $stmt->fetchAll(PDO::FETCH_ASSOC);

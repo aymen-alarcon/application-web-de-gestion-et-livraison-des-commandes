@@ -19,13 +19,13 @@ class InsertCommandeHandler{
             header("Location: ../../public/client/client_dashboard.php");
         }
 
-        $commande = new Commande();
-        $commande->setTitre($_POST["titre"]);
-        $commande->setAddress($_POST["address"]);
-        $commande->setPhone($_POST["phone"]);
-
+        $handler = new Commande();
+        $handler->setTitre($_POST["titre"]);
+        $handler->setAddress($_POST["address"]);
+        $handler->setPhone($_POST["phone"]);
+        $handler->setUser_id($_SESSION["id"]);
         $repo = new CommandeRepository($this->conn);
-        $repo->create($commande);
+        $repo->create($handler);
     }
 }
 

@@ -15,10 +15,10 @@ class ReadRoleHandler{
     }
 
     function ReadRole(){
-        $role = new Role();
-        $role->setUser_id($_GET["id"]);
+        $handler = new Role();
+        $handler->setUser_id($_GET["id"]);
         $repo = new RoleRepository($this->conn);
-        $repo->readRole($role);
+        $repo->readRole($handler);
     }
 }
 

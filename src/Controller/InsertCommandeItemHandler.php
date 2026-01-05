@@ -18,13 +18,13 @@ class InsertCommandeItemHandler{
     function insertCommandeItem(){
         $repo = new CommandeItemRepository($this->conn);
         foreach ($_POST['product'] as $index => $name) {
-            $item = new CommandeItem();
-            $item->setName($name);
-            $item->setQuantity($_POST['quantity'][$index]);
-            $item->setPrice($_POST['price'][$index]);
-            $item->setDescription($_POST["description"][$index]);
-            $item->setCommandeId($_POST["commande_id"]);
-            $repo->create($item);
+            $handler = new CommandeItem();
+            $handler->setName($name);
+            $handler->setQuantity($_POST['quantity'][$index]);
+            $handler->setPrice($_POST['price'][$index]);
+            $handler->setDescription($_POST["description"][$index]);
+            $handler->setCommandeId($_POST["commande_id"]);
+            $repo->create($handler);
         }
     }
 }

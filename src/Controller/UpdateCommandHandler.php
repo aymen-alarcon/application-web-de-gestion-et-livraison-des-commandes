@@ -16,13 +16,13 @@ class UpdateCommandHandler{
     }
 
     function updateCommande(){
-        $newCommande = new Commande();
-        $newCommande->setId($_POST["id"]);
-        $newCommande->setTitre($_POST["titre"]);
-        $newCommande->setAddress($_POST["address"]);
-        $newCommande->setPhone($_POST["phone"]);
+        $handler = new Commande();
+        $handler->setId($_POST["id"]);
+        $handler->setTitre($_POST["titre"]);
+        $handler->setAddress($_POST["address"]);
+        $handler->setPhone($_POST["phone"]);
         $repo = new CommandeRepository($this->conn);
-        $repo->update($newCommande);
+        $repo->update($handler);
     }
 }
 

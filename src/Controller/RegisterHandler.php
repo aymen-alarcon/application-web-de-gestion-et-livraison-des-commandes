@@ -19,18 +19,18 @@ class RegisterHandler {
             header("Location: ../../public/index.php");
         }
 
-        $user = new User();
+        $handler = new User();
         
-        $user->setUsername($_POST["username"]);
-        $user->setFirstName($_POST["first_name"]);
-        $user->setLastName($_POST["last_name"]);
-        $user->setPhone($_POST["phone"]);
-        $user->setPassword($_POST["password"]);
-        $user->setEmail($_POST["email"]);
-        $user->setAddress($_POST["address"]);
+        $handler->setUsername($_POST["username"]);
+        $handler->setFirstName($_POST["first_name"]);
+        $handler->setLastName($_POST["last_name"]);
+        $handler->setPhone($_POST["phone"]);
+        $handler->setPassword($_POST["password"]);
+        $handler->setEmail($_POST["email"]);
+        $handler->setAddress($_POST["address"]);
         
         $repo = new UserRepository($this->conn);
-        $repo->register($user, $_POST["role"]);
+        $repo->register($handler, $_POST["role"]);
     }
 }
 

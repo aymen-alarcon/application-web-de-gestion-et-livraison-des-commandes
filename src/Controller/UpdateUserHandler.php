@@ -19,21 +19,15 @@ class UpdateUserHandler{
             header("Location: ../../public/client/client_profile.php");
             exit;
         }
-        $user = new User();
-        $user->setUsername($_POST["username"]);
-        $user->setFirstName($_POST["first_name"]);
-        $user->setLastName($_POST["last_name"]);
-        $user->setAddress($_POST["address"]);
-        $user->setPhone($_POST["phone"]);
-        $user->setId($_POST["id"]);
-        var_dump($_POST["username"]);
-        var_dump($_POST["first_name"]);
-        var_dump($_POST["last_name"]);
-        var_dump($_POST["address"]);
-        var_dump($_POST["phone"]);
-        var_dump($_POST["id"]);
+        $handler = new User();
+        $handler->setUsername($_POST["username"]);
+        $handler->setFirstName($_POST["first_name"]);
+        $handler->setLastName($_POST["last_name"]);
+        $handler->setAddress($_POST["address"]);
+        $handler->setPhone($_POST["phone"]);
+        $handler->setId($_POST["id"]);
         $repo = new UserRepository($this->conn);
-        $repo->Update($user);
+        $repo->Update($handler);
         header("Location: ../../public/client/client_profile.php");
         exit;
     }

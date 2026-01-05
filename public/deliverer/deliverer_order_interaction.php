@@ -143,40 +143,48 @@
 
                 <div class="col-lg-4 d-flex flex-column gap-4">
                     <div class="card shadow-lg  rounded-xl p-4 sticky-top" style="top:96px;">
-                        <form action="../../src//Controller/CreateOfferHandler.php" method="post">
+                        <form action="../../src/Controller/CreateOfferHandler.php" method="post">
+                            <input type="text" hidden name="commande_id" value="<?= $commandeItems[0]["commande_id"] ?>">
                             <h5 class="fw-bold">Select Delivery Vehicle</h5>
                             <p class="small text-muted mb-3">Choose the vehicle you are using for this trip.</p>
                             <div class="row g-2 mb-3">
                                 <div class="col-6">
                                     <label class="vehicle-option w-100">
-                                        <input type="radio" name="bicycle">
+                                        <input type="radio" name="vehicle" value="bicycle">
                                         <i class="bi bi-bicycle" style="font-size:2rem; display:block; margin-bottom:0.5rem;"></i>
                                         Bicycle
                                     </label>
                                 </div>
                                 <div class="col-6">
                                     <label class="vehicle-option checked w-100">
-                                        <input type="radio" name="scooter" checked>
+                                        <input type="radio" name="vehicle" value="scooter" checked>
                                         <i class="bi bi-scooter " style="font-size:2rem; display:block; margin-bottom:0.5rem;"></i>
                                         Motorbike
                                     </label>
                                 </div>
                                 <div class="col-6">
                                     <label class="vehicle-option w-100">
-                                        <input type="radio" name="car">
+                                        <input type="radio" name="vehicle" value="car">
                                         <i class="bi bi-car-front" style="font-size:2rem; display:block; margin-bottom:0.5rem;"></i>
                                         Car
                                     </label>
                                 </div>
                                 <div class="col-6">
                                     <label class="vehicle-option w-100">
-                                        <input type="radio" name="truck">
+                                        <input type="radio" name="vehicle" value="truck">
                                         <i class="bi bi-truck" style="font-size:2rem; display:block; margin-bottom:0.5rem;"></i>
                                         Van
                                     </label>
                                 </div>
                             </div>
-
+                            <div class="mb-3">
+                                <label class="form-label text-white">Price</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" name="price" placeholder="10$">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-white">When will it be ready</label>
+                                <input type="date" class="form-control bg-dark text-white border-secondary" name="duree">
+                            </div>
                             <div class="d-flex flex-column gap-2">
                                 <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
                                     Send Order <i class="bi bi-arrow-right"></i>

@@ -9,15 +9,13 @@ class UserRepository{
     }
 
     function login($user){        
-        $password = $user->getPassword();
-
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":email", $user->getEmail());
         $stmt->execute();
         $userCredentials = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($userCredentials && $password === $userCredentials["password"]) {
+        if ($userCredentials && $user->getPassword() === $userCredentials["password"]) {
             session_start();
             foreach ($userCredentials as $key => $value) {
                 if ($key === 'password' || $key === 'id') {

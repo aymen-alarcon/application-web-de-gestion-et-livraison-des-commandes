@@ -16,10 +16,10 @@ class ReadCommandeItemHandler{
 
     function read(){
         if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            $commande = new CommandeItem();
-            $commande->setCommandeId($_GET["commande_id"]);
+            $handler = new CommandeItem();
+            $handler->setCommandeId($_GET["commande_id"]);
             $repo = new CommandeItemRepository($this->conn);
-            $repo->read($commande);
+            $repo->read($handler);
 
             var_dump($_SERVER["HTTP_REFERER"]);
             if (array_search("client", explode("/", $_SERVER["HTTP_REFERER"]))) {                

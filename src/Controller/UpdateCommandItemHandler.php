@@ -17,13 +17,13 @@ class UpdateCommandItemHandler{
     function updateCommandeItem(){
         $repo = new CommandeItemRepository($this->conn);
         foreach ($_POST["product"] as $index => $value) {
-            $item = new CommandeItem();
-            $item->setId($_POST["id"][$index]);
-            $item->setName($value);
-            $item->setPrice($_POST["price"][$index]);
-            $item->setQuantity($_POST["quantity"][$index]);
-            $item->setDescription($_POST["description"][$index]);
-            $repo->update($item);
+            $handler = new CommandeItem();
+            $handler->setId($_POST["id"][$index]);
+            $handler->setName($value);
+            $handler->setPrice($_POST["price"][$index]);
+            $handler->setQuantity($_POST["quantity"][$index]);
+            $handler->setDescription($_POST["description"][$index]);
+            $repo->update($handler);
         }
     }
 }

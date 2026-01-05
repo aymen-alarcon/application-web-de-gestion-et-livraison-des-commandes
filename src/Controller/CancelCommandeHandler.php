@@ -15,11 +15,11 @@ class CancelCommandeHandler{
     }
 
     function cancelCommande(){
-        $commande = new Commande();
-        $commande->setId($_GET["id"]);
-        $commande->setStatu("Canceled");
+        $handler = new Commande();
+        $handler->setId($_GET["id"]);
+        $handler->setStatu("Canceled");
         $repo = new CommandeRepository($this->conn);
-        $repo->cancel($commande);
+        $repo->cancel($handler);
     }
 }
 

@@ -19,12 +19,12 @@ class LoginHandler {
             header("Location: ../../public/index.php");
         }
 
-        $user = new User();
-        $user->setEmail($_POST["email"]);
-        $user->setPassword($_POST["password"]);
+        $handler = new User();
+        $handler->setEmail($_POST["email"]);
+        $handler->setPassword($_POST["password"]);
             
         $repo = new UserRepository($this->conn);
-        $repo->login($user);
+        $repo->login($handler);
     }
 }
 

@@ -15,11 +15,11 @@ class RegisterRoleHandler{
     }
 
     function RegisterRole(){
-        $role = new Role();
-        $role->setUser_id($_GET["id"]);
-        $role->setName($_GET["name"]);
+        $handler = new Role();
+        $handler->setUser_id($_GET["id"]);
+        $handler->setName($_GET["name"]);
         $repo = new RoleRepository($this->conn);
-        $repo->registerRole($role);
+        $repo->registerRole($handler);
     }
 }
 

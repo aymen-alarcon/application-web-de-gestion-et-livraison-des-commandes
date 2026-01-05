@@ -8,48 +8,50 @@ class NotificationRepository{
         $this->conn = $conn;
     }
 
-    function create(User $user){
-        $sql = "INSERT INTO users (username, first_name, last_name, email, phone, password, created_at) VALUES (:username, :first_name, :last_name, :email, :phone, :password, now())";
+    function create($notification){
+        session_start();
+        var_dump($notification->getContenu());
+        var_dump($notification->getStatu());
+        var_dump($notification->getReceiver_id());
+        $sql = "INSERT INTO notifications (contenu, statu, sender_id, created_at, receiver_id) VALUES (:contenu, :statu, :sender_id, now(), :receiver_id)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":username", $user->getUsername());
-        $stmt->bindParam(":first_name", $user->getFirstName());
-        $stmt->bindParam(":last_name", $user->getLastName());
-        $stmt->bindParam(":email", $user->getEmail());
-        $stmt->bindParam(":phone", $user->getPhone());
-        $stmt->bindParam(":password", $user->getPassword());
+        $stmt->bindValue(":contenu", $notification->getContenu());
+        $stmt->bindValue(":statu", $notification->getStatu());
+        $stmt->bindValue(":receiver_id", $notification->getReceiver_id());
+        $stmt->bindValue(":sender_id", $_SESSION["id"]);
         $stmt->execute();
     }
 
-    function update(User $user){
-        $sql = "UPDATE users set username = :username, first_name = :first_name, last_name = :last_name, email = :email, phone = :phone, password = :password WHERE id = :id";
+    function update($notification){
+        $sql = "UPDATE notifications set notificationname = :notificationname, first_name = :first_name, last_name = :last_name, email = :email, phone = :phone, password = :password WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
-        $stmt->bindParam(":username", $user->getUsername());
-        $stmt->bindParam(":first_name", $user->getFirstName());
-        $stmt->bindParam(":last_name", $user->getLastName());
-        $stmt->bindParam(":email", $user->getEmail());
-        $stmt->bindParam(":phone", $user->getPhone());
-        $stmt->bindParam(":password", $user->getPassword());
+        $stmt->bindValue(":id", $notification->getId());
+        $stmt->bindValue(":notificationname", $notification->getnotificationname());
+        $stmt->bindValue(":first_name", $notification->getFirstName());
+        $stmt->bindValue(":last_name", $notification->getLastName());
+        $stmt->bindValue(":email", $notification->getEmail());
+        $stmt->bindValue(":phone", $notification->getPhone());
+        $stmt->bindValue(":password", $notification->getPassword());
         $stmt->execute();    
     }
 
-    function delete(User $user){
-        $sql = "DELETE FROM users WHERE id = :id";
+    function delete($notification){
+        $sql = "DELETE FROM notifications WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
+        $stmt->bindValue(":id", $notification->getId());
         $stmt->execute();    
     }
 
-    function read(User $user, $columns){
-        $sql = "SELECT $columns FROM users WHERE id = :id";
+    function read($notification, $columns){
+        $sql = "SELECT $columns FROM notifications WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":id", $user->getId());
+        $stmt->bindValue(":id", $notification->getId());
         $stmt->execute();    
         $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function readAll(User $user){
-        $sql = "SELECT * FROM users";
+    function readAll($notification){
+        $sql = "SELECT * FROM notifications";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();   
         $stmt->fetchAll(PDO::FETCH_ASSOC);
