@@ -1,6 +1,6 @@
 <?php
-    require_once "../Entity/Offre.php";
-    require_once "../Services/OffreRepository.php";
+    require_once "../Entity/Offer.php";
+    require_once "../Services/OfferRepository.php";
     require_once "../Database/DatabaseConnection.php";
 
     $db = new DatabaseConnection;
@@ -15,12 +15,12 @@
         }
 
         function createOffer(){
-            $handler = new Offre();
+            $handler = new Offer();
             $handler->setPrice($_POST["price"]);
             $handler->setVehicule($_POST["vehicle"]);
             $handler->setDuree($_POST["duree"]);
             $handler->setCommande_id($_POST["commande_id"]);
-            $repo = new OffreRepository($this->conn);
+            $repo = new OfferRepository($this->conn);
             $repo->create($handler);
         }
     }

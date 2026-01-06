@@ -55,23 +55,23 @@ class RoleRepository{
         }
     }
 
-    function delete(User $user){
+    function delete($role){
         $sql = "DELETE FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $user->getId());
+        $stmt->bindValue(":id", $role->getId());
         $stmt->execute();    
     }
 
-    function read(User $user, $columns){
-        $sql = "SELECT $columns FROM users WHERE id = :id";
+    function read($role){
+        $sql = "SELECT * FROM roles WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $user->getId());
+        $stmt->bindValue(":id", $role->getId());
         $stmt->execute();    
         $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function readAll(User $user){
-        $sql = "SELECT * FROM users";
+    function readAll($role){
+        $sql = "SELECT * FROM roles";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();   
         $stmt->fetchAll(PDO::FETCH_ASSOC);

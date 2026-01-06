@@ -1,6 +1,7 @@
 <?php 
     require "../includes/header_deliverer.php"; 
     $commandes = $_SESSION["commandes"];
+    $offer = $_SESSION["offer"];
 ?>
 <main class="container py-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">

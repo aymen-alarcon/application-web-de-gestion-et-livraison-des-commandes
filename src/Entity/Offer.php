@@ -1,5 +1,5 @@
 <?php
-    class Offre{
+    class Offer{
         protected $id;
         protected $vehicule;
         protected $price;

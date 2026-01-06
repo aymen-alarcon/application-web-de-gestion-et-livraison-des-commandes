@@ -10,9 +10,6 @@ class NotificationRepository{
 
     function create($notification){
         session_start();
-        var_dump($notification->getContenu());
-        var_dump($notification->getStatu());
-        var_dump($notification->getReceiver_id());
         $sql = "INSERT INTO notifications (contenu, statu, sender_id, created_at, receiver_id) VALUES (:contenu, :statu, :sender_id, now(), :receiver_id)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":contenu", $notification->getContenu());

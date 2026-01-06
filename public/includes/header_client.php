@@ -4,7 +4,11 @@
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "client") {
         header("Location: ../logout.php");
     }
-    var_dump($_SESSION["notifications"]);
+    if (!empty($_SESSION["notifications"])) {
+        foreach ($_SESSION["notifications"]  as $notification) {
+           $countNotifications = count(array_filter($_SESSION["notifications"], fn($value) => $value["statu"] === "Not Seen"));
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +35,14 @@
                 Dashboard
             </a>
             <a href="../../src/Controller/ReadCommandHandler.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_order_dashboard.php' ? 'text-primary' : 'text-secondary' ?>">
-                My Orders
+                My Orders & Offers
             </a>
             <a href="client_profile.php" class="text-decoration-none <?= basename($_SERVER['PHP_SELF']) === 'client_profile.php' ? 'text-primary' : 'text-secondary' ?>">
                 Profile
             </a>
         </nav>
         <div class="d-flex align-items-center gap-3">
-            <a href="../../src/Controller/ReadNotificationHandler.php" class="btn btn-link text-secondary p-0"><i class="bi bi-bell"></i></a>
+            <a href="../../src/Controller/ReadNotificationHandler.php" class="btn btn-link text-secondary p-0"><i class="bi bi-bell position-relative"><span class="text-primary fs-9" style="position: absolute; bottom: 6px; right: 0px;"><?= $countNotifications ?></span></i></a>
             <a href="../logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
         </div>
     </header>

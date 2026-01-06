@@ -23,6 +23,8 @@ class UpdateCommandHandler{
         $handler->setPhone($_POST["phone"]);
         $repo = new CommandeRepository($this->conn);
         $repo->update($handler);
+        header("Location: ../../public/client/client_order_dashboard.php");
+        exit;
     }
 }
 

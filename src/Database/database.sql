@@ -35,7 +35,7 @@ CREATE TABLE notifications (
     created_at TIMESTAMP ,
 ) 
 
-CREATE TABLE offres (
+CREATE TABLE offers (
     id INT PRIMARY KEY AUTO_INCREMENT,
     vehicule VARCHAR(50) NOT NULL,
     prix INT NOT NULL,

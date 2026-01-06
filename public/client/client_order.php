@@ -4,6 +4,9 @@
     
     $commandeItems = $_SESSION["commande_items"] ?? [];
 
+    $offers = $_SESSION["offers"] ?? [];
+    var_dump($offers);
+
     if (!empty($commandeItems)) {        
         foreach ($commandes as $c) {
             if ($c['id'] == $commandeItems[0]["commande_id"]) {
@@ -11,6 +14,10 @@
                 break;
             }
         }
+    }
+
+    if (!empty($offers)) {        
+        $offersCount = count($offers);
     }
 ?>
 <style>
@@ -58,7 +65,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($commandeItems as $commandeItem) :?>
+                                    <?php foreach($commandeItems as $commandeItem): ?>
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
@@ -180,12 +187,15 @@
                     </div>
                     <div class="card bg-surface">
                         <div class="card-header d-flex justify-content-between text-white">
-                            <strong>Deliverer Info</strong>
+                            <strong>Offers Section</strong>
+                            <small><?= $offersCount ?></small>
                         </div>
-                        <div class="card-body text-white">
-                            <strong>Mike Ross</strong>
-                            <div class="text-white">Scooter • 4.9 ★</div>
-                        </div>
+                        <?php foreach($offers as $offer): ?>
+                            <a href="../../src/Controller/ReadOfferHandler.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
+                                <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>
+                                <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicule"] ?></span><span>$ <?= $offer["prix"] ?></span></div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
 
                 </div>
