@@ -28,7 +28,7 @@ class CommandeRepository{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $_SESSION["id"]);
         $stmt->execute();
-        $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function readAll(){

@@ -57,6 +57,14 @@
                 $this->sender_id = $sender_id;
         }
 
+        public function setReceiverId($receiver_id){
+                $this->receiver_id = $receiver_id;
+        }
+
+        public function getReceiverId(){
+                return $this->receiver_id;
+        }
+
         public function getReceiver_id()
         {
                 return $this->commande->getUser_id();

@@ -42,18 +42,18 @@ class NotificationRepository{
         $stmt->execute();    
     }
 
-    function read($notification, $columns){
-        $sql = "SELECT $columns FROM notifications WHERE id = :id";
+    function read($notification){
+        $sql = "SELECT * FROM notifications WHERE receiver_id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $notification->getId());
+        $stmt->bindValue(":id", $notification->getReceiverId());
         $stmt->execute();    
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION["notifications"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function readAll($notification){
+    function readAll(){
         $sql = "SELECT * FROM notifications";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();   
-        $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION["notification"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

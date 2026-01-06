@@ -38,7 +38,7 @@ class RoleRepository{
         $stmt->bindValue(":id", $user->getUser_id());
         $stmt->execute(); 
         $role = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($role);
+        session_start();
 
         if ($role[0]["role_name"] == "admin") {
             $_SESSION["role"] = $role[0]["role_name"];
@@ -46,7 +46,7 @@ class RoleRepository{
             exit;
         }else if ($role[0]["role_name"] == "client") {
             $_SESSION["role"] = $role[0]["role_name"];
-            header("Location: ../../public/client/client_dashboard.php");
+            header("Location: ../Controller/ReadNotificationHandler.php");
             exit;
         }else if ($role[0]["role_name"] == "deliverer") {
             $_SESSION["role"] = $role[0]["role_name"];

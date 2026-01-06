@@ -20,7 +20,6 @@ class RegisterHandler {
         }
 
         $handler = new User();
-        
         $handler->setUsername($_POST["username"]);
         $handler->setFirstName($_POST["first_name"]);
         $handler->setLastName($_POST["last_name"]);
