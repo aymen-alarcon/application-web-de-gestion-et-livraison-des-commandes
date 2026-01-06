@@ -191,7 +191,7 @@
                             <small><?= $offersCount ?></small>
                         </div>
                         <?php foreach($offers as $offer): ?>
-                            <a href="../../src/Controller/ReadOfferHandler.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
+                            <a href="client_order_offer.php" class="card-body text-white text-decoration-none">
                                 <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>
                                 <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicule"] ?></span><span>$ <?= $offer["prix"] ?></span></div>
                             </a>
