@@ -1,9 +1,22 @@
-<?php require '../includes/header_client.php'; ?>
+<?php 
+  require '../includes/header_client.php';
+  $offerId = (int)$_GET["offerId"];
+  
+  $offer = array_filter($_SESSION["offers"], fn($value) => $value["id"] ===  $offerId);
+  $commande = array_filter($_SESSION["commandes"], fn($value) => $value["id"] === $offer[0]["commande_id"]);
+  $commandeItems = array_filter($_SESSION["commande_items"], fn($value) => $value["commande_id"] === $offer[0]["commande_id"]);
+  
+  $totalPrice = 0;
+
+  foreach ($commandeItems as $commandeItem) {
+    $totalPrice += ($commandeItem["price"] * $commandeItem["quantity"]);
+  }
+?>
 <main class="container py-4 py-lg-5">
   <div class="mx-auto" style="max-width:1200px">
     <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-4">
       <div>
-        <h1 class="fw-black display-6 mb-2">Offer for Order #ORD-2940</h1>
+        <h1 class="fw-black display-6 mb-2">Offer for Order <?= $offer["0"]["id"] ?></h1>
         <p class="mb-0">
           You have received a new delivery offer. Please review the details below.
         </p>
@@ -42,7 +55,7 @@
               <small class=" fw-medium">Estimated Time</small>
               <div>
                 <h3 class="fw-bold mb-0">15 min</h3>
-                <small>Arrival by 2:45 PM</small>
+                <small>Arrival by <?= $offer["0"]["durée_estimée"] ?></small>
               </div>
             </div>
           </div>
@@ -51,18 +64,25 @@
               <i class="bi bi-cash-stack stat-icon"></i>
               <small class=" fw-medium">Offer Price</small>
               <div>
-                <h3 class="fw-bold text-primary mb-0">$24.50</h3>
+                <h3 class="fw-bold text-primary mb-0"><?= $offer["0"]["prix"] ?></h3>
                 <small>Includes all fees</small>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card p-3 stat-card text-white">
-              <i class="bi bi-car-front-fill stat-icon"></i>
+              <?php if($offer["0"]["vehicule"] ===  "car"): ?>
+                <i class="bi bi-car-front-fill stat-icon"></i>
+              <?php elseif($offer["0"]["vehicule"] === "scooter"): ?>
+                <i class="bi bi-scooter"></i>
+              <?php elseif($offer["0"]["vehicule"] === "truck"): ?>
+                <i class="bi bi-truck"></i>
+              <?php elseif($offer["0"]["vehicule"] === "bicycle"): ?>
+                <i class="bi bi-bicycle"></i>
+              <?php endif; ?>
               <small class="fw-medium">Vehicle</small>
               <div>
-                <h5 class="fw-bold mb-0">Toyota Prius</h5>
-                <small>Grey Sedan • 8XJ-992</small>
+                <h5 class="fw-bold mb-0"><?= $offer["0"]["vehicule"] ?></h5>
               </div>
             </div>
           </div>
@@ -73,7 +93,7 @@
           <h5 class="fw-bold mb-4">Respond to Offer</h5>
           <div class="d-flex justify-content-between mb-4">
             <span>Total Cost</span>
-            <span class="fs-3 fw-black">$24.50</span>
+            <span class="fs-3 fw-black"><?= $totalPrice + $offer[0]["prix"] ?></span>
           </div>
           <div class="d-grid gap-3">
             <button class="btn btn-primary btn-lg fw-bold">Accept Offer</button>
