@@ -2,9 +2,10 @@
   require '../includes/header_client.php';
   $offerId = (int)$_GET["offerId"];
 
-  $indexOfarray = array_key_last($_SESSION["offers"]);
-
-  $offer = array_filter($_SESSION["offers"], fn($value) => $value["id"] ==  $offerId);
+  
+  $offer = array_filter($_SESSION["offers"], fn($value) => $value["id"] ==  $offerId && $value["statu"] === "pending");
+  $indexOfarray = array_key_last($offer);
+  
   $commande = array_filter($_SESSION["commandes"], fn($value) => $value["id"] == $_SESSION["offers"][$indexOfarray]["commande_id"]);
   $commandeItems = array_filter($_SESSION["commande_items"], fn($value) => $value["commande_id"] === $_SESSION["offers"][$indexOfarray]["commande_id"]);
   

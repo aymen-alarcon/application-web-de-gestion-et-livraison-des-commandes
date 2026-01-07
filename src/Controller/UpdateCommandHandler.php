@@ -65,6 +65,7 @@ class UpdateCommandHandler{
             $notificationRepo = new NotificationRepository($this->conn);
             $notificationRepo->create($notification);
         }
+        $handler->setId($_GET["id"]);
         $handler->setStatu($_GET["statu"]);
         $repo = new CommandeRepository($this->conn);
         $repo->update($handler);

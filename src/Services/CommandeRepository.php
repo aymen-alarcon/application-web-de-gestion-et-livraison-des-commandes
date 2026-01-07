@@ -44,6 +44,11 @@ class CommandeRepository{
         $stmt->bindValue(":address", $commande->getAddress());
         $stmt->bindValue(":phone", $commande->getPhone());
         $stmt->bindValue(":statu", $commande->getStatu());
+        var_dump( $commande->getId());
+        var_dump( $commande->gettitre());
+        var_dump( $commande->getAddress());
+        var_dump( $commande->getPhone());
+        var_dump( $commande->getStatu());
         $stmt->execute();    
         $this->read();
     }
