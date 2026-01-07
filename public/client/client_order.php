@@ -5,6 +5,7 @@
     $commandeItems = $_SESSION["commande_items"] ?? [];
 
     $offers = $_SESSION["offers"] ?? [];
+    $filterOffers = array_filter($offers, fn($value) => $value["statu"] == "pending");
 
     if (!empty($commandeItems)) {        
         foreach ($commandes as $c) {
@@ -15,8 +16,8 @@
         }
     }
 
-    if (!empty($offers)) {        
-        $offersCount = count($offers);
+    if (!empty($filterOffers)) {        
+        $offersCount = count($filterOffers);
     }
 ?>
 <style>
@@ -189,7 +190,7 @@
                             <strong>Offers Section</strong>
                             <small><?= $offersCount ?></small>
                         </div>
-                        <?php foreach($offers as $offer): ?>
+                        <?php foreach($filterOffers as $offer): ?>
                             <a href="client_order_offer.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
                                 <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>
                                 <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicule"] ?></span><span>$ <?= $offer["prix"] ?></span></div>

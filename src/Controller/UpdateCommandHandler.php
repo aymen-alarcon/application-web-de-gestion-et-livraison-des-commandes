@@ -32,11 +32,11 @@ class UpdateCommandHandler{
             $handler->setPhone($_POST["phone"]);
         }
 
-        if ($_GET["statu"] == "In Progress") {
-            $offerId = (int) $_GET["offerId"];
-            $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
-            $offerArrayIndex =  array_key_last($offerArray);
+        $offerId = (int) $_GET["offerId"];
+        $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
+        $offerArrayIndex =  array_key_last($offerArray);
 
+        if ($_GET["statu"] == "In Progress") {
             $offer = new Offer();
             $offer->setId($offerId);
             $offer->setStatu("accepted");
@@ -46,6 +46,20 @@ class UpdateCommandHandler{
 
             $notification = new Notification();
             $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been accepted");
+            $notification->setSender_id($_SESSION["id"]);
+            $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+            $notificationRepo = new NotificationRepository($this->conn);
+            $notificationRepo->create($notification);
+        }else{
+            $offer = new Offer();
+            $offer->setId($offerId);
+            $offer->setStatu("refused");
+
+            $repo = new OfferRepository($this->conn);
+            $repo->update($offer);
+
+            $notification = new Notification();
+            $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been refused");
             $notification->setSender_id($_SESSION["id"]);
             $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
             $notificationRepo = new NotificationRepository($this->conn);
