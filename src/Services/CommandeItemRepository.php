@@ -30,7 +30,7 @@ class CommandeItemRepository{
     }
 
     function update($commandeItem){
-        $sql = "UPDATE commande_items set name = :name, quantity = :quantity, price = :price, description = :description WHERE id = :id";
+        $sql = "UPDATE commande_items set name = COALESCE(:name, name), quantity = COALESCE(:quantity,quantity), price = COALESCE(:price, price), description = COALESCE(:description, description) WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commandeItem->getId());
         $stmt->bindValue(":name", $commandeItem->getName());

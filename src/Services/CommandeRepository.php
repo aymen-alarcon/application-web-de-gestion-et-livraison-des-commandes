@@ -40,12 +40,13 @@ class CommandeRepository{
     }
 
     function update($commande){
-        $sql = "UPDATE commandes set titre = :titre, address = :address, phone = :phone WHERE id = :id";
+        $sql = "UPDATE commandes set titre = COALESCE(:titre, titre), address = COALESCE(:address,address), phone = COALESCE(:phone, phone), statu = COALESCE(:statu, statu) WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
         $stmt->bindValue(":titre", $commande->gettitre());
         $stmt->bindValue(":address", $commande->getAddress());
         $stmt->bindValue(":phone", $commande->getPhone());
+        $stmt->bindValue(":statu", $commande->getStatu());
         $stmt->execute();    
         $this->read();
     }
@@ -54,15 +55,6 @@ class CommandeRepository{
         $sql = "UPDATE commandes SET is_deleted = '1' WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":id", $commande->getId());
-        $stmt->execute();    
-        $this->read();
-    }
-
-    function cancel($commande){
-        $sql = "UPDATE commandes SET statu = :statu WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $commande->getId());
-        $stmt->bindValue(":statu", $commande->getStatu());
         $stmt->execute();    
         $this->read();
     }

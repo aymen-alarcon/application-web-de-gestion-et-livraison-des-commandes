@@ -5,14 +5,18 @@
         protected $price;
         protected $duree;
         protected $commande_id;
+        protected $sender_id;
+        protected $statu;
     
-        function __construct($id = NULL, $vehicule = NULL, $price = NULL, $duree = NULL, $commande_id = NULL)
+        function __construct($id = NULL, $vehicule = NULL, $price = NULL, $duree = NULL, $commande_id = NULL, $sender_id = NULL, $statu = "pending")
         {
             $this->id = $id;
             $this->vehicule = $vehicule;
             $this->price = $price;
             $this->duree = $duree;
             $this->commande_id = $commande_id;
+            $this->sender_id = $sender_id;
+            $this->statu = $statu;
         }
 
         public function getId()
@@ -63,6 +67,26 @@
         public function setCommande_id($commande_id)
         {
                 $this->commande_id = $commande_id;
+        }
+
+        public function getSender_id()
+        {
+                return $this->sender_id;
+        }
+
+        public function setSender_id($sender_id)
+        {
+                $this->sender_id = $sender_id;
+        }
+
+        public function getStatu()
+        {
+                return $this->statu;
+        }
+
+        public function setStatu($statu)
+        {
+                $this->statu = $statu;
         }
     }
 ?>

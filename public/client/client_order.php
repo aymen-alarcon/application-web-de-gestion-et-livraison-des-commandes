@@ -5,7 +5,6 @@
     $commandeItems = $_SESSION["commande_items"] ?? [];
 
     $offers = $_SESSION["offers"] ?? [];
-    var_dump($offers);
 
     if (!empty($commandeItems)) {        
         foreach ($commandes as $c) {
@@ -21,13 +20,13 @@
     }
 ?>
 <style>
-.timeline-icon.border {
-    background: transparent;
-}
+    .timeline-icon.border {
+        background: transparent;
+    }
 
-.timeline-icon.active {
-    box-shadow: 0 0 0 4px rgba(13,110,253,.25);
-}
+    .timeline-icon.active {
+        box-shadow: 0 0 0 4px rgba(13,110,253,.25);
+    }
 </style>
 <?php if(!empty($commandeItems)):?>
     <div class="container-fluid py-4">
@@ -202,7 +201,7 @@
             </div>
             <?php if($commande["statu"] !== "Canceled"): ?>
                 <div class="action-bar d-flex justify-content-end m-2">
-                    <a href="../../src/Controller/CancelCommandeHandler.php?id=<?php if(!empty($commande["id"])) : echo htmlspecialchars($commande["id"]); endif; ?>" class="text-decoration-none rounded p-2 action-btn cancel-btn">
+                    <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande["id"]?>&statu=Canceled" class="text-decoration-none rounded p-2 action-btn cancel-btn">
                         <i class="bi bi-x-circle pe-2"></i>Cancel Order
                     </a>
                 </div>

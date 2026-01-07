@@ -54,7 +54,7 @@ class UserRepository{
     }
 
     function Update($user){
-        $sql = "UPDATE users SET username = :username, first_name = :first_name, last_name = :last_name, phone = :phone, address = :address WHERE id = :id";
+        $sql = "UPDATE users SET username = COALESCE(:username, username), first_name = COALESCE(:first_name, first_name), last_name = COALESCE(:last_name, last_name), phone = COALESCE(:phone, :phone), address = COALESCE(:address, address) WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":username", $user->getUsername());
         $stmt->bindValue(":first_name", $user->getFirstName());

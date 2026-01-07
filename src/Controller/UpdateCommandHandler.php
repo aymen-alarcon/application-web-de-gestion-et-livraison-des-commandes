@@ -17,10 +17,18 @@ class UpdateCommandHandler{
 
     function updateCommande(){
         $handler = new Commande();
-        $handler->setId($_POST["id"]);
-        $handler->setTitre($_POST["titre"]);
-        $handler->setAddress($_POST["address"]);
-        $handler->setPhone($_POST["phone"]);
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $handler->setId($_POST["id"]);
+            $handler->setTitre($_POST["titre"]);
+            $handler->setAddress($_POST["address"]);
+            $handler->setPhone($_POST["phone"]);
+        }
+        if ($_GET["statu"] === "In Progress") {
+            $offer = new Offer();
+            $offer->setStatu("accepted");
+        }
+        $handler->setStatu($_GET["statu"]);
         $repo = new CommandeRepository($this->conn);
         $repo->update($handler);
         header("Location: ../../public/client/client_order_dashboard.php");
