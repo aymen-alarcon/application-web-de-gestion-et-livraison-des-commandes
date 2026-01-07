@@ -1,11 +1,18 @@
 <?php
-
 require_once "../Entity/commande.php";
+require_once "../Entity/Notification.php";
+require_once "../Entity/Offer.php";
+require_once "../Services/NotificationRepository.php";
 require_once "../Services/CommandeRepository.php";
+require_once "../Services/OfferRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();
 $conn = $db->connect();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 class UpdateCommandHandler{
     protected $conn;
@@ -24,9 +31,25 @@ class UpdateCommandHandler{
             $handler->setAddress($_POST["address"]);
             $handler->setPhone($_POST["phone"]);
         }
-        if ($_GET["statu"] === "In Progress") {
+
+        if ($_GET["statu"] == "In Progress") {
+            $offerId = (int) $_GET["offerId"];
+            $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
+            $offerArrayIndex =  array_key_last($offerArray);
+
             $offer = new Offer();
+            $offer->setId($offerId);
             $offer->setStatu("accepted");
+
+            $repo = new OfferRepository($this->conn);
+            $repo->update($offer);
+
+            $notification = new Notification();
+            $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been accepted");
+            $notification->setSender_id($_SESSION["id"]);
+            $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+            $notificationRepo = new NotificationRepository($this->conn);
+            $notificationRepo->create($notification);
         }
         $handler->setStatu($_GET["statu"]);
         $repo = new CommandeRepository($this->conn);

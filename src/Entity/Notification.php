@@ -5,16 +5,14 @@
         protected $statu;
         protected $sender_id;
         protected $receiver_id;
-        protected $commande;
 
-        function __construct($id = NULL, $contenu = "A new Offer have been sent", $statu = "Not Seen" ,$sender_id = NULL, $receiver_id = NULL, $commande = NULL)
+        function __construct($id = NULL, $contenu = "A new Offer have been sent", $statu = "Not Seen" ,$sender_id = NULL, $receiver_id = NULL)
         {
             $this->id = $id;
             $this->contenu = $contenu;
             $this->statu = $statu;
             $this->sender_id = $sender_id;
             $this->receiver_id = $receiver_id;
-            $this->commande = $commande;
         }
 
         public function getId()
@@ -63,11 +61,6 @@
 
         public function getReceiverId(){
                 return $this->receiver_id;
-        }
-
-        public function getReceiver_id()
-        {
-                return $this->commande->getUser_id();
         }
     }
 ?>

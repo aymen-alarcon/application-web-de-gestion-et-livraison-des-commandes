@@ -17,7 +17,6 @@ class OfferRepository{
         $stmt->bindValue(":commande_id", $offer->getCommande_id());
         $stmt->bindValue(":sender_id", $offer->getSender_id());
         $stmt->execute();
-        var_dump($offer->getSender_id());
         header("Location: ../Controller/CreateNotification.php?commande_id=" .urlencode($offer->getCommande_id()));
         exit;
     }

@@ -98,8 +98,8 @@
             <span class="fs-3 fw-black"><?= $totalPrice + $offer[$indexOfarray]["prix"] ?></span>
           </div>
           <div class="d-grid gap-3">
-            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&statu=In Progress" class="btn btn-primary btn-lg fw-bold">Accept Offer</a>
-            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&statu=Pending" class="btn btn-outline-secondary btn-lg">Decline Offer</a>
+            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&statu=In Progress&offerId=<?= $offerId ?>" class="btn btn-primary btn-lg fw-bold">Accept Offer</a>
+            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&statu=Pending&offerId=<?= $offerId ?>" class="btn btn-outline-secondary btn-lg">Decline Offer</a>
           </div>
         </div>
       </div>

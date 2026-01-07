@@ -5,7 +5,7 @@ require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();
 $conn = $db->connect();
-
+session_start();
 class InsertCommandeHandler{
     protected $conn;
 

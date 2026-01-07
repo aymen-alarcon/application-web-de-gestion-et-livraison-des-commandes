@@ -8,7 +8,6 @@ class CommandeRepository{
     }
 
     function create($commande){
-        session_start();
         $sql = "INSERT INTO commandes (titre, address, phone, statu, is_deleted, created_at, user_id) VALUES (:titre, :address, :phone, :statu, :is_deleted, now(), :user_id)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindValue(":titre", $commande->getTitre());
@@ -23,7 +22,6 @@ class CommandeRepository{
     }
 
     function read(){
-        session_start();
         $sql = "SELECT * FROM commandes WHERE user_id = :id AND is_deleted = '0'";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(":id", $_SESSION["id"]);
@@ -32,7 +30,6 @@ class CommandeRepository{
     }
 
     function readAll(){
-        session_start();
         $sql = "SELECT c.*, u.username, u.phone FROM commandes c LEFT JOIN users u ON c.user_id = u.id WHERE is_deleted = '0' ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
