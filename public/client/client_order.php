@@ -185,22 +185,23 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card bg-surface">
-                        <div class="card-header d-flex justify-content-between text-white">
-                            <strong>Offers Section</strong>
-                            <small><?= $offersCount ?></small>
+                    <?php if($commande["statu"] === "Pending"): ?>
+                        <div class="card bg-surface">
+                            <div class="card-header d-flex justify-content-between text-white">
+                                <strong>Offers Section</strong>
+                                <small><?= $offersCount ?></small>
+                            </div>
+                            <?php foreach($filterOffers as $offer): ?>
+                                <a href="client_order_offer.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
+                                    <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>
+                                    <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicule"] ?></span><span>$ <?= $offer["prix"] ?></span></div>
+                                </a>
+                            <?php endforeach; ?>
                         </div>
-                        <?php foreach($filterOffers as $offer): ?>
-                            <a href="client_order_offer.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
-                                <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>
-                                <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicule"] ?></span><span>$ <?= $offer["prix"] ?></span></div>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-
+                    <?php endif; ?>
                 </div>
             </div>
-            <?php if($commande["statu"] !== "Canceled"): ?>
+            <?php if($commande["statu"] === "Pending"): ?>
                 <div class="action-bar d-flex justify-content-end m-2">
                     <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande["id"]?>&statu=Canceled" class="text-decoration-none rounded p-2 action-btn cancel-btn">
                         <i class="bi bi-x-circle pe-2"></i>Cancel Order
