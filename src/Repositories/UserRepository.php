@@ -10,7 +10,7 @@ class UserRepository{
 
     function login($user){ 
         try {
-            $sql = "SELECT * FROM user WHERE email = :email";
+            $sql = "SELECT * FROM users WHERE email = :email";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":email", $user->getEmail());
             $stmt->execute();
@@ -31,7 +31,7 @@ class UserRepository{
                 echo "Invalid email or password";
             }
         } catch (PDOException) {
-            echo $stmt->errorInfo();
+            echo $stmt->errorCode();
         }       
     }
 

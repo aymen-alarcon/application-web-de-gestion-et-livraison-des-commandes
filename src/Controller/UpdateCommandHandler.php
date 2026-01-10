@@ -50,7 +50,7 @@ class UpdateCommandHandler{
             $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
             $notificationRepo = new NotificationRepository($this->conn);
             $notificationRepo->create($notification);
-        }else{
+        }else if($_GET["statu"] == "Canceled"){
             $offer = new Offer();
             $offer->setId($offerId);
             $offer->setStatu("refused");
@@ -64,12 +64,26 @@ class UpdateCommandHandler{
             $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
             $notificationRepo = new NotificationRepository($this->conn);
             $notificationRepo->create($notification);
+        }elseif ($_GET["statu"] == "Completed") {
+            $offer = new Offer();
+            $offer->setId($offerId);
+            $offer->setStatu("Completed");
+
+            $repo = new OfferRepository($this->conn);
+            $repo->update($offer);
+
+            $notification = new Notification();
+            $notification->setContenu("Congratulation, Your Offer with the ID " . $_GET['offerId'] . " has been declared Completed");
+            $notification->setSender_id($_SESSION["id"]);
+            $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+            $notificationRepo = new NotificationRepository($this->conn);
+            $notificationRepo->create($notification);
         }
         $handler->setId($_GET["id"]);
         $handler->setStatu($_GET["statu"]);
         $repo = new CommandeRepository($this->conn);
         $repo->update($handler);
-        header("Location: ../../public/client/client_order_dashboard.php");
+        // header("Location: ../../public/client/client_order_dashboard.php");
         exit;
     }
 }

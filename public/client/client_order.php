@@ -6,6 +6,7 @@
 
     $offers = $_SESSION["offers"] ?? [];
     $filterOffers = array_filter($offers, fn($value) => $value["statu"] == "pending");
+    $acceptedOffers = array_filter($offers, fn($value) => $value["statu"] == "accepted");
 
     if (!empty($commandeItems)) {        
         foreach ($commandes as $c) {
@@ -40,9 +41,13 @@
                         Created on <?php if(!empty($commande["created_at"])) : echo htmlspecialchars($commande["created_at"]); endif; ?>
                     </div>
                 </div>
-                <?php if($commande["statu"] !== "Canceled"): ?>
+                <?php if($commande["statu"] === "Pending"): ?>
                     <div class="d-flex gap-2">
                         <a href="client_update_commande.php" class="btn btn-outline-light text-decoration-none btn-sm">Edit</a>
+                    </div>
+                <?php elseif($commande["statu"] === "In Progress"): ?>
+                    <div class="d-flex gap-2">
+                        <a href="../../src//Controller//UpdateCommandHandler.php?statu=Completed" class="btn btn-outline-light text-decoration-none btn-sm">Declare as Completed</a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -141,6 +146,11 @@
                                         <div>
                                             <strong class="text-success">Delivered</strong>
                                         </div>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if($commande["statu"] === "In Progress"): ?>
+                                    <div class="d-flex gap-2">
+                                        <a href="../../src/Controller/UpdateCommandHandler.php?statu=Completed&id=<?= $acceptedOffers[0]["commande_id"] ?>&offerId=<?= $acceptedOffers[0]["id"] ?>" class="btn btn-outline-light text-decoration-none btn-sm">Declare as Completed</a>
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
