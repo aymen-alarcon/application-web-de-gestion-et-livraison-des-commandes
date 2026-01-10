@@ -9,6 +9,24 @@
             color: #10b981;
         }
 
+        .vehicle-option {
+            border: 2px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .vehicle-option input {
+            display: none;
+        }
+
+        .vehicle-option.checked {
+            border-color: #137fec;
+            background-color: rgba(19, 127, 236, 0.05);
+        }
+
         .hover-bg:hover {
             background-color: rgba(0, 0, 0, 0.03);
             transition: background-color 0.2s ease-in-out;
