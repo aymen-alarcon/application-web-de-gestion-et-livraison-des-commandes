@@ -38,6 +38,34 @@
         echo '<div class="alert alert-danger">' . $_SESSION["flash"] . '</div>';
         unset($_SESSION["flash"]);
     }
+
+    function findUserById($users, $id) {
+        foreach ($users as $user) {
+            if ($user['id'] == $id && $user['is_deleted'] == '0') {
+                return $user;
+            }
+        }
+        return null;
+    }
+
+    function findOfferByCommandeId($offers, $commandeId) {
+        foreach ($offers as $offer) {
+            if ($offer['commande_id'] == $commandeId) {
+                return $offer;
+            }
+        }
+        return null;
+    }
+
+
+    function findRoleByUserId($roles, $userId) {
+        foreach ($roles as $role) {
+            if ($role['user_id'] == $userId) {
+                return $role['role_name'];
+            }
+        }
+        return null;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,11 +96,11 @@
             <div class="d-flex align-items-center gap-3">
                 <ul class="navbar-nav d-none d-md-flex flex-row gap-3">
                     <li class="nav-item"><a class="nav-link fw-bold text-primary" href="admin_dashboard.php">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link text-muted" href="admin_admins_management.php.php">Admins</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_admins_management.php">Admins</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_deliverer_management.php">Deliverers</a></li>
-                    <li class="nav-item"><a class="nav-link text-muted" href="admin_user_management.php">Users</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_client_management.php">Clients</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_orders_management.php">Orders</a></li>
-                    <li class="nav-item"><a class="nav-link text-muted" href="admin_orders_management.php">Offers</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_offers_management.php">Offers</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="#">Settings</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3">

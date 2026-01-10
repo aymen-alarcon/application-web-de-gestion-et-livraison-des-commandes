@@ -39,28 +39,34 @@
                         <th><input type="checkbox"></th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
                         <th>Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>Alice Freeman</td>
-                        <td>alice@example.com</td>
-                        <td><span class="badge badge-role">Deliverer</span></td>
-                        <td>
-                            <span class="d-flex align-items-center gap-1">
-                                <span class="rounded-circle bg-success" style="width:8px;height:8px;"></span>
-                                Active
-                            </span>
-                        </td>
-                        <td class="text-end">
-                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    <?php foreach ($_SESSION['users'] as $user): ?>
+                        <?php
+                            if ($user['is_deleted'] === '1') continue;
+
+                            $role = findRoleByUserId($_SESSION['roles'], $user['id']);
+                            if ($role !== 'admin') continue;
+                        ?>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td>
+                                <span class="d-flex align-items-center gap-1">
+                                    <span class="rounded-circle bg-success" style="width:8px;height:8px;"></span>
+                                    Active
+                                </span>
+                            </td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

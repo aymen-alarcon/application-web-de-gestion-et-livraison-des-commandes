@@ -44,64 +44,40 @@
                     <th>Order ID</th>
                     <th>Client</th>
                     <th>Deliverer</th>
-                    <th>Statu</th>
-                    <th>Price</th>
-                    <th>Vehicle</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Total</th>
                     <th class="text-end">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($_SESSION['commandes'])): ?>
-                        <?php foreach ($_SESSION['commandes'] as $order): ?>
-                            <?php
-                                if ($order['is_deleted'] === '1') continue;
-                                $client = findUserById($_SESSION['users'], $order['user_id']);
-
-                                $offer = findOfferByCommandeId($_SESSION['offers'] ?? [], $order['id']);
-
-                                $deliverer = null;
-                                $vehicle = '—';
-
-                                if ($offer) {
-                                    $deliverer = findUserById($_SESSION['users'], $offer['sender_id']);
-                                    $vehicle = ucfirst($offer['vehicule']);
+                    <?php foreach ($_SESSION['offers'] as $offer): ?>
+                        <?php
+                            $order = null;
+                            foreach ($_SESSION['commandes'] as $cmd) {
+                                if ($cmd['id'] == $offer['commande_id']) {
+                                    $order = $cmd;
+                                    break;
                                 }
-                            ?>
-                            <tr>
-                                <td>#ORD-<?= $order['id'] ?></td>
+                            }
 
-                                <td>
-                                    <?= $client ? htmlspecialchars($client['first_name'].' '.$client['last_name']) : '<span class="text-danger">Unknown</span>' ?>
-                                </td>
-
-                                <td class="<?= $deliverer ? '' : 'text-secondary fst-italic' ?>">
-                                    <?= $deliverer ? htmlspecialchars($deliverer['first_name'].' '.$deliverer['last_name']) : 'Unassigned' ?>
-                                </td>
-
-                                <td class="<?= $offer ? '' : 'text-secondary fst-italic' ?>">
-                                    <?= $offer ? htmlspecialchars($offer['prix']) : '-' ?>
-                                </td>
-
-                                <td>
-                                    <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['statu'])) ?>">
-                                        <?= htmlspecialchars($order['statu']) ?>
-                                    </span>
-                                </td>
-
-                                <td><?= $vehicle ?></td>
-
-                                <td class="text-end">
-                                    <button class="btn btn-outline-light btn-sm">View</button>
-                                    <button class="btn btn-link text-info"><i class="bi bi-pencil"></i></button>
-                                    <button class="btn btn-link text-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
+                            $deliverer = findUserById($_SESSION['users'], $offer['sender_id']);
+                        ?>
                         <tr>
-                            <td colspan="7" class="text-center text-muted">No orders found</td>
+                            <td>#OFF-<?= $offer['id'] ?></td>
+                            <td>#ORD-<?= $offer['commande_id'] ?></td>
+                            <td><?= $deliverer ? $deliverer['first_name'].' '.$deliverer['last_name'] : 'Unknown' ?></td>
+                            <td><?= ucfirst($offer['vehicule']) ?></td>
+                            <td><?= $offer['prix'] ?> MAD</td>
+                            <td>
+                                <span class="badge badge-pending"><?= ucfirst($offer['statu']) ?></span>
+                            </td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            </td>
                         </tr>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

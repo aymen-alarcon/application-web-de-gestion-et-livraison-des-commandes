@@ -54,7 +54,7 @@
                     if ($user['is_deleted'] === '1') continue;
 
                     $role = findRoleByUserId($_SESSION['roles'], $user['id']);
-                    if ($role !== 'deliverer') continue;
+                    if ($role !== 'client') continue;
                 ?>
                 <tr>
                     <td><input type="checkbox"></td>
