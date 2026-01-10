@@ -9,41 +9,61 @@ class NotificationRepository{
     }
 
     function create($notification){
-        $sql = "INSERT INTO notifications (contenu, statu, sender_id, created_at, receiver_id) VALUES (:contenu, :statu, :sender_id, now(), :receiver_id)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":contenu", $notification->getContenu());
-        $stmt->bindValue(":statu", $notification->getStatu());
-        $stmt->bindValue(":receiver_id", $notification->getReceiverId());
-        $stmt->bindValue(":sender_id", $_SESSION["id"]);
-        $stmt->execute();
+        try {
+            $sql = "INSERT INTO notifications (contenu, statu, sender_id, created_at, receiver_id) VALUES (:contenu, :statu, :sender_id, now(), :receiver_id)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":contenu", $notification->getContenu());
+            $stmt->bindValue(":statu", $notification->getStatu());
+            $stmt->bindValue(":receiver_id", $notification->getReceiverId());
+            $stmt->bindValue(":sender_id", $_SESSION["id"]);
+            $stmt->execute();
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
     }
 
     function update($notification){
-        $sql = "UPDATE notifications set statu = :statu WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $notification->getId());
-        $stmt->execute();    
+        try {
+            $sql = "UPDATE notifications set statu = :statu WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":id", $notification->getId());
+            $stmt->execute();    
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
     }
 
     function delete($notification){
-        $sql = "DELETE FROM notifications WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $notification->getId());
-        $stmt->execute();    
+        try {
+            $sql = "DELETE FROM notifications WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":id", $notification->getId());
+            $stmt->execute();    
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
     }
 
     function read($notification){
-        $sql = "SELECT * FROM notifications WHERE receiver_id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindValue(":id", $notification->getReceiverId());
-        $stmt->execute();    
-        $_SESSION["notifications"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = "SELECT * FROM notifications WHERE receiver_id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":id", $notification->getReceiverId());
+            $stmt->execute();    
+            $_SESSION["notifications"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
     }
 
     function readAll(){
-        $sql = "SELECT * FROM notifications";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();   
-        $_SESSION["notification"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $sql = "SELECT * FROM notifications";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();   
+            $_SESSION["notification"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
     }
 }
