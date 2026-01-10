@@ -9,6 +9,11 @@
            $countNotifications = count(array_filter($_SESSION["notifications"], fn($value) => $value["statu"] === "Not Seen"));
         }
     }
+
+    if (!empty($_SESSION["flash"])) {
+        echo '<div class="alert alert-danger">' . $_SESSION["flash"] . '</div>';
+        unset($_SESSION["flash"]);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

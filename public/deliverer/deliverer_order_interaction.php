@@ -9,37 +9,12 @@
             color: #10b981;
         }
 
-        .vehicle-option {
-            border: 2px solid #dee2e6;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .vehicle-option input {
-            display: none;
-        }
-
-        .vehicle-option.checked {
-            border-color: #137fec;
-            background-color: rgba(19, 127, 236, 0.05);
-        }
-
-        .route-marker {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
         .hover-bg:hover {
             background-color: rgba(0, 0, 0, 0.03);
             transition: background-color 0.2s ease-in-out;
         }
     </style>
 </head>
-
 <body class="scrollbar-custom">
     <main class="container py-4">
         <div class="mx-auto" style="max-width: 1100px;">
@@ -61,7 +36,6 @@
                     <span class="fw-bold small">Status: Pending</span>
                 </div>
             </div>
-
             <div class="row g-4">
                 <div class="col-lg-8 d-flex flex-column gap-4">
                     <div class="card shadow-sm rounded-xl overflow-hidden">
@@ -81,7 +55,6 @@
                                                 <?= count($commandeItems) ?> items
                                             </span>
                                         </div>
-
                                         <div class="d-flex flex-column gap-3">
                                             <?php 
                                                 $grandTotal = 0;
@@ -120,7 +93,6 @@
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
-
                                         <div class="mt-4 p-3 rounded-3 bg-success bg-opacity-10 d-flex justify-content-between align-items-center">
                                             <span class="fw-bold text-success">
                                                 <i class="bi bi-cash-stack me-1"></i> Grand Total
@@ -140,7 +112,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 d-flex flex-column gap-4">
                     <div class="card shadow-lg  rounded-xl p-4 sticky-top" style="top:96px;">
                         <form action="../../src/Controller/CreateOfferHandler.php" method="post">
@@ -191,7 +162,6 @@
                                 </button>
                                 <a href="deliverer_orders.php" class="btn btn-outline-secondary">Cancel & Go Back</a>
                             </div>
-
                             <p class="small text-center text-muted mt-3">By accepting this order, you agree to the <a href="#" class="text-decoration-underline text-primary">Terms of Service</a>. You are expected to arrive at the pick-up location within 20 minutes.</p>
                         </form>
                     </div>

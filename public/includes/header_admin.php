@@ -1,8 +1,14 @@
 <?php 
     require "../../src/Database/DatabaseConnection.php" ;
     session_start();
+
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
         header("Location: ../logout.php");
+    }
+
+    if (!empty($_SESSION["flash"])) {
+        echo '<div class="alert alert-danger">' . $_SESSION["flash"] . '</div>';
+        unset($_SESSION["flash"]);
     }
 ?>
 <!DOCTYPE html>

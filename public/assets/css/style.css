@@ -90,7 +90,7 @@ body {
 }
 
 .icon {
-  font-family: 'Material Symbols Outlined';
+  font-family: "Material Symbols Outlined";
   font-size: 24px;
   vertical-align: middle;
 }
@@ -103,10 +103,10 @@ body {
   cursor: pointer;
   border: 1px solid #3b4754;
   background: #12161b;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
-.vehicle-option input:checked+label {
+.vehicle-option input:checked + label {
   border-color: var(--bs-primary);
   background: rgba(19, 127, 236, 0.1);
 }
@@ -193,7 +193,7 @@ input input[type="text"] {
 .timeline-icon.active {
   border: 2px solid var(--primary);
   color: var(--primary);
-  background: rgba(19, 127, 236, .15);
+  background: rgba(19, 127, 236, 0.15);
   animation: pulse 1.5s infinite;
 }
 
@@ -205,4 +205,21 @@ input input[type="text"] {
 
 .cancel-btn:hover {
   background: rgba(255, 0, 0, 0.14);
+}
+.vehicle-option {
+  border: 2px solid #dee2e6;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.vehicle-option input {
+  display: none;
+}
+
+.vehicle-option.checked {
+  border-color: #137fec;
+  background-color: rgba(19, 127, 236, 0.05);
 }

@@ -1,28 +1,28 @@
 <?php 
-require_once "../Repositories/CommandeRepository.php";
-require_once "../Database/DatabaseConnection.php";
+    require_once "../Repositories/CommandeRepository.php";
+    require_once "../Database/DatabaseConnection.php";
 
-$db = new DatabaseConnection();
-$conn = $db->connect();
-session_start();
+    $db = new DatabaseConnection();
+    $conn = $db->connect();
+    session_start();
 
-class ReadCommandHandler{
-    protected $conn;
+    class ReadCommandHandler{
+        protected $conn;
 
-    function __construct($conn)
-    {
-        $this->conn = $conn;
-    }
+        function __construct($conn)
+        {
+            $this->conn = $conn;
+        }
 
-    function read(){
-        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-            $repo = new CommandeRepository($this->conn);
-            $repo->readAll();
-            header("Location: ../../public/deliverer/deliverer_orders.php");
-            exit;
+        function read(){
+            if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+                $repo = new CommandeRepository($this->conn);
+                $repo->readAll();
+                header("Location: ../../public/deliverer/deliverer_orders.php");
+                exit;
+            }
         }
     }
-}
 
-$read = new ReadCommandHandler($conn);
-$read->read();
+    $read = new ReadCommandHandler($conn);
+    $read->read();

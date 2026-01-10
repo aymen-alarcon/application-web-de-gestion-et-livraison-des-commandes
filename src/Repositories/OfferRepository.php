@@ -20,8 +20,14 @@ class OfferRepository{
             $stmt->bindValue(":statu", $offer->getStatu());
             $stmt->execute();
             header("Location: ../Controller/CreateNotificationHandler.php?commande_id=" .urlencode($offer->getCommande_id()));
-        } catch (PDOException) {
-            echo $stmt->errorCode();
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) {
+                $_SESSION["flash"] = "Offer already exists for this sender.";
+                header("Location: ../../public/deliverer/deliverer_order_interaction.php");
+                exit;
+            } else {
+                echo $stmt->errorCode();
+            }
         }
     }
 
