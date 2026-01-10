@@ -1,7 +1,7 @@
 <?php 
     require_once "../Database/DatabaseConnection.php";
     require_once "../Entity/Notification.php";
-    require_once "../Services/NotificationRepository.php";
+    require_once "../Repositories/NotificationRepository.php";
 
     $db = new DatabaseConnection;
     $conn = $db->connect();

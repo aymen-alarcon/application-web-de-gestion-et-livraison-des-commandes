@@ -1,6 +1,6 @@
 <?php
     require_once "../Entity/Offer.php";
-    require_once "../Services/OfferRepository.php";
+    require_once "../Repositories/OfferRepository.php";
     require_once "../Database/DatabaseConnection.php";
 
     $db = new DatabaseConnection();

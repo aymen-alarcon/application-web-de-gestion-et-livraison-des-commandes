@@ -2,9 +2,9 @@
 require_once "../Entity/commande.php";
 require_once "../Entity/Notification.php";
 require_once "../Entity/Offer.php";
-require_once "../Services/NotificationRepository.php";
-require_once "../Services/CommandeRepository.php";
-require_once "../Services/OfferRepository.php";
+require_once "../Repositories/NotificationRepository.php";
+require_once "../Repositories/CommandeRepository.php";
+require_once "../Repositories/OfferRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();

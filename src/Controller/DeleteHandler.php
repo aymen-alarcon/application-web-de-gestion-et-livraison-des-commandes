@@ -4,7 +4,7 @@ $entityClass = $_GET["entityClass"];
 $repositoryClass = $_GET["repositoryClass"];
 
 require_once "../Entity/". $entityClass .".php";
-require_once "../Services/". $repositoryClass .".php";
+require_once "../Repositories/". $repositoryClass .".php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();

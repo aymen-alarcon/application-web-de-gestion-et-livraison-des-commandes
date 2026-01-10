@@ -1,6 +1,6 @@
 <?php
 require_once "../Entity/User.php";
-require_once "../Services/UserRepository.php";
+require_once "../Repositories/UserRepository.php";
 require_once "../Database/DatabaseConnection.php";
 
 $db = new DatabaseConnection();
