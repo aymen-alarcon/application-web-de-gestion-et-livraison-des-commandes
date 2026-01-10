@@ -6,6 +6,7 @@
 
     $db = new DatabaseConnection;
     $conn = $db->connect();
+    session_start();
 
     class CreateNotificationHandler{
         protected $conn;
@@ -16,9 +17,12 @@
         }
 
         function createNotification(){
-            $commande = new Commande();
-            $commande->setUser_id($_GET["commande_id"]);
-            $handler = new Notification(NULL, "A new Offer have been sent", "Not Seen" , NULL, NULL, $commande);
+            $handler = new Notification();
+            foreach ($_SESSION['commandes'] as $order) {
+                if ($order["id"] == $_GET["commande_id"]) {
+                    $handler->setReceiverId($order["user_id"]);
+                }
+            }
             $repo = new NotificationRepository($this->conn);
             $repo->create($handler);
             header("Location: ../../public/deliverer/deliverer_orders.php");

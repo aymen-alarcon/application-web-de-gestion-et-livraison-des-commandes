@@ -7,6 +7,7 @@
     $offers = $_SESSION["offers"] ?? [];
     $filterOffers = array_filter($offers, fn($value) => $value["statu"] == "pending");
     $acceptedOffers = array_filter($offers, fn($value) => $value["statu"] == "accepted");
+    $offersCount = count($filterOffers);
 
     if (!empty($commandeItems)) {        
         foreach ($commandes as $c) {
@@ -15,10 +16,6 @@
                 break;
             }
         }
-    }
-
-    if (!empty($filterOffers)) {        
-        $offersCount = count($filterOffers);
     }
 ?>
 <style>
@@ -201,6 +198,9 @@
                                 <strong>Offers Section</strong>
                                 <small><?= $offersCount ?></small>
                             </div>
+                            <?php if($offersCount == 0): ?>
+                                <small class="text-white p-3">There is No offers For your order Yet !</small>
+                            <?php endif; ?>
                             <?php foreach($filterOffers as $offer): ?>
                                 <a href="client_order_offer.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
                                     <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>

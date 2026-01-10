@@ -30,61 +30,78 @@ class UpdateCommandHandler{
             $handler->setTitre($_POST["titre"]);
             $handler->setAddress($_POST["address"]);
             $handler->setPhone($_POST["phone"]);
+
+            $repo = new CommandeRepository($this->conn);
+            $repo->update($handler);
+            header("Location: ../../public/client/client_order_dashboard.php");
+            exit;
         }
+        if ($_SERVER["REQUEST_METHOD"] === "GET") {
+            if ($_GET["statu"] == "In Progress") {
+                $offerId = (int) $_GET["offerId"];
+                $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
+                $offerArrayIndex =  array_key_last($offerArray);
 
-        $offerId = (int) $_GET["offerId"];
-        $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
-        $offerArrayIndex =  array_key_last($offerArray);
+                $offer = new Offer();
+                $offer->setId($offerId);
+                $offer->setStatu("accepted");
 
-        if ($_GET["statu"] == "In Progress") {
-            $offer = new Offer();
-            $offer->setId($offerId);
-            $offer->setStatu("accepted");
+                $repo = new OfferRepository($this->conn);
+                $repo->update($offer);
 
-            $repo = new OfferRepository($this->conn);
-            $repo->update($offer);
+                $notification = new Notification();
+                $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been accepted");
+                $notification->setSender_id($_SESSION["id"]);
+                $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
 
-            $notification = new Notification();
-            $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been accepted");
-            $notification->setSender_id($_SESSION["id"]);
-            $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
-            $notificationRepo = new NotificationRepository($this->conn);
-            $notificationRepo->create($notification);
-        }else if($_GET["statu"] == "Canceled"){
-            $offer = new Offer();
-            $offer->setId($offerId);
-            $offer->setStatu("refused");
+                $notificationRepo = new NotificationRepository($this->conn);
+                $notificationRepo->create($notification);
+            }else if(isset($_GET["offerId"]) && $_GET["statu"] == "Canceled"){
+                $offerId = (int) $_GET["offerId"];
+                $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
+                $offerArrayIndex =  array_key_last($offerArray);
 
-            $repo = new OfferRepository($this->conn);
-            $repo->update($offer);
+                $offer = new Offer();
+                $offer->setId($offerId);
+                $offer->setStatu("refused");
 
-            $notification = new Notification();
-            $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been refused");
-            $notification->setSender_id($_SESSION["id"]);
-            $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
-            $notificationRepo = new NotificationRepository($this->conn);
-            $notificationRepo->create($notification);
-        }elseif ($_GET["statu"] == "Completed") {
-            $offer = new Offer();
-            $offer->setId($offerId);
-            $offer->setStatu("Completed");
+                $repo = new OfferRepository($this->conn);
+                $repo->update($offer);
 
-            $repo = new OfferRepository($this->conn);
-            $repo->update($offer);
+                $notification = new Notification();
+                $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been refused");
+                $notification->setSender_id($_SESSION["id"]);
+                $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
 
-            $notification = new Notification();
-            $notification->setContenu("Congratulation, Your Offer with the ID " . $_GET['offerId'] . " has been declared Completed");
-            $notification->setSender_id($_SESSION["id"]);
-            $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
-            $notificationRepo = new NotificationRepository($this->conn);
-            $notificationRepo->create($notification);
+                $notificationRepo = new NotificationRepository($this->conn);
+                $notificationRepo->create($notification);
+            }elseif ($_GET["statu"] == "Completed") {
+                $offerId = (int) $_GET["offerId"];
+                $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
+                $offerArrayIndex =  array_key_last($offerArray);
+
+                $offer = new Offer();
+                $offer->setId($offerId);
+                $offer->setStatu("Completed");
+
+                $repo = new OfferRepository($this->conn);
+                $repo->update($offer);
+
+                $notification = new Notification();
+                $notification->setContenu("Congratulation, Your Offer with the ID " . $_GET['offerId'] . " has been declared Completed");
+                $notification->setSender_id($_SESSION["id"]);
+                $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+                $notificationRepo = new NotificationRepository($this->conn);
+                $notificationRepo->create($notification);
+            }
+            $handler->setId($_GET["id"]);
+            $handler->setStatu($_GET["statu"]);
+
+            $repo = new CommandeRepository($this->conn);
+            $repo->update($handler);
+            header("Location: ../../public/client/client_order_dashboard.php");
+            exit;
         }
-        $handler->setId($_GET["id"]);
-        $handler->setStatu($_GET["statu"]);
-        $repo = new CommandeRepository($this->conn);
-        $repo->update($handler);
-        // header("Location: ../../public/client/client_order_dashboard.php");
-        exit;
     }
 }
 

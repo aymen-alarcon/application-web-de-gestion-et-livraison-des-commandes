@@ -17,7 +17,7 @@ class NotificationRepository{
             $stmt->bindValue(":receiver_id", $notification->getReceiverId());
             $stmt->bindValue(":sender_id", $_SESSION["id"]);
             $stmt->execute();
-        } catch (PDOException) {
+        } catch (PDOException $e) {
             echo $stmt->errorCode();
         }
     }

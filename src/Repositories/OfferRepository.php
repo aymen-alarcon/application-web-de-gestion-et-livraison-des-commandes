@@ -10,15 +10,16 @@ class OfferRepository{
 
     function create($offer){
         try {
-            $sql = "INSERT INTO offers (vehicule, prix, durée_estimée, created_at, commande_id, sender_id) VALUES (:vehicle, :prix, :duree_estimee, now(), :commande_id, :sender_id)";
+            $sql = "INSERT INTO offers (vehicule, prix, durée_estimée, created_at, commande_id, sender_id ,statu) VALUES (:vehicle, :prix, :duree_estimee, now(), :commande_id, :sender_id, :statu)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":vehicle", $offer->getVehicule());
             $stmt->bindValue(":prix", $offer->getPrice());
             $stmt->bindValue(":duree_estimee", $offer->getDuree());
             $stmt->bindValue(":commande_id", $offer->getCommande_id());
             $stmt->bindValue(":sender_id", $offer->getSender_id());
+            $stmt->bindValue(":statu", $offer->getStatu());
             $stmt->execute();
-            header("Location: ../Controller/CreateNotification.php?commande_id=" .urlencode($offer->getCommande_id()));
+            header("Location: ../Controller/CreateNotificationHandler.php?commande_id=" .urlencode($offer->getCommande_id()));
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

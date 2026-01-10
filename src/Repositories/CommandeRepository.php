@@ -16,7 +16,7 @@ class CommandeRepository{
             $stmt->bindValue(":phone", $commande->getPhone());
             $stmt->bindValue(":statu", $commande->getStatu());
             $stmt->bindValue(":is_deleted", $commande->getIs_deleted());
-            $stmt->bindValue(":user_id", $commande->getUserId());
+            $stmt->bindValue(":user_id", $commande->getUser_id());
             $stmt->execute();
             $commande_id = $this->conn->lastInsertId();
             header("Location: ../../public/client/client_add_package.php?commande_id=" . urlencode($commande_id));
