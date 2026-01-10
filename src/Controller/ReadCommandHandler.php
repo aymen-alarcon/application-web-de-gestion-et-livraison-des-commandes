@@ -16,7 +16,7 @@
         function read(){
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
                 $repo = new CommandeRepository($this->conn);
-                $commandes = $repo->read();
+                $repo->read();
                 header("Location: ../../public/client/client_order_dashboard.php");
             }
         }

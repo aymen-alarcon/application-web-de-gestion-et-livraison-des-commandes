@@ -1,16 +1,14 @@
 <?php require "../includes/header_deliverer.php"; ?>
     <main class="container py-4 py-md-5">
-
         <div class="mb-4">
             <h1 class="fw-black display-6 mb-1">Welcome back, Alex</h1>
             <p class="text-muted-dark">Here is your summary and current tasks.</p>
         </div>
-
         <div class="row g-3 mb-4">
             <div class="col-sm-12 col-lg-6">
                 <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
-                        <span class="fw-medium">Deliveries Today</span>
+                        <span class="fw-medium">Deliveries Done</span>
                         <i class="bi bi-truck primary"></i>
                     </div>
                     <div class="d-flex align-items-end gap-2 mt-1">
@@ -18,7 +16,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-12 col-lg-6">
                 <div class="border-0 rounded card p-4 shadow h-100">
                     <div class="d-flex justify-content-between">
@@ -31,7 +28,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-6">
                 <h4 class="fw-bold mb-2">Deliverer Latest Notifications</h4>
@@ -61,11 +57,9 @@
                                     <span class="pill badge-soft-blue">En Route</span>
                                     <span class="fw-bold fs-5">Order #3942</span>
                                 </div>
-
                                 <div class="text-muted-dark small mb-2">
                                     <i class="bi bi-person"></i> Client: Alice M.
                                 </div>
-
                                 <div class="small">
                                     <div class="d-flex gap-2 mb-1">
                                         <i class="bi bi-geo-alt"></i> Pickup: 123 Main St, Springfield
@@ -75,7 +69,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="d-flex gap-2 pt-2">
                                 <button class="btn btn-primary px-3">
                                     Update Status <i class="bi bi-arrow-right"></i>
@@ -91,7 +84,6 @@
                 <h5 class="fw-bold mb-0">Completed Deliveries</h5>
                 <a href="#" class="primary small fw-medium">View All</a>
             </div>
-
             <table class="table table-hover align-middle mb-0">
                 <thead>
                     <tr class="text-muted-dark text-uppercase small fw-semibold">
@@ -112,4 +104,4 @@
             </table>
         </div>
     </main>
-    <?php require '../includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

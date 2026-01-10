@@ -19,7 +19,7 @@
             $handler->setReceiverId($_SESSION["id"]);
             $repo = new NotificationRepository($this->conn);
             $repo->read($handler);
-            header("Location: ../../public/client/client_dashboard.php");
+            header($_GET["route"]);
             exit;
         }
     }

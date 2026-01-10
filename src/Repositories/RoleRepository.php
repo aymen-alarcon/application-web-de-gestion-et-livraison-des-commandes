@@ -38,12 +38,12 @@ class RoleRepository{
 
     function readRole($user){
         try {
-            $sql = "SELECT role_name FROM roles WHERE user_id = :id";
+            session_start();
+            $sql = "SELECT * FROM roles WHERE user_id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $user->getUser_id());
             $stmt->execute(); 
             $role = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            session_start();
 
             if ($role[0]["role_name"] == "admin") {
                 $_SESSION["role"] = $role[0]["role_name"];
@@ -51,11 +51,13 @@ class RoleRepository{
                 exit;
             }else if ($role[0]["role_name"] == "client") {
                 $_SESSION["role"] = $role[0]["role_name"];
-                header("Location: ../Controller/ReadNotificationHandler.php");
+                $route = "Location: ../../public/client/client_dashboard.php";
+                header("Location: ../Controller/ReadNotificationHandler.php?route=$route");
                 exit;
             }else if ($role[0]["role_name"] == "deliverer") {
                 $_SESSION["role"] = $role[0]["role_name"];
-                header("Location: ../../public/deliverer/deliverer_dashboard.php");
+                $route = "Location: ../../public/deliverer/deliverer_dashboard.php";
+                header("Location: ../Controller/ReadNotificationHandler.php?route=$route");
                 exit;
             }
         } catch (PDOException) {
@@ -64,7 +66,7 @@ class RoleRepository{
     }
 
     function delete($role){
-        try {
+        try {   
             $sql = "DELETE FROM users WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $role->getId());
@@ -73,18 +75,6 @@ class RoleRepository{
             echo $stmt->errorCode();
         } 
    }
-
-    function read($role){
-        try {
-            $sql = "SELECT * FROM roles WHERE id = :id";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":id", $role->getId());
-            $stmt->execute();    
-            $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException) {
-            echo $stmt->errorCode();
-        }
-    }
 
     function readAll($role){
         try {
