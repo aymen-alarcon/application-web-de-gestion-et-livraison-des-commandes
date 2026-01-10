@@ -9,35 +9,6 @@
             <i class="bi bi-plus-lg"></i> Add New User
         </button>
     </div>
-    <div class="row g-4 mb-4">
-        <div class="col-md-4">
-            <div class="card card-light p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">Total Users</small>
-                    <i class="bi bi-people-fill fs-4 text-primary"></i>
-                </div>
-                <h3 class="mt-2 text-white">1,248</h3>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-light p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">Active Deliverers</small>
-                    <i class="bi bi-bicycle fs-4 text-primary"></i>
-                </div>
-                <h3 class="mt-2 text-white">342</h3>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-light p-3 shadow-sm">
-                <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">New Clients Today</small>
-                    <i class="bi bi-person-plus-fill fs-4 text-primary"></i>
-                </div>
-                <h3 class="mt-2 text-white">15</h3>
-            </div>
-        </div>
-    </div>
     <div class="card card-light mb-4 p-3 d-flex flex-column flex-md-row gap-2 align-items-md-center">
         <div class="input-group" style="max-width:300px;">
             <span class="input-group-text"><i class="bi bi-search"></i></span>

@@ -1,9 +1,37 @@
 <?php 
     require "../../src/Database/DatabaseConnection.php" ;
+    require '../../src/Repositories/CommandeRepository.php'; 
+    require '../../src/Repositories/OfferRepository.php'; 
+    require '../../src/Repositories/UserRepository.php'; 
+    require '../../src/Repositories/RoleRepository.php'; 
+
     session_start();
 
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
         header("Location: ../logout.php");
+    }
+
+    $db = new DatabaseConnection();
+    $conn = $db->connect();
+    
+    if (!isset($_SESSION["offers"])) {
+        $handler = new OfferRepository($conn);
+        $handler->readAll();
+    }
+
+    if (!isset($_SESSION["commandes"])) {
+        $handler = new CommandeRepository($conn);
+        $handler->readAll();
+    }
+
+    if (!isset($_SESSION["users"])) {
+        $handler = new UserRepository($conn);
+        $handler->readAll();
+    }
+
+    if (!isset($_SESSION["roles"])) {
+        $handler = new RoleRepository($conn);
+        $handler->readAll();
     }
 
     if (!empty($_SESSION["flash"])) {
@@ -39,10 +67,12 @@
             </a>
             <div class="d-flex align-items-center gap-3">
                 <ul class="navbar-nav d-none d-md-flex flex-row gap-3">
-                    <li class="nav-item"><a class="nav-link text-muted" href="admin_dashboard.php">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold text-primary" href="admin_deliverer_management.php">Deliverers</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold text-primary" href="admin_dashboard.php">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_admins_management.php.php">Admins</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_deliverer_management.php">Deliverers</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_user_management.php">Users</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_orders_management.php">Orders</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_orders_management.php">Offers</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="#">Settings</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-3">

@@ -77,7 +77,9 @@ class OfferRepository{
             $sql = "SELECT * FROM offers";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();   
-            $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $_SESSION["offers"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $link = explode("/", $_SERVER["HTTP_REFERER"]);
+            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

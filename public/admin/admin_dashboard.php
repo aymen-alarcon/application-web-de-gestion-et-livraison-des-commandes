@@ -1,10 +1,75 @@
-<?php require '../includes/header_admin.php'; ?>
+<?php 
+    require '../includes/header_admin.php'; 
+
+    $OrdersFilteredByAvailability = array_filter($_SESSION["commandes"], fn($value) => $value["is_deleted"] == 0);
+    $UsersFilteredByAvailability = array_filter($_SESSION["users"], fn($value) => $value["is_deleted"] == 0);
+    $admins = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "admin");
+    $deliverers = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "deliverer");
+    $clients = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "client");
+    $pendingOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "Pending");
+    $CompletedOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "Completed");
+    $CanceledOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "Canceled");
+    $InProgressOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "In Progress");
+    $PendingOffers = array_filter($_SESSION["offers"], fn($value) => $value["statu"] == "pending");
+    $CompletedOffers = array_filter($_SESSION["offers"], fn($value) => $value["statu"] == "completed");
+
+    $countpendingOrders = count($pendingOrders);
+    $countCompletedOrders = count($CompletedOrders);
+    $countCanceledOrders = count($CanceledOrders);
+    $countInProgressOrders = count($InProgressOrders);
+    $countOrders = count($OrdersFilteredByAvailability);
+    $countUsers = count($UsersFilteredByAvailability);
+    $countDeliverers = count($deliverers);
+    $countAdmins = count($admins);
+    $countClients = count($clients);
+    $countPendingOffers = count($PendingOffers);
+    $countCompletedOffers = count($CompletedOffers);
+?>
     <div class="container-fluid vh-100">
         <main class="container container-max py-5">
             <p class="text-secondary mb-5">
                 Real-time performance metrics for today's logistics operations.
             </p>
             <div class="row g-4">
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Client</small>
+                            <span class="kpi-icon bg-indigo bg-opacity-25 text-primary">
+                                <i class="bi bi-person"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white"><?= $countClients ?></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Deliverers</small>
+                            <span class="kpi-icon bg-indigo bg-opacity-25 text-primary">
+                                <i class="bi bi-person"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white"><?= $countDeliverers ?></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-4">
+                    <div class="card p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <small class="text-uppercase text-secondary">Admins</small>
+                            <span class="kpi-icon bg-indigo bg-opacity-25 text-primary">
+                                <i class="bi bi-person"></i>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <h2 class="fw-extrabold text-white"><?= $countAdmins ?></h2>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-6 col-xl-4">
                     <div class="card p-4 position-relative">
                         <div class="d-flex justify-content-between mb-3">
@@ -13,7 +78,7 @@
                                 <i class="bi bi-archive"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">15,234</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countOrders ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
@@ -25,7 +90,7 @@
                             </span>
                         </div>
                         <div class="d-flex align-items-baseline gap-2">
-                            <h2 class="fw-extrabold text-white">42</h2>
+                            <h2 class="fw-extrabold text-white"><?= $countpendingOrders ?></h2>
                             <span class="text-warning small fw-medium">Requires Action</span>
                         </div>
                     </div>
@@ -38,7 +103,7 @@
                                 <i class="bi bi-check-circle"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">14,800</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countCompletedOrders ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
@@ -49,7 +114,7 @@
                                 <i class="bi bi-x-lg"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">392</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countCanceledOrders ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
@@ -60,22 +125,18 @@
                                 <i class="bi bi-send"></i>
                             </span>
                         </div>
-                        <h2 class="fw-extrabold text-white">1,250</h2>
+                        <h2 class="fw-extrabold text-white"><?= $countPendingOffers ?></h2>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-4">
                     <div class="card p-4">
                         <div class="d-flex justify-content-between mb-3">
-                            <small class="text-uppercase text-secondary">Active Deliverers</small>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="bg-success rounded-circle" style="width:8px;height:8px;"></span>
-                                <small class="text-success fw-semibold">LIVE</small>
-                            </div>
+                            <small class="text-uppercase text-secondary">Completed Offers</small>
+                            <span class="kpi-icon bg-success bg-opacity-25 text-success">
+                                <i class="bi bi-check-circle"></i>
+                            </span>
                         </div>
-                        <div class="d-flex align-items-baseline gap-2">
-                            <h2 class="fw-extrabold text-white">85</h2>
-                            <span class="text-secondary small">/ 120 Total</span>
-                        </div>
+                        <h2 class="fw-extrabold text-white"><?= $countCompletedOffers ?></h2>
                     </div>
                 </div>
             </div>
@@ -106,7 +167,7 @@
                             <p class="text-secondary small">
                                 Access the full database of orders. Filter by status, date, or ID.
                             </p>
-                            <span class="text-primary text-danger fw-medium">View All Orders →</span>
+                            <a href="admin_orders_management.php" class="text-primary text-danger fw-medium">View All Orders →</a>
                         </div>
                     </a>
                 </div>
@@ -116,11 +177,11 @@
                             <div class="kpi-icon bg-success bg-opacity-25 text-success mb-3">
                                 <i class="bi bi-scooter"></i>
                             </div>
-                            <h5 class="fw-bold text-white">Deliverer Management</h5>
+                            <h5 class="fw-bold text-white">Offers Management</h5>
                             <p class="text-secondary small">
-                                Track deliverer ratings, delivery times, and active shifts.
+                                Track Offers ratings, delivery times, and active shifts.
                             </p>
-                            <span class="text-success fw-medium">Analyze Fleet →</span>
+                            <a href="admin_offers_management.php" class="text-success fw-medium">Analyze Fleet →</a>
                         </div>
                     </a>
                 </div>

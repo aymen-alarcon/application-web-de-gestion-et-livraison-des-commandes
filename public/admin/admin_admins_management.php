@@ -2,17 +2,17 @@
 <div class="container py-5">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
         <div>
-            <h1 class="h3 fw-bold">Deliverer Management</h1>
-            <p class="text-muted">Manage access, roles, and statuses for all platform Deliverers.</p>
+            <h1 class="h3 fw-bold">Admin Management</h1>
+            <p class="text-muted">Manage access, roles, and statuses for all platform Admins.</p>
         </div>
         <button class="btn btn-primary btn-primary-custom d-flex align-items-center gap-2">
-            <i class="bi bi-plus-lg"></i> Add New Deliverer
+            <i class="bi bi-plus-lg"></i> Add New Admin
         </button>
     </div>
     <div class="card card-light mb-4 p-3 d-flex flex-column flex-md-row gap-2 align-items-md-center">
         <div class="input-group" style="max-width:300px;">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control bg-dark" placeholder="Search Deliverer">
+            <input type="text" class="form-control bg-dark" placeholder="Search Admin">
         </div>
         <div class="d-flex justify-content-between gap-2 w-100">
             <select class="form-select  w-100">
