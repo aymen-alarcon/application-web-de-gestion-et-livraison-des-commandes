@@ -17,6 +17,12 @@
         function updateCommandeItem(){
             $repo = new CommandeItemRepository($this->conn);
             foreach ($_POST["product"] as $index => $value) {
+                if (!isset($_POST["price"][$index]) || !isset($_POST["quantity"][$index]) || !isset($_POST["description"][$index])) {
+                    $_SESSION["flash"] = "one of the inputs is empty";
+                    $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                    header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                    exit;
+                }
                 $handler = new CommandeItem();
                 $handler->setId($_POST["id"][$index]);
                 $handler->setName($value);

@@ -18,7 +18,13 @@
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
                 header("Location: ../../public/index.php");
             }
-
+            if (!isset($_POST["email"]) || !isset($_POST["password"])) {
+                $_SESSION["flash"] = "one of the inputs is empty";
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+            
             $handler = new User();
             $handler->setEmail($_POST["email"]);
             $handler->setPassword($_POST["password"]);

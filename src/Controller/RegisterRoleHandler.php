@@ -15,9 +15,17 @@
         }
 
         function RegisterRole(){
+            if (!isset($_GET["id"]) || !isset($_GET["name"])) {
+                $_SESSION["flash"] = "one of the inputs is empty";
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+
             $handler = new Role();
             $handler->setUser_id($_GET["id"]);
             $handler->setName($_GET["name"]);
+            
             $repo = new RoleRepository($this->conn);
             $repo->registerRole($handler);
         }

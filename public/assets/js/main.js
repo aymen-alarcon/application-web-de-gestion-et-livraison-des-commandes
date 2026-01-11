@@ -254,7 +254,8 @@ if (window.location.href.includes("admin_offers_management.php")) {
     });
 }
 
-if (window.location.href.includes("admin_admins_management.php" || "admin_client_management.php" || "admin_deliverer_management.php")) {
+if (window.location.href.includes("admin_admins_management.php") || window.location.href.includes("admin_client_management.php") || window.location.href.includes("admin_deliverer_management.php"))
+{    
     document.querySelectorAll('.edit-user-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.getElementById('user_id').value = this.dataset.id;
@@ -262,6 +263,8 @@ if (window.location.href.includes("admin_admins_management.php" || "admin_client
             document.getElementById('first_name').value = this.dataset.firstName;
             document.getElementById('last_name').value = this.dataset.lastName;
             document.getElementById('email').value = this.dataset.email;
+            document.getElementById('address').value = this.dataset.address;
+            document.getElementById('phone').value = this.dataset.phone;
         });
     });
 }

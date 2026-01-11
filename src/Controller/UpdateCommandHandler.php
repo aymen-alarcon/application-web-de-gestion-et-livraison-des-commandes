@@ -23,6 +23,13 @@
         }
 
         function updateCommande(){
+            if (!isset($_POST["titre"]) || !isset($_POST["address"]) || !isset($_POST["phone"]) || !isset($_POST["statu"])) {
+                $_SESSION["flash"] = "one of the inputs is empty";
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+        
             $handler = new Commande();
 
             if ($_SERVER["REQUEST_METHOD"] === "POST") {

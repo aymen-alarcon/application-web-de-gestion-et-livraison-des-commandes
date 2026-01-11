@@ -15,6 +15,14 @@
         }
 
         function insertCommande(){
+
+            if (!isset($_POST["titre"]) || !isset($_POST['address']) || !isset($_POST['phone']) || !isset($_SESSION["id"])) {
+                $_SESSION["flash"] = "one of the inputs is empty";
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
                 header("Location: ../../public/client/client_dashboard.php");
             }

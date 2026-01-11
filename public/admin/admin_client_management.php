@@ -43,9 +43,11 @@
             <tr>
               <th><input type="checkbox"></th>
               <th>ID</th>
+              <th>Username</th>
               <th>Name</th>
               <th>email</th>
               <th>Address</th>
+              <th>Phone</th>
               <th>Status</th>
               <th class="text-end">Actions</th>
             </tr>
@@ -61,9 +63,11 @@
                 <tr>
                     <td><input type="checkbox"></td>
                     <td>CLT #<?= htmlspecialchars($user['id']) ?></td>
+                    <td><?= htmlspecialchars($user['username']) ?></td>
                     <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
                     <td><?= htmlspecialchars($user['email']) ?></td>
                     <td><?= htmlspecialchars($user['address']) ?></td>
+                    <td><?= htmlspecialchars($user['phone']) ?></td>
                     <td>
                         <span class="d-flex align-items-center gap-1">
                             <span class="rounded-circle bg-success" style="width:8px;height:8px;"></span>
@@ -73,10 +77,12 @@
                     <td class="text-end">
                         <button class="btn btn-sm btn-outline-secondary edit-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal"
                             data-id="<?= $user['id'] ?>"
+                            data-username="<?= htmlspecialchars($user['username']) ?>"
                             data-first-name="<?= htmlspecialchars($user['first_name']) ?>"
                             data-last-name="<?= htmlspecialchars($user['last_name']) ?>"
                             data-email="<?= htmlspecialchars($user['email']) ?>"
                             data-address="<?= htmlspecialchars($user['address']) ?>"
+                            data-phone="<?= htmlspecialchars($user['phone']) ?>"
                         >
                           <i class="bi bi-pencil"></i>
                         </button>
