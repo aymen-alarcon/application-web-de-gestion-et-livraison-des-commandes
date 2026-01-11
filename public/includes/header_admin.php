@@ -96,6 +96,7 @@
             <div class="d-flex align-items-center gap-3">
                 <ul class="navbar-nav d-none d-md-flex flex-row gap-3">
                     <li class="nav-item"><a class="nav-link fw-bold text-primary" href="admin_dashboard.php">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted" href="admin_users_roles_management.php">Users</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_admins_management.php">Admins</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_deliverer_management.php">Deliverers</a></li>
                     <li class="nav-item"><a class="nav-link text-muted" href="admin_client_management.php">Clients</a></li>

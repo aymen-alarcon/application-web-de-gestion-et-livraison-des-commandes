@@ -39,7 +39,7 @@ class OfferRepository{
 
     function update($offer){
         try {
-            $sql = "UPDATE offers set statu = :statu WHERE id = :id";
+            $sql = "UPDATE offers set statu = COALESCE(:statu, statu) WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $offer->getId());
             $stmt->bindValue(":statu", $offer->getStatu());

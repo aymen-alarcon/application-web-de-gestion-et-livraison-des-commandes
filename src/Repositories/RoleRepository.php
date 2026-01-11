@@ -65,18 +65,6 @@ class RoleRepository{
         }
     }
 
-    function delete($role){
-        try {   
-            $sql = "DELETE FROM users WHERE id = :id";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":id", $role->getId());
-            $stmt->execute();    
-            $this->readAll();  
-        } catch (PDOException) {
-            echo $stmt->errorCode();
-        } 
-   }
-
     function readAll(){
         try {
             $sql = "SELECT * FROM roles";
@@ -85,6 +73,18 @@ class RoleRepository{
             $_SESSION["roles"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $link = explode("/", $_SERVER["HTTP_REFERER"]);
             header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
+    }
+
+    function update($offer){
+        try {
+            $sql = "UPDATE roles set role_name = COALESCE(:role_name, role_name) WHERE user_id = :user_id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":user_id", $offer->getUser_id());
+            $stmt->bindValue(":role_name", $offer->getName());
+            $stmt->execute();    
         } catch (PDOException) {
             echo $stmt->errorCode();
         }
