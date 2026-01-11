@@ -59,7 +59,6 @@ class CommandeItemRepository{
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $commandeItem->getId());
             $stmt->execute(); 
-            header("Location: ../../public/client/client_order_dashboard.php");
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

@@ -71,6 +71,7 @@ class RoleRepository{
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $role->getId());
             $stmt->execute();    
+            $this->readAll();  
         } catch (PDOException) {
             echo $stmt->errorCode();
         } 

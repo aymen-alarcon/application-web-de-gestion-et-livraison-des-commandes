@@ -1,6 +1,6 @@
 <?php
     $entityClass = $_GET["entityClass"];
-    $repositoryClass = $_GET["repositoryClass"];
+    $repositoryClass = $_GET["entityClass"] . "Repository";
 
     require_once "../Entity/". $entityClass .".php";
     require_once "../Repositories/". $repositoryClass .".php";
@@ -20,12 +20,14 @@
 
         function deleteEntityById(string $entityClass, string $repositoryClass) {
             if ($_SERVER["REQUEST_METHOD"] !== "GET") {
-                header("Location: ../../public/client/client_order_dashboard.php");
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
                 exit;
             }
 
             if (!isset($_GET['id'])) {
-                header("Location: ../../public/client/client_order_dashboard.php");
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
                 exit;
             }
 
@@ -37,7 +39,8 @@
             $repo = new $repositoryClass($this->conn);
             $repo->delete($entity);
 
-            header("Location: ../../public/client/client_order_dashboard.php");
+            $link = explode("/", $_SERVER["HTTP_REFERER"]);
+            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
             exit;
         }
 

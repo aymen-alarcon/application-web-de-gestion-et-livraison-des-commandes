@@ -94,4 +94,16 @@ class UserRepository{
             echo $stmt->errorCode();
         }
     }
+
+    function delete($user){
+        try {
+            $sql = "DELETE FROM users WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":id", $user->getId());
+            $stmt->execute();  
+            $this->readAll();  
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
+    }
 }

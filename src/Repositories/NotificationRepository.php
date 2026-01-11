@@ -38,7 +38,8 @@ class NotificationRepository{
             $sql = "DELETE FROM notifications WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $notification->getId());
-            $stmt->execute();    
+            $stmt->execute();  
+            $this->readAll();  
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

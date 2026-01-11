@@ -11,18 +11,14 @@
     </div>
     <div class="card-dark p-4 mb-4">
         <div class="row g-3 mb-3">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Search Orders</label>
                 <div class="input-group">
                     <span class="input-group-text bg-dark border-secondary text-secondary">
                         <i class="bi bi-search"></i>
                     </span>
-                    <input class="form-control bg-dark" placeholder="Order ID, Client, Deliverer">
+                    <input class="form-control border-start border-1 border-light-subtle bg-dark" placeholder="Order ID, Client, Deliverer">
                 </div>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">Creation Date</label>
-                <input class="form-control bg-dark" placeholder="Filter by date range">
             </div>
         </div>
         <div class="d-flex flex-wrap gap-2 align-items-center">
@@ -45,7 +41,7 @@
                     <th>Client</th>
                     <th>Deliverer</th>
                     <th>Status</th>
-                    <th>Created</th>
+                    <th>Vehicle</th>
                     <th>Total</th>
                     <th class="text-end">Actions</th>
                 </tr>
@@ -67,14 +63,14 @@
                             <td>#OFF-<?= $offer['id'] ?></td>
                             <td>#ORD-<?= $offer['commande_id'] ?></td>
                             <td><?= $deliverer ? $deliverer['first_name'].' '.$deliverer['last_name'] : 'Unknown' ?></td>
+                            <td>
+                                <span class="badge badge-pending text-dark"><?= ucfirst($offer['statu']) ?></span>
+                            </td>
                             <td><?= ucfirst($offer['vehicule']) ?></td>
                             <td><?= $offer['prix'] ?> MAD</td>
-                            <td>
-                                <span class="badge badge-pending"><?= ucfirst($offer['statu']) ?></span>
-                            </td>
                             <td class="text-end">
                                 <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                <a href="../../src/Controller/DeleteHandler.php?entityClass=Offer&id=<?php if(isset($offer["id"])): echo $offer["id"] ; endif; ?>"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -93,6 +89,4 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php require '../includes/footer.php'; ?>

@@ -37,6 +37,7 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox"></th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Status</th>
@@ -53,6 +54,7 @@
                         ?>
                         <tr>
                             <td><input type="checkbox"></td>
+                            <td>ADM #<?= htmlspecialchars($user['id']) ?></td>
                             <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
                             <td><?= htmlspecialchars($user['email']) ?></td>
                             <td>
@@ -63,7 +65,7 @@
                             </td>
                             <td class="text-end">
                                 <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                <a href="../../src/Controller/DeleteHandler.php?entityClass=User&id=<?php if(isset($user["id"])): echo $user["id"] ; endif; ?>"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -80,6 +82,4 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php require '../includes/footer.php'; ?>

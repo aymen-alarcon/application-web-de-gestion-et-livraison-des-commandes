@@ -55,6 +55,7 @@ class OfferRepository{
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $offer->getId());
             $stmt->execute();    
+            $this->readAll();  
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

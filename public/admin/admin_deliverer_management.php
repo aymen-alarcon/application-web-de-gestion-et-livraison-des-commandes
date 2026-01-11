@@ -42,6 +42,7 @@
           <thead class="table-light">
             <tr>
               <th><input type="checkbox"></th>
+              <th>ID</th>
               <th>Name</th>
               <th>email</th>
               <th>Status</th>
@@ -51,13 +52,14 @@
           <tbody>
             <?php foreach ($_SESSION['users'] as $user): ?>
                 <?php
-                    if ($user['is_deleted'] === '1') continue;
+                  if ($user['is_deleted'] === '1') continue;
 
-                    $role = findRoleByUserId($_SESSION['roles'], $user['id']);
-                    if ($role !== 'deliverer') continue;
+                  $role = findRoleByUserId($_SESSION['roles'], $user['id']);
+                  if ($role !== 'deliverer') continue;
                 ?>
                 <tr>
                     <td><input type="checkbox"></td>
+                    <td>DLV #<?= htmlspecialchars($user['id']) ?></td>
                     <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
                     <td><?= htmlspecialchars($user['email']) ?></td>
                     <td>
@@ -68,7 +70,7 @@
                     </td>
                     <td class="text-end">
                         <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
-                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                        <a href="../../src/Controller/DeleteHandler.php?entityClass=User&id=<?php if(isset($user["id"])): echo $user["id"] ; endif; ?>"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             <?php endforeach; ?>

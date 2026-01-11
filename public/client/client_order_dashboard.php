@@ -127,7 +127,7 @@
                                 </span>
                             </a>
                         <?php endif; ?>
-                        <a href="../../src/Controller/DeleteHandler.php?entityClass=Commande&repositoryClass=CommandeRepository&id=<?= $commande["id"] ?>" class="text-decoration-none">
+                        <a href="../../src/Controller/DeleteHandler.php?entityClass=Commande&id=<?= $commande["id"] ?>" class="text-decoration-none">
                             <span class="kpi-icon bg-danger bg-opacity-25 text-danger">
                                 <i class="bi bi-trash3"></i>
                             </span>
