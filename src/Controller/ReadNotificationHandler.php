@@ -16,10 +16,13 @@
         function readNotification(){
             session_start();
             $handler = new Notification();
+            
             $handler->setReceiverId($_SESSION["id"]);
             $repo = new NotificationRepository($this->conn);
             $repo->read($handler);
-            header($_GET["route"]);
+
+            $link = explode("/", $_SERVER["HTTP_REFERER"]);
+            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
             exit;
         }
     }

@@ -47,7 +47,7 @@
             </a>
         </nav>
         <div class="d-flex align-items-center gap-3">
-            <a href="../../src/Controller/ReadNotificationHandler.php?route=<?= $_SERVER["PHP_SELF"] ?>" class="btn btn-link text-secondary p-0"><i class="bi bi-bell position-relative"><span class="text-primary fs-9" style="position: absolute; bottom: 6px; right: 0px;"><?= $countNotifications ?></span></i></a>
+            <a href="client_notification.php" class="btn btn-link text-secondary p-0"><i class="bi bi-bell position-relative"><span class="text-primary fs-9" style="position: absolute; bottom: 6px; right: 0px;"><?= $countNotifications ?></span></i></a>
             <a href="../logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
         </div>
     </header>
