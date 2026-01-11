@@ -71,12 +71,15 @@ class UserRepository{
             $stmt->bindValue(":phone", $user->getPhone());
             $stmt->bindValue(":address", $user->getAddress());
             $stmt->bindValue(":id", $user->getId());
-            setcookie("username", $user->getUsername(), time() + 9999, "/");
-            setcookie("first_name", $user->getFirstName(), time() + 9999, "/");
-            setcookie("last_name", $user->getLastName(), time() + 9999, "/");
-            setcookie("phone", $user->getPhone(), time() + 9999, "/");
-            setcookie("address", $user->getAddress(), time() + 9999, "/");
+            if ($user->getId() === $_SESSION["id"]) {
+                setcookie("username", $user->getUsername(), time() + 9999, "/");
+                setcookie("first_name", $user->getFirstName(), time() + 9999, "/");
+                setcookie("last_name", $user->getLastName(), time() + 9999, "/");
+                setcookie("phone", $user->getPhone(), time() + 9999, "/");
+                setcookie("address", $user->getAddress(), time() + 9999, "/");
+            }
             $stmt->execute();
+            $this->readAll();
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

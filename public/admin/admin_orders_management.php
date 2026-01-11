@@ -43,10 +43,10 @@
                 <tr>
                     <th>Order ID</th>
                     <th>Client</th>
-                    <th>Deliverer</th>
-                    <th>Statu</th>
-                    <th>Price</th>
-                    <th>Vehicle</th>
+                    <th>title</th>
+                    <th>address</th>
+                    <th>phone</th>
+                    <th>Status</th>
                     <th class="text-end">Actions</th>
                 </tr>
                 </thead>
@@ -56,16 +56,6 @@
                             <?php
                                 if ($order['is_deleted'] === '1') continue;
                                 $client = findUserById($_SESSION['users'], $order['user_id']);
-
-                                $offer = findOfferByCommandeId($_SESSION['offers'] ?? [], $order['id']);
-
-                                $deliverer = null;
-                                $vehicle = '—';
-
-                                if ($offer) {
-                                    $deliverer = findUserById($_SESSION['users'], $offer['sender_id']);
-                                    $vehicle = ucfirst($offer['vehicule']);
-                                }
                             ?>
                             <tr>
                                 <td>#ORD-<?= $order['id'] ?></td>
@@ -74,24 +64,37 @@
                                     <?= $client ? htmlspecialchars($client['first_name'].' '.$client['last_name']) : '<span class="text-danger">Unknown</span>' ?>
                                 </td>
 
-                                <td class="<?= $deliverer ? '' : 'text-secondary fst-italic' ?>">
-                                    <?= $deliverer ? htmlspecialchars($deliverer['first_name'].' '.$deliverer['last_name']) : 'Unassigned' ?>
+                                <td>
+                                    <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['titre'])) ?>">
+                                        <?= htmlspecialchars($order['titre']) ?>
+                                    </span>
                                 </td>
-
-                                <td class="<?= $offer ? '' : 'text-secondary fst-italic' ?>">
-                                    <?= $offer ? htmlspecialchars($offer['prix']) : '-' ?>
+                                <td>
+                                    <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['address'])) ?>">
+                                        <?= htmlspecialchars($order['address']) ?>
+                                    </span>
                                 </td>
-
+                                <td>
+                                    <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['phone'])) ?>">
+                                        <?= htmlspecialchars($order['phone']) ?>
+                                    </span>
+                                </td>
                                 <td>
                                     <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['statu'])) ?>">
                                         <?= htmlspecialchars($order['statu']) ?>
                                     </span>
                                 </td>
-
-                                <td><?= $vehicle ?></td>
-
+                                
                                 <td class="text-end">
-                                    <button class="btn btn-link text-info"><i class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-link text-info edit-commande-btn" data-bs-toggle="modal" data-bs-target="#updateCommandeModal"
+                                        data-id="<?= htmlspecialchars($order['id']) ?>"
+                                        data-status="<?= htmlspecialchars($order['statu']) ?>"
+                                        data-titles="<?= htmlspecialchars($order['titre']) ?>"
+                                        data-addresses="<?= htmlspecialchars($order['address']) ?>"
+                                        data-phones="<?= htmlspecialchars($order['phone']) ?>"
+                                    >
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
                                     <a href="../../src/Controller/DeleteHandler.php?entityClass=Commande&id=<?php if(isset($order["id"])): echo $order["id"] ; endif; ?>"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>

@@ -30,10 +30,12 @@
                 $handler->setTitre($_POST["titre"]);
                 $handler->setAddress($_POST["address"]);
                 $handler->setPhone($_POST["phone"]);
+                $handler->setStatu($_POST["statu"]);
 
                 $repo = new CommandeRepository($this->conn);
                 $repo->update($handler);
-                header("Location: ../../public/client/client_order_dashboard.php");
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
                 exit;
             }
             if ($_SERVER["REQUEST_METHOD"] === "GET") {

@@ -28,7 +28,8 @@
             $handler->setId($_POST["id"]);
             $repo = new UserRepository($this->conn);
             $repo->Update($handler);
-            header("Location: ../../public/client/client_profile.php");
+            $link = explode("/", $_SERVER["HTTP_REFERER"]);
+            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
             exit;
         }
     }

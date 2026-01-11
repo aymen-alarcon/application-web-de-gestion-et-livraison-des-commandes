@@ -16,12 +16,6 @@
         </div>
         <div class="d-flex justify-content-between gap-2 w-100">
             <select class="form-select  w-100">
-                <option>All Roles</option>
-                <option>Admin</option>
-                <option>Deliverer</option>
-                <option>Client</option>
-            </select>
-            <select class="form-select  w-100">
                 <option>Status</option>
                 <option>Active</option>
                 <option>Inactive</option>
@@ -38,8 +32,10 @@
                     <tr>
                         <th><input type="checkbox"></th>
                         <th>ID</th>
+                        <th>Username</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Address</th>
                         <th>Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
@@ -55,8 +51,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td>ADM #<?= htmlspecialchars($user['id']) ?></td>
+                            <td><?= htmlspecialchars($user['username']) ?></td>
                             <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
                             <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['address']) ?></td>
                             <td>
                                 <span class="d-flex align-items-center gap-1">
                                     <span class="rounded-circle bg-success" style="width:8px;height:8px;"></span>
@@ -64,7 +62,16 @@
                                 </span>
                             </td>
                             <td class="text-end">
-                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-secondary edit-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal"
+                                    data-id="<?= $user['id'] ?>"
+                                    data-username="<?= htmlspecialchars($user['username']) ?>"
+                                    data-first-name="<?= htmlspecialchars($user['first_name']) ?>"
+                                    data-last-name="<?= htmlspecialchars($user['last_name']) ?>"
+                                    data-email="<?= htmlspecialchars($user['email']) ?>"
+                                    data-address="<?= htmlspecialchars($user['address']) ?>"
+                                >
+                                    <i class="bi bi-pencil"></i>
+                                </button>
                                 <a href="../../src/Controller/DeleteHandler.php?entityClass=User&id=<?php if(isset($user["id"])): echo $user["id"] ; endif; ?>"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>

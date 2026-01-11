@@ -42,7 +42,7 @@
                     <th>Deliverer</th>
                     <th>Status</th>
                     <th>Vehicle</th>
-                    <th>Total</th>
+                    <th>Price</th>
                     <th class="text-end">Actions</th>
                 </tr>
                 </thead>
@@ -69,7 +69,16 @@
                             <td><?= ucfirst($offer['vehicule']) ?></td>
                             <td><?= $offer['prix'] ?> MAD</td>
                             <td class="text-end">
-                                <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></button>
+                                <button class="btn btn-sm btn-outline-secondary edit-btn" data-bs-toggle="modal" data-bs-target="#updateOrderModal"
+                                    data-offer-id="<?= $offer['id'] ?>"
+                                    data-commande-id="#ORD-<?= $offer['commande_id'] ?>"
+                                    data-deliverer="<?= $deliverer ? $deliverer['first_name'].' '.$deliverer['last_name'] : 'Unknown' ?>"
+                                    data-status="<?= $offer['statu'] ?>"
+                                    data-vehicle="<?= $offer['vehicule'] ?>"
+                                    data-price="<?= $offer['prix'] ?>"
+                                >
+                                    <i class="bi bi-pencil"></i>
+                                </button>
                                 <a href="../../src/Controller/DeleteHandler.php?entityClass=Offer&id=<?php if(isset($offer["id"])): echo $offer["id"] ; endif; ?>"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>

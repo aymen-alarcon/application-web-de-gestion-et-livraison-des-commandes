@@ -228,3 +228,40 @@ if (window.location.href.includes("deliverer_order_interaction.php")) {
         });
     });
 }
+
+if (window.location.href.includes("admin_orders_management.php")) {
+    document.querySelectorAll('.edit-commande-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            document.getElementById('commande_ref').value = this.dataset.id;
+            document.getElementById('address').value = this.dataset.addresses;
+            document.getElementById('commande_status').value = this.dataset.status;
+            document.getElementById('title').value = this.dataset.titles;
+            document.getElementById('phone').value = this.dataset.phones;
+        });
+    });
+}
+
+if (window.location.href.includes("admin_offers_management.php")) {
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            document.getElementById('offer_id').value = this.dataset.offerId;
+            document.getElementById('commande_id').value = this.dataset.commandeId;
+            document.getElementById('deliverer').value = this.dataset.deliverer;
+            document.getElementById('status').value = this.dataset.status;
+            document.getElementById('vehicle').value = this.dataset.vehicle;
+            document.getElementById('price').value = this.dataset.price;
+        });
+    });
+}
+
+if (window.location.href.includes("admin_admins_management.php" || "admin_client_management.php" || "admin_deliverer_management.php")) {
+    document.querySelectorAll('.edit-user-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.getElementById('user_id').value = this.dataset.id;
+            document.getElementById('username').value = this.dataset.username;
+            document.getElementById('first_name').value = this.dataset.firstName;
+            document.getElementById('last_name').value = this.dataset.lastName;
+            document.getElementById('email').value = this.dataset.email;
+        });
+    });
+}

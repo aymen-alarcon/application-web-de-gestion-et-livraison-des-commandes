@@ -14,22 +14,22 @@
     $db = new DatabaseConnection();
     $conn = $db->connect();
     
-    if (!isset($_SESSION["offers"])) {
+    if (!isset($_SESSION["offers"]) || empty($_SESSION["offers"])) {
         $handler = new OfferRepository($conn);
         $handler->readAll();
     }
 
-    if (!isset($_SESSION["commandes"])) {
+    if (!isset($_SESSION["commandes"]) || empty($_SESSION["commandes"])) {
         $handler = new CommandeRepository($conn);
         $handler->readAll();
     }
 
-    if (!isset($_SESSION["users"])) {
+    if (!isset($_SESSION["users"]) || empty($_SESSION["users"])) {
         $handler = new UserRepository($conn);
         $handler->readAll();
     }
 
-    if (!isset($_SESSION["roles"])) {
+    if (!isset($_SESSION["roles"]) || empty($_SESSION["roles"])) {
         $handler = new RoleRepository($conn);
         $handler->readAll();
     }
@@ -110,3 +110,145 @@
             </div>
         </div>
     </header>
+    <div class="modal fade" id="updateUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Update User</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="../../src/Controller/UpdateUserHandler.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="user_id" id="user_id">
+
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label class="form-label">UserName</label>
+                                <input type="text" name="username" id="username" class="form-control bg-dark text-light" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" name="first_name" id="first_name" class="form-control bg-dark text-light" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" name="last_name" id="last_name" class="form-control bg-dark text-light" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Address</label>
+                                <input type="text" name="address" id="address" class="form-control bg-dark text-light" required>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control bg-dark text-light" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateOrderModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Update Offer</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="../../src/Controller/UpdateOfferHandler.php" id="updateOrderForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="offer_id" name="offer_id">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Order ID</label>
+                                <input type="text" id="commande_id" class="form-control bg-dark text-light" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Status</label>
+                                <select id="status" name="status" class="form-select bg-dark text-light">
+                                    <option value="pending">Pending</option>
+                                    <option value="in progress">In Progress</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Vehicle</label>
+                                <select id="vehicle" name="vehicle" class="form-select bg-dark text-light">
+                                    <option value="bike">Bike</option>
+                                    <option value="car">Car</option>
+                                    <option value="truck">Truck</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Price (MAD)</label>
+                                <input type="number" id="price" name="price" class="form-control bg-dark text-light">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateCommandeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Update Order</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="../../src/Controller/UpdateCommandHandler.php" method="POST">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Order ID</label>
+                            <input type="text" id="commande_ref" name="id" class="form-control bg-dark text-light" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="title" name="titre" class="form-control bg-dark text-light">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input type="text" id="address" name="address" class="form-control bg-dark text-light">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" id="phone" name="phone" class="form-control bg-dark text-light">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select name="statu" id="commande_status" class="form-select bg-dark text-light" required>
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Canceled">Canceled</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
