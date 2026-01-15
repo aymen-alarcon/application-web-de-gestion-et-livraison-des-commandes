@@ -7,6 +7,8 @@ if (!isset($_SESSION["notifications"]) || empty($_SESSION["notifications"])) {
 }
 
 $notifications = $_SESSION["notifications"];
+
+$route->get
 ?>
 
 <style>
