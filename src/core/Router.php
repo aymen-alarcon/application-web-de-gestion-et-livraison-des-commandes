@@ -1,5 +1,4 @@
 <?php
-
 namespace App\core;
 
 class Router{
@@ -20,14 +19,14 @@ class Router{
 
     function resolve(){
         $method = $_SERVER["REQUEST_METHOD"];
-        $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+        $path = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: '/';
         $path = explode("?", $path)[0];
 
         $callback = $this->routes[$method][$path] ?? [];
 
         if ($callback == NULL) {
             http_response_code(404);
-            die ("Page Not Found");
+            die ("404 Page Not Found");
         }
 
         foreach ($this->middleware[$path] ?? [] as $middleware) {

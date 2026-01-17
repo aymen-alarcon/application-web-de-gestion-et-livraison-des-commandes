@@ -2,7 +2,7 @@
     "name": "aymen/application_web_de_gestion_et_livraison_des_commandes",
     "autoload": {
         "psr-4": {
-            "App": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [

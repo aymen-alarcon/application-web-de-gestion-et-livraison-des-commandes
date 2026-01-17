@@ -1,6 +1,5 @@
 <?php
     namespace App\Controller;
-    
     use App\Models\User;
 
     class AuthController {
@@ -11,7 +10,9 @@
             $this->conn = $conn;
         }
 
+        
         function login() {
+            echo "11";
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
                 header("Location: ../../public/index.php");
             }
