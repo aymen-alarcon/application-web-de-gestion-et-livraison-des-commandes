@@ -3,7 +3,7 @@
   $offerId = (int)$_GET["offerId"];
 
   
-  $offer = array_filter($_SESSION["offers"], fn($value) => $value["id"] ==  $offerId && $value["statu"] === "pending");
+  $offer = array_filter($_SESSION["offers"], fn($value) => $value["id"] ==  $offerId && $value["status"] === "pending");
   $indexOfarray = array_key_last($offer);
   
   $commande = array_filter($_SESSION["commandes"], fn($value) => $value["id"] == $_SESSION["offers"][$indexOfarray]["commande_id"]);
@@ -58,7 +58,7 @@
               <small class=" fw-medium">Estimated Time</small>
               <div>
                 <h3 class="fw-bold mb-0">15 min</h3>
-                <small>Arrival by <?= $offer[$indexOfarray]["durée_estimée"] ?></small>
+                <small>Arrival by <?= $offer[$indexOfarray]["estimated_duration"] ?></small>
               </div>
             </div>
           </div>
@@ -74,18 +74,18 @@
           </div>
           <div class="col-md-4">
             <div class="card p-3 stat-card text-white">
-              <?php if($offer[$indexOfarray]["vehicule"] ===  "car"): ?>
+              <?php if($offer[$indexOfarray]["vehicle"] ===  "car"): ?>
                 <i class="bi bi-car-front-fill stat-icon"></i>
-              <?php elseif($offer[$indexOfarray]["vehicule"] === "scooter"): ?>
+              <?php elseif($offer[$indexOfarray]["vehicle"] === "scooter"): ?>
                 <i class="bi bi-scooter"></i>
-              <?php elseif($offer[$indexOfarray]["vehicule"] === "truck"): ?>
+              <?php elseif($offer[$indexOfarray]["vehicle"] === "truck"): ?>
                 <i class="bi bi-truck"></i>
-              <?php elseif($offer[$indexOfarray]["vehicule"] === "bicycle"): ?>
+              <?php elseif($offer[$indexOfarray]["vehicle"] === "bicycle"): ?>
                 <i class="bi bi-bicycle"></i>
               <?php endif; ?>
               <small class="fw-medium">Vehicle</small>
               <div>
-                <h5 class="fw-bold mb-0"><?= $offer[$indexOfarray]["vehicule"] ?></h5>
+                <h5 class="fw-bold mb-0"><?= $offer[$indexOfarray]["vehicle"] ?></h5>
               </div>
             </div>
           </div>
@@ -99,8 +99,8 @@
             <span class="fs-3 fw-black"><?= $totalPrice + $offer[$indexOfarray]["prix"] ?></span>
           </div>
           <div class="d-grid gap-3">
-            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&statu=In Progress&offerId=<?= $offerId ?>" class="btn btn-primary btn-lg fw-bold">Accept Offer</a>
-            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&statu=Pending&offerId=<?= $offerId ?>" class="btn btn-outline-secondary btn-lg">Decline Offer</a>
+            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&status=In Progress&offerId=<?= $offerId ?>" class="btn btn-primary btn-lg fw-bold">Accept Offer</a>
+            <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande[0]["id"] ?>&status=Pending&offerId=<?= $offerId ?>" class="btn btn-outline-secondary btn-lg">Decline Offer</a>
           </div>
         </div>
       </div>

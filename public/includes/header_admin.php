@@ -1,36 +1,32 @@
 <?php 
+    use App\Models\Offer;
+    use App\Models\Commande;
+    use App\Models\User;
+    use App\Models\Role;
+    
     require "../../src/Database/DatabaseConnection.php" ;
-    require '../../src/Repositories/CommandeRepository.php'; 
-    require '../../src/Repositories/OfferRepository.php'; 
-    require '../../src/Repositories/UserRepository.php'; 
-    require '../../src/Repositories/RoleRepository.php'; 
-
-    session_start();
 
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
         header("Location: ../logout.php");
     }
-
-    $db = new DatabaseConnection();
-    $conn = $db->connect();
     
     if (!isset($_SESSION["offers"]) || empty($_SESSION["offers"])) {
-        $handler = new OfferRepository($conn);
+        $handler = new Offer($conn);
         $handler->readAll();
     }
 
     if (!isset($_SESSION["commandes"]) || empty($_SESSION["commandes"])) {
-        $handler = new CommandeRepository($conn);
+        $handler = new Commande($conn);
         $handler->readAll();
     }
 
     if (!isset($_SESSION["users"]) || empty($_SESSION["users"])) {
-        $handler = new UserRepository($conn);
+        $handler = new User($conn);
         $handler->readAll();
     }
 
     if (!isset($_SESSION["roles"]) || empty($_SESSION["roles"])) {
-        $handler = new RoleRepository($conn);
+        $handler = new Role($conn);
         $handler->readAll();
     }
 
@@ -242,7 +238,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Status</label>
-                            <select name="statu" id="commande_status" class="form-select bg-dark text-light" required>
+                            <select name="status" id="commande_status" class="form-select bg-dark text-light" required>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Progress</option>
                                 <option value="Canceled">Canceled</option>

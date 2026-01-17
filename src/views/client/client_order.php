@@ -5,8 +5,8 @@
     $commandeItems = $_SESSION["commande_items"] ?? [];
 
     $offers = $_SESSION["offers"] ?? [];
-    $filterOffers = array_filter($offers, fn($value) => $value["statu"] == "pending");
-    $acceptedOffers = array_filter($offers, fn($value) => $value["statu"] == "accepted");
+    $filterOffers = array_filter($offers, fn($value) => $value["status"] == "pending");
+    $acceptedOffers = array_filter($offers, fn($value) => $value["status"] == "accepted");
     $offersCount = count($filterOffers);
 
     if (!empty($commandeItems)) {        
@@ -33,18 +33,18 @@
             <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
                 <div>
                     <h1 class="fw-black">Order <?php if(!empty($commande["id"])) : echo htmlspecialchars($commande["id"]); endif; ?></h1>
-                    <span class="badge badge-status"><?php if(!empty($commande["statu"])) : echo htmlspecialchars($commande["statu"]); endif; ?></span>
+                    <span class="badge badge-statuss"><?php if(!empty($commande["status"])) : echo htmlspecialchars($commande["status"]); endif; ?></span>
                     <div class="text-white mt-1">
                         Created on <?php if(!empty($commande["created_at"])) : echo htmlspecialchars($commande["created_at"]); endif; ?>
                     </div>
                 </div>
-                <?php if($commande["statu"] === "Pending"): ?>
+                <?php if($commande["status"] === "Pending"): ?>
                     <div class="d-flex gap-2">
                         <a href="client_update_commande.php" class="btn btn-outline-light text-decoration-none btn-sm">Edit</a>
                     </div>
-                <?php elseif($commande["statu"] === "In Progress"): ?>
+                <?php elseif($commande["status"] === "In Progress"): ?>
                     <div class="d-flex gap-2">
-                        <a href="../../src//Controller//UpdateCommandHandler.php?statu=Completed" class="btn btn-outline-light text-decoration-none btn-sm">Declare as Completed</a>
+                        <a href="../../src//Controller//UpdateCommandHandler.php?status=Completed" class="btn btn-outline-light text-decoration-none btn-sm">Declare as Completed</a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -102,32 +102,32 @@
                     <?php if(!empty($_SESSION["commandes"])): ?>
                         <div class="card bg-surface p-4 text-white">
                             <strong class="mb-4 d-block">Order Status Timeline</strong>
-                            <?php if ($commande['statu'] !== "Canceled"): ?>
+                            <?php if ($commande['status'] !== "Canceled"): ?>
                                 <div class="d-flex align-items-center gap-3 mb-4">
                                     <div class="timeline-icon bg-primary text-white active">
                                         <i class="bi bi-cart-fill fs-4"></i>
                                     </div>
                                     <div>
-                                        <strong <?= $commande['statu'] === "Pending" ? 'class="text-primary"' : '' ?>>
+                                        <strong <?= $commande['status'] === "Pending" ? 'class="text-primary"' : '' ?>>
                                             Order Placed
                                         </strong>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center gap-3 mb-4">
                                     <div class="timeline-icon
-                                        <?= $commande['statu'] === "Pending" ? 'border border-primary text-primary' : 'bg-primary text-white active' ?>">
+                                        <?= $commande['status'] === "Pending" ? 'border border-primary text-primary' : 'bg-primary text-white active' ?>">
                                         <i class="bi bi-fire fs-4"></i>
                                     </div>
                                     <div>
-                                        <strong <?= $commande['statu'] === "In Progress" ? 'class="text-primary"' : '' ?>>
+                                        <strong <?= $commande['status'] === "In Progress" ? 'class="text-primary"' : '' ?>>
                                             Prepared
                                         </strong>
                                     </div>
                                 </div>
-                                <?php if ($commande['statu'] === "In Progress" || $commande['statu'] === "Completed"): ?>
+                                <?php if ($commande['status'] === "In Progress" || $commande['status'] === "Completed"): ?>
                                     <div class="d-flex align-items-center gap-3 mb-4">
                                         <div class="timeline-icon
-                                            <?= $commande['statu'] === "In Progress" ? 'border border-primary text-primary' : 'bg-primary text-white active' ?>">
+                                            <?= $commande['status'] === "In Progress" ? 'border border-primary text-primary' : 'bg-primary text-white active' ?>">
                                             <i class="bi bi-truck fs-4"></i>
                                         </div>
                                         <div>
@@ -135,7 +135,7 @@
                                         </div>
                                     </div>
                                 <?php endif; ?>
-                                <?php if ($commande['statu'] === "Completed"): ?>
+                                <?php if ($commande['status'] === "Completed"): ?>
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="timeline-icon bg-success text-white active">
                                             <i class="bi bi-check-circle-fill fs-4"></i>
@@ -145,13 +145,13 @@
                                         </div>
                                     </div>
                                 <?php endif; ?>
-                                <?php if($commande["statu"] === "In Progress"): ?>
+                                <?php if($commande["status"] === "In Progress"): ?>
                                     <div class="d-flex gap-2">
-                                        <a href="../../src/Controller/UpdateCommandHandler.php?statu=Completed&id=<?= $acceptedOffers[0]["commande_id"] ?>&offerId=<?= $acceptedOffers[0]["id"] ?>" class="btn btn-outline-light text-decoration-none btn-sm">Declare as Completed</a>
+                                        <a href="../../src/Controller/UpdateCommandHandler.php?status=Completed&id=<?= $acceptedOffers[0]["commande_id"] ?>&offerId=<?= $acceptedOffers[0]["id"] ?>" class="btn btn-outline-light text-decoration-none btn-sm">Declare as Completed</a>
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <?php if ($commande['statu'] === "Canceled"): ?>
+                            <?php if ($commande['status'] === "Canceled"): ?>
                                 <div class="d-flex align-items-center gap-3 mb-4">
                                     <div class="timeline-icon bg-danger text-white active">
                                         <i class="bi bi-cart-fill fs-4"></i>
@@ -192,7 +192,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php if($commande["statu"] === "Pending"): ?>
+                    <?php if($commande["status"] === "Pending"): ?>
                         <div class="card bg-surface">
                             <div class="card-header d-flex justify-content-between text-white">
                                 <strong>Offers Section</strong>
@@ -203,17 +203,17 @@
                             <?php endif; ?>
                             <?php foreach($filterOffers as $offer): ?>
                                 <a href="client_order_offer.php?offerId=<?= $offer["id"] ?>" class="card-body text-white text-decoration-none">
-                                    <strong>Would be there in <?= $offer["durée_estimée"] ?></strong>
-                                    <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicule"] ?></span><span>$ <?= $offer["prix"] ?></span></div>
+                                    <strong>Would be there in <?= $offer["estimated_duration"] ?></strong>
+                                    <div class="text-white d-flex justify-content-between"><span><?= $offer["vehicle"] ?></span><span>$ <?= $offer["prix"] ?></span></div>
                                 </a>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
-            <?php if($commande["statu"] === "Pending"): ?>
+            <?php if($commande["status"] === "Pending"): ?>
                 <div class="action-bar d-flex justify-content-end m-2">
-                    <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande["id"]?>&statu=Canceled" class="text-decoration-none rounded p-2 action-btn cancel-btn">
+                    <a href="../../src/Controller/UpdateCommandHandler.php?id=<?= $commande["id"]?>&status=Canceled" class="text-decoration-none rounded p-2 action-btn cancel-btn">
                         <i class="bi bi-x-circle pe-2"></i>Cancel Order
                     </a>
                 </div>

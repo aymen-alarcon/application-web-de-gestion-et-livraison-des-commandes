@@ -1,11 +1,7 @@
 <?php
     namespace App\Controller;
-    use App\Database\DatabaseConnection;
-    use App\Models\Offer;
 
-    $db = new DatabaseConnection;
-    $conn = $db->connect();
-    session_start();
+    use App\Models\Offer;
 
     class OfferController{
         protected $conn;
@@ -16,7 +12,7 @@
         }
 
         function create(){
-            if (!isset($_POST["price"]) || !isset($_POST["vehicle"]) || !isset($_POST["duree"]) || !isset($_POST["commande_id"]) || !isset($_SESSION["id"])) {
+            if (!isset($_POST["price"]) || !isset($_POST["vehicle"]) || !isset($_POST["estimated_duration"]) || !isset($_POST["commande_id"]) || !isset($_SESSION["id"])) {
                 $_SESSION["flash"] = "one of the inputs is empty";
                 $link = explode("/", $_SERVER["HTTP_REFERER"]);
                 header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
@@ -25,8 +21,8 @@
 
             $handler = new Offer($this->conn);
             $handler->setPrice($_POST["price"]);
-            $handler->setVehicule($_POST["vehicle"]);
-            $handler->setDuree($_POST["duree"]);
+            $handler->setVehicle($_POST["vehicle"]);
+            $handler->setEstimatedDuration($_POST["estimated_duration"]);
             $handler->setCommande_id($_POST["commande_id"]);
             $handler->setSender_id($_SESSION["id"]);
 

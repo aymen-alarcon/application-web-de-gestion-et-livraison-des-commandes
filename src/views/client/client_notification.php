@@ -81,7 +81,7 @@ $route->get
   <div class="d-flex flex-column gap-3">
     <?php foreach($notifications as $notification): ?>
       <?php
-        $isSeen = $notification['statu'] === 'Seen';
+        $isSeen = $notification['status'] === 'Seen';
         $bgClass = $isSeen ? 'bg-secondary bg-opacity-10 text-secondary' : 'bg-primary bg-opacity-10 text-primary';
         $opacityClass = $isSeen ? 'opacity-75' : '';
         $iconClass = 'bi-bell-fill';

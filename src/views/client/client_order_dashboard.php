@@ -103,18 +103,18 @@
                         <div class="small text-secondary"><?= $timePart ?></div>
                     </td>
                     <td>
-                        <?php if ($commande['statu'] === 'In Progress'): ?>
+                        <?php if ($commande['status'] === 'In Progress'): ?>
                             <span class="badge bg-success">In Progress</span>
-                        <?php elseif ($commande['statu'] === 'Canceled'): ?>
+                        <?php elseif ($commande['status'] === 'Canceled'): ?>
                             <span class="badge bg-danger">Canceled</span>
-                        <?php elseif ($commande['statu'] === 'Completed'): ?>
+                        <?php elseif ($commande['status'] === 'Completed'): ?>
                             <span class="badge bg-primary">Completed</span>
-                        <?php elseif ($commande['statu'] === 'Pending'): ?>
+                        <?php elseif ($commande['status'] === 'Pending'): ?>
                             <span class="badge bg-warning text-dark">Waiting for offers</span>
                         <?php endif; ?>
                     </td>
                     <td class="text-end">
-                        <?php if ($commande['statu'] === 'Pending'): ?>
+                        <?php if ($commande['status'] === 'Pending'): ?>
                             <a href="#" class="text-decoration-none edit-btn"
                                 data-bs-toggle="modal"
                                 data-bs-target="#editOrderModal"

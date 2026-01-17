@@ -172,7 +172,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label text-white">When will it be ready</label>
-                                <input type="date" class="form-control bg-dark text-white border-secondary" name="duree">
+                                <input type="date" class="form-control bg-dark text-white border-secondary" name="estimated_duration">
                             </div>
                             <div class="d-flex flex-column gap-2">
                                 <button class="btn btn-primary d-flex align-items-center justify-content-center gap-2">

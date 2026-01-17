@@ -1,10 +1,7 @@
 <?php
     namespace App\Controller;
-    use App\Database\DatabaseConnection;
-    use App\Models\Role;
 
-    $db = new DatabaseConnection();
-    $conn = $db->connect();
+    use App\Models\Role;
 
     class RoleController{
         protected $conn;

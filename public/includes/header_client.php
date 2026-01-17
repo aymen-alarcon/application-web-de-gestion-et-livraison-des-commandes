@@ -6,7 +6,7 @@
     }
     if (!empty($_SESSION["notifications"])) {
         foreach ($_SESSION["notifications"]  as $notification) {
-           $countNotifications = count(array_filter($_SESSION["notifications"], fn($value) => $value["statu"] === "Not Seen"));
+           $countNotifications = count(array_filter($_SESSION["notifications"], fn($value) => $value["status"] === "Not Seen"));
         }
     }
 

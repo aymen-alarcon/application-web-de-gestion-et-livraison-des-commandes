@@ -64,17 +64,17 @@
                             <td>#ORD-<?= $offer['commande_id'] ?></td>
                             <td><?= $deliverer ? $deliverer['first_name'].' '.$deliverer['last_name'] : 'Unknown' ?></td>
                             <td>
-                                <span class="badge badge-pending text-dark"><?= ucfirst($offer['statu']) ?></span>
+                                <span class="badge badge-pending text-dark"><?= ucfirst($offer['status']) ?></span>
                             </td>
-                            <td><?= ucfirst($offer['vehicule']) ?></td>
+                            <td><?= ucfirst($offer['vehicle']) ?></td>
                             <td><?= $offer['prix'] ?> MAD</td>
                             <td class="text-end">
                                 <button class="btn btn-sm btn-outline-secondary edit-btn" data-bs-toggle="modal" data-bs-target="#updateOrderModal"
                                     data-offer-id="<?= $offer['id'] ?>"
                                     data-commande-id="#ORD-<?= $offer['commande_id'] ?>"
                                     data-deliverer="<?= $deliverer ? $deliverer['first_name'].' '.$deliverer['last_name'] : 'Unknown' ?>"
-                                    data-status="<?= $offer['statu'] ?>"
-                                    data-vehicle="<?= $offer['vehicule'] ?>"
+                                    data-status="<?= $offer['status'] ?>"
+                                    data-vehicle="<?= $offer['vehicle'] ?>"
                                     data-price="<?= $offer['prix'] ?>"
                                 >
                                     <i class="bi bi-pencil"></i>

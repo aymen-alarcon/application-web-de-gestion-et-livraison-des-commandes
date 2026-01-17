@@ -9,18 +9,18 @@ class Commande{
     private ?string $titre;
     private ?string $address;
     private ?string $phone;
-    private ?string $statu;
+    private ?string $status;
     private ?string $created_at;
     private ?bool $is_deleted;
     private User $user;
 
-    function __construct($conn = NULL, $id = NULL, $titre = NULL, $address = NULL, $phone = NULL, $statu = "pending", $created_at = NULL, $is_deleted = 0, $user = NULL)
+    function __construct($conn = NULL, $id = NULL, $titre = NULL, $address = NULL, $phone = NULL, $status = "pending", $created_at = NULL, $is_deleted = 0, $user = NULL)
     {
         $this->conn = $conn;
         $this->id = $id;
         $this->titre = $titre;
         $this->address = $address;
-        $this->statu = $statu;
+        $this->status = $status;
         $this->created_at = $created_at;
         $this->is_deleted = $is_deleted;
         $this->phone = $phone;
@@ -57,14 +57,14 @@ class Commande{
         $this->address = $address;
     }
 
-    public function getStatu()
+    public function getStatus()
     {
-        return $this->statu;
+        return $this->status;
     }
 
-    public function setStatu($statu)
+    public function setStatus($status)
     {
-        $this->statu = $statu;
+        $this->status = $status;
     }
 
     public function getCreated_at()
@@ -108,12 +108,12 @@ class Commande{
     }
     function create(){
         try {
-            $sql = "INSERT INTO commandes (titre, address, phone, statu, is_deleted, created_at, user_id) VALUES (:titre, :address, :phone, :statu, :is_deleted, now(), :user_id)";
+            $sql = "INSERT INTO commandes (titre, address, phone, status, is_deleted, created_at, user_id) VALUES (:titre, :address, :phone, :status, :is_deleted, now(), :user_id)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":titre", $this->getTitre());
             $stmt->bindValue(":address", $this->getAddress());
             $stmt->bindValue(":phone", $this->getPhone());
-            $stmt->bindValue(":statu", $this->getStatu());
+            $stmt->bindValue(":status", $this->getStatus());
             $stmt->bindValue(":is_deleted", $this->getIs_deleted());
             $stmt->bindValue(":user_id", $this->getUser_id());
             $stmt->execute();
@@ -151,18 +151,18 @@ class Commande{
 
     function update(){
         try {
-            $sql = "UPDATE commandes set titre = COALESCE(:titre, titre), address = COALESCE(:address,address), phone = COALESCE(:phone, phone), statu = COALESCE(:statu, statu) WHERE id = :id";
+            $sql = "UPDATE commandes set titre = COALESCE(:titre, titre), address = COALESCE(:address,address), phone = COALESCE(:phone, phone), status = COALESCE(:status, status) WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $this->getId());
             $stmt->bindValue(":titre", $this->gettitre());
             $stmt->bindValue(":address", $this->getAddress());
             $stmt->bindValue(":phone", $this->getPhone());
-            $stmt->bindValue(":statu", $this->getStatu());
+            $stmt->bindValue(":status", $this->getStatus());
             var_dump($this->getId());
             var_dump($this->gettitre());
             var_dump($this->getAddress());
             var_dump($this->getPhone());
-            var_dump($this->getStatu());
+            var_dump($this->getStatus());
             $stmt->execute();    
             $this->read();
         } catch (PDOException) {

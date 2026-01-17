@@ -6,12 +6,12 @@
     $admins = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "admin");
     $deliverers = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "deliverer");
     $clients = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "client");
-    $pendingOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "Pending");
-    $CompletedOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "Completed");
-    $CanceledOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "Canceled");
-    $InProgressOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["statu"] == "In Progress");
-    $PendingOffers = array_filter($_SESSION["offers"], fn($value) => $value["statu"] == "pending");
-    $CompletedOffers = array_filter($_SESSION["offers"], fn($value) => $value["statu"] == "completed");
+    $pendingOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Pending");
+    $CompletedOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Completed");
+    $CanceledOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Canceled");
+    $InProgressOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "In Progress");
+    $PendingOffers = array_filter($_SESSION["offers"], fn($value) => $value["status"] == "pending");
+    $CompletedOffers = array_filter($_SESSION["offers"], fn($value) => $value["status"] == "completed");
 
     $countpendingOrders = count($pendingOrders);
     $countCompletedOrders = count($CompletedOrders);

@@ -7,16 +7,16 @@ class Notification{
         private PDO $conn;
         private ?string $id;
         private ?string $contenu;
-        private ?string $statu;
+        private ?string $status;
         private ?string $sender_id;
         private ?string $receiver_id;
 
-        function __construct($conn = NULL, $id = NULL, $contenu = "A new Offer have been sent", $statu = "Not Seen" ,$sender_id = NULL, $receiver_id = NULL)
+        function __construct($conn = NULL, $id = NULL, $contenu = "A new Offer have been sent", $status = "Not Seen" ,$sender_id = NULL, $receiver_id = NULL)
         {
                 $this->conn = $conn;
                 $this->id = $id;
                 $this->contenu = $contenu;
-                $this->statu = $statu;
+                $this->status = $status;
                 $this->sender_id = $sender_id;
                 $this->receiver_id = $receiver_id;
         }
@@ -41,14 +41,14 @@ class Notification{
                 $this->contenu = $contenu;
         }
 
-        public function getStatu()
+        public function getStatus()
         {
-                return $this->statu;
+                return $this->status;
         }
 
-        public function setStatu($statu)
+        public function setStatus($status)
         {
-                $this->statu = $statu;
+                $this->status = $status;
         }
 
         public function getSender_id()
@@ -70,10 +70,10 @@ class Notification{
         }
     function create(){
         try {
-            $sql = "INSERT INTO notifications (contenu, statu, sender_id, created_at, receiver_id) VALUES (:contenu, :statu, :sender_id, now(), :receiver_id)";
+            $sql = "INSERT INTO notifications (contenu, status, sender_id, created_at, receiver_id) VALUES (:contenu, :status, :sender_id, now(), :receiver_id)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":contenu", $this->getContenu());
-            $stmt->bindValue(":statu", $this->getStatu());
+            $stmt->bindValue(":status", $this->getStatus());
             $stmt->bindValue(":receiver_id", $this->getReceiverId());
             $stmt->bindValue(":sender_id", $_SESSION["id"]);
             $stmt->execute();
@@ -84,7 +84,7 @@ class Notification{
 
     function update(){
         try {
-            $sql = "UPDATE notifications set statu = :statu WHERE id = :id";
+            $sql = "UPDATE notifications set status = :status WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $this->getId());
             $stmt->execute();    

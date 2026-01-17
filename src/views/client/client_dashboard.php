@@ -8,7 +8,7 @@
     $countCanceledOrders = 0;
 
     foreach ($commandes as $commande) {
-        switch ($commande['statu']) {
+        switch ($commande['status']) {
             case 'Pending':
                 $countPendingOrders++;
                 break;

@@ -16,7 +16,7 @@ CREATE TABLE commande (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titre VARCHAR(70) NOT NULL,
     address VARCHAR(70) NOT NULL,
-    statu VARCHAR(70) NOT NULL,
+    status VARCHAR(70) NOT NULL,
     created_at TIMESTAMP,
     is_deleted ENUM('0', '1') DEFAULT '0',
 )
@@ -31,13 +31,13 @@ CREATE TABLE commande_item (
 CREATE TABLE notifications (
     id INT PRIMARY KEY AUTO_INCREMENT,
     contenu VARCHAR(50) NOT NULL,
-    statu VARCHAR(50) NOT NULL,
+    status VARCHAR(50) NOT NULL,
     created_at TIMESTAMP ,
 ) 
 
 CREATE TABLE offers (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    vehicule VARCHAR(50) NOT NULL,
+    vehicle VARCHAR(50) NOT NULL,
     prix INT NOT NULL,
     duree_estimee DATE DEFAULT NULL,
 )

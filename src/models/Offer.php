@@ -1,48 +1,49 @@
 <?php
 namespace App\Models;
+
 use PDO;
 use PDOException;
 
 class Offer{
-        private PDO $conn;
-        private ?string $id;
-        private ?string $vehicule;
-        private ?string $price;
-        private ?string $duree;
-        private ?string $commande_id;
-        private ?string $sender_id;
-        private ?string $statu;
+    private PDO $conn;
+    private ?string $id;
+    private ?string $vehicle;
+    private ?string $price;
+    private ?string $estimated_duration;
+    private ?string $commande_id;
+    private ?string $sender_id;
+    private ?string $status;
     
-        function __construct($conn = NULL, $id = NULL, $vehicule = NULL, $price = NULL, $duree = NULL, $commande_id = NULL, $sender_id = NULL, $statu = "pending")
-        {
-                $this->conn = $conn;
-                $this->id = $id;
-                $this->vehicule = $vehicule;
-                $this->price = $price;
-                $this->duree = $duree;
-                $this->commande_id = $commande_id;
-                $this->sender_id = $sender_id;
-                $this->statu = $statu;
-        }
+    function __construct($conn = NULL, $id = NULL, $vehicle = NULL, $price = NULL, $estimated_duration = NULL, $commande_id = NULL, $sender_id = NULL, $status = "pending")
+    {
+        $this->conn = $conn;
+        $this->id = $id;
+        $this->vehicle = $vehicle;
+        $this->price = $price;
+        $this->estimated_duration = $estimated_duration;
+        $this->commande_id = $commande_id;
+        $this->sender_id = $sender_id;
+        $this->status = $status;
+    }
 
-        public function getId()
-        {
-                return $this->id;
-        }
+    public function getId()
+    {
+        return $this->id;
+    }
 
         public function setId($id)
         {
                 $this->id = $id;
         }
 
-        public function getVehicule()
+        public function getVehicle()
         {
-                return $this->vehicule;
+                return $this->vehicle;
         }
 
-        public function setVehicule($vehicule)
+        public function setVehicle($vehicle)
         {
-                $this->vehicule = $vehicule;
+                $this->vehicle = $vehicle;
         }
 
         public function getPrice()
@@ -55,14 +56,14 @@ class Offer{
                 $this->price = $price;
         }
 
-        public function getDuree()
+        public function getEstimatedDuration()
         {
-                return $this->duree;
+                return $this->estimated_duration;
         }
 
-        public function setDuree($duree)
+        public function setEstimatedDuration($estimated_duration)
         {
-                $this->duree = $duree;
+                $this->estimated_duration = $estimated_duration;
         }
 
         public function getCommande_id()
@@ -85,15 +86,16 @@ class Offer{
                 $this->sender_id = $sender_id;
         }
 
-        public function getStatu()
+        public function getStatus()
         {
-                return $this->statu;
+                return $this->status;
         }
 
-        public function setStatu($statu)
+        public function setStatus($status)
         {
-                $this->statu = $statu;
+                $this->status = $status;
         }
+
     function create(){
         try {
             $sql = "SELECT COUNT(*) FROM offers WHERE sender_id = :sender_id AND commande_id = :commande_id";
@@ -103,21 +105,21 @@ class Offer{
             $stmt->execute();
     
             if ($stmt->fetchColumn() > 0) {
-                $_SESSION["flash"] = "You already sent an offer for this order.";
                 header("Location: ../../public/deliverer/deliverer_order_interaction.php");
                 exit;
             }
             
-            $sql = "INSERT INTO offers (vehicule, prix, durée_estimée, created_at, commande_id, sender_id ,statu) VALUES (:vehicle, :prix, :duree_estimee, now(), :commande_id, :sender_id, :statu)";
+            $sql = "INSERT INTO offers (vehicle, prix, estimated_duration, created_at, commande_id, sender_id ,status) VALUES (:vehicle, :prix, :estimated_duration, now(), :commande_id, :sender_id, :status)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":vehicle", $this->getVehicule());
+            $stmt->bindValue(":vehicle", $this->getvehicle());
             $stmt->bindValue(":prix", $this->getPrice());
-            $stmt->bindValue(":duree_estimee", $this->getDuree());
+            $stmt->bindValue(":estimated_duration", $this->getEstimatedDuration());
             $stmt->bindValue(":commande_id", $this->getCommande_id());
             $stmt->bindValue(":sender_id", $this->getSender_id());
-            $stmt->bindValue(":statu", $this->getStatu());
+            $stmt->bindValue(":status", $this->getStatus());
             $stmt->execute();
             header("Location: ../Controller/CreateNotificationHandler.php?commande_id=" .urlencode($this->getCommande_id()));
+            exit;
         } catch (PDOException) {
             echo $stmt->errorCode();
         }
@@ -125,10 +127,10 @@ class Offer{
 
     function update(){
         try {
-            $sql = "UPDATE offers set statu = COALESCE(:statu, statu) WHERE id = :id";
+            $sql = "UPDATE offers set status = COALESCE(:status, status) WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":id", $this->getId());
-            $stmt->bindValue(":statu", $this->getStatu());
+            $stmt->bindValue(":status", $this->getStatus());
             $stmt->execute();    
         } catch (PDOException) {
             echo $stmt->errorCode();
@@ -149,9 +151,9 @@ class Offer{
 
     function read(){
         try {
-            $sql = "SELECT * FROM offers WHERE commande_id = :id";
+            $sql = "SELECT * FROM offers WHERE commande_id = :commande_id";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":id", $this->getCommande_id());
+            $stmt->bindValue(":commande_id", $this->getCommande_id());
             $stmt->execute();    
             $_SESSION["offers"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException) {
@@ -165,8 +167,6 @@ class Offer{
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();   
             $_SESSION["offers"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $link = explode("/", $_SERVER["HTTP_REFERER"]);
-            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

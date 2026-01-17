@@ -19,11 +19,11 @@ class Router{
     }
 
     function resolve(){
-        $methode = $_SERVER["REQUEST_METHOD"];
+        $method = $_SERVER["REQUEST_METHOD"];
         $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
         $path = explode("?", $path)[0];
 
-        $callback = $this->routes[$methode][$path] ?? [];
+        $callback = $this->routes[$method][$path] ?? [];
 
         if ($callback == NULL) {
             http_response_code(404);

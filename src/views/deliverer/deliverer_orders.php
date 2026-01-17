@@ -25,7 +25,7 @@
             </button>
         </div>
     </div>
-    <?php if(!empty($commandes)): foreach($commandes as $commande): if($commande["statu"] === "Pending"):?>
+    <?php if(!empty($commandes)): foreach($commandes as $commande): if($commande["status"] === "Pending"):?>
         <div class="card shadow-sm mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-sm-4 border-start">
                         <div class="mb-2">
-                            <span class="badge bg-success-subtle text-success"><?= $commande["statu"] ?></span>
+                            <span class="badge bg-success-subtle text-success"><?= $commande["status"] ?></span>
                         </div>
                         <div class="fw-semibold my-2">Order By <?= $commande["username"] ?></div>
                         <div class="fw-semibold my-2">Phone Number: <?= $commande["phone"] ?></div>

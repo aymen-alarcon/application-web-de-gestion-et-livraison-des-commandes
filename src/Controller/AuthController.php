@@ -1,10 +1,7 @@
 <?php
-namespace App\Controller;
-use App\Database\DatabaseConnection;
-use App\Models\User;
-
-    $db = new DatabaseConnection();
-    $conn = $db->connect();
+    namespace App\Controller;
+    
+    use App\Models\User;
 
     class AuthController {
         protected $conn;

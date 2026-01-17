@@ -1,11 +1,8 @@
 <?php
     namespace App\Controller;
-    use App\Database\DatabaseConnection;
+
     use App\Models\CommandeItem;
     use App\Models\Offer;
-
-    $db = new DatabaseConnection();
-    $conn = $db->connect();
 
     class CommandeItemController{
         protected $conn;

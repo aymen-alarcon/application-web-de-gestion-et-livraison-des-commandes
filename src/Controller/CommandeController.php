@@ -1,13 +1,10 @@
 <?php
     namespace App\Controller;
-    use App\Database\DatabaseConnection;
+
     use App\Models\Commande;
     use App\Models\Offer;
     use App\Models\Notification;
 
-    $db = new DatabaseConnection();
-    $conn = $db->connect();
-    session_start();
     class CommandeController{
         protected $conn;
 
@@ -46,7 +43,7 @@
         }
 
         function update(){
-            if (!isset($_POST["titre"]) || !isset($_POST["address"]) || !isset($_POST["phone"]) || !isset($_POST["statu"])) {
+            if (!isset($_POST["titre"]) || !isset($_POST["address"]) || !isset($_POST["phone"]) || !isset($_POST["statuss"])) {
                 $_SESSION["flash"] = "one of the inputs is empty";
                 $link = explode("/", $_SERVER["HTTP_REFERER"]);
                 header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
@@ -60,7 +57,7 @@
                 $handler->setTitre($_POST["titre"]);
                 $handler->setAddress($_POST["address"]);
                 $handler->setPhone($_POST["phone"]);
-                $handler->setStatu($_POST["statu"]);
+                $handler->setStatus($_POST["status"]);
 
                 $handler->update();
                 $link = explode("/", $_SERVER["HTTP_REFERER"]);
@@ -68,14 +65,14 @@
                 exit;
             }
             if ($_SERVER["REQUEST_METHOD"] === "GET") {
-                if ($_GET["statu"] == "In Progress") {
+                if ($_GET["status"] == "In Progress") {
                     $offerId = (int) $_GET["offerId"];
                     $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
                     $offerArrayIndex =  array_key_last($offerArray);
 
                     $offerHandler = new Offer();
                     $offerHandler->setId($offerId);
-                    $offerHandler->setStatu("accepted");
+                    $offerHandler->setStatus("accepted");
 
                     $offerHandler->update();
 
@@ -85,14 +82,14 @@
                     $NotificationHandler->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
 
                     $NotificationHandler->create();
-                }else if(isset($_GET["offerId"]) && $_GET["statu"] == "Canceled"){
+                }else if(isset($_GET["offerId"]) && $_GET["status"] == "Canceled"){
                     $offerId = (int) $_GET["offerId"];
                     $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
                     $offerArrayIndex =  array_key_last($offerArray);
 
                     $offerHandler = new Offer($this->conn);
                     $offerHandler->setId($offerId);
-                    $offerHandler->setStatu("refused");
+                    $offerHandler->setStatus("refused");
 
                     $offerHandler->update();
 
@@ -102,14 +99,14 @@
                     $NotificationHandler->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
 
                     $NotificationHandler->create();
-                }elseif ($_GET["statu"] == "Completed") {
+                }elseif ($_GET["status"] == "Completed") {
                     $offerId = (int) $_GET["offerId"];
                     $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
                     $offerArrayIndex =  array_key_last($offerArray);
 
                     $offerHandler = new Offer($this->conn);
                     $offerHandler->setId($offerId);
-                    $offerHandler->setStatu("Completed");
+                    $offerHandler->setStatus("Completed");
 
                     $offerHandler->update();
 
@@ -120,7 +117,7 @@
                     $NotificationHandler->create();
                 }
                 $handler->setId($_GET["id"]);
-                $handler->setStatu($_GET["statu"]);
+                $handler->setStatus($_GET["status"]);
 
                 $handler->update();
                 header("Location: ../../public/client/client_order_dashboard.php");

@@ -80,15 +80,15 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['statu'])) ?>">
-                                        <?= htmlspecialchars($order['statu']) ?>
+                                    <span class="badge text-dark badge-<?= strtolower(str_replace(' ', '-', $order['status'])) ?>">
+                                        <?= htmlspecialchars($order['status']) ?>
                                     </span>
                                 </td>
                                 
                                 <td class="text-end">
                                     <button class="btn btn-link text-info edit-commande-btn" data-bs-toggle="modal" data-bs-target="#updateCommandeModal"
                                         data-id="<?= htmlspecialchars($order['id']) ?>"
-                                        data-status="<?= htmlspecialchars($order['statu']) ?>"
+                                        data-status="<?= htmlspecialchars($order['status']) ?>"
                                         data-titles="<?= htmlspecialchars($order['titre']) ?>"
                                         data-addresses="<?= htmlspecialchars($order['address']) ?>"
                                         data-phones="<?= htmlspecialchars($order['phone']) ?>"

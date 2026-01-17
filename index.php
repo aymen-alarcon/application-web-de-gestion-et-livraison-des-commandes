@@ -26,7 +26,6 @@ $roleController = new RoleController($conn);
 $userController = new UserController($conn);
 
 $router = new Router;
-// $router->get();
 $router->post("/Login", [$AuthController, "login"]);
 $router->post("/Register", [$AuthController, "register"]);
 $router->post("/User/Update", [$userController, "update"]);

@@ -1,12 +1,7 @@
 <?php
     namespace App\Controller;
-    use App\Database\DatabaseConnection;
+
     use App\Models\User;
-
-    $db = new DatabaseConnection;
-    $conn = $db->connect();
-
-    session_start();
     
     class UserController{
         protected $conn;

@@ -1,8 +1,7 @@
 <?php
     namespace App\Controller;
+    
     use App\Models\Notification;
-
-    session_start();
 
     class NotificationController{
         protected $conn;
