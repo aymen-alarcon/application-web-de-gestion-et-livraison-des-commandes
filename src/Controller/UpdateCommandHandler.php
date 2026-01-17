@@ -1,11 +1,9 @@
 <?php
-    require_once "../Entity/commande.php";
-    require_once "../Entity/Notification.php";
-    require_once "../Entity/Offer.php";
-    require_once "../Repositories/NotificationRepository.php";
-    require_once "../Repositories/CommandeRepository.php";
-    require_once "../Repositories/OfferRepository.php";
-    require_once "../Database/DatabaseConnection.php";
+    namespace App\Controller;
+    use App\Database\DatabaseConnection;
+    use App\Models\Commande;
+    use App\Models\Offer;
+    use App\Models\Notification;
 
     $db = new DatabaseConnection();
     $conn = $db->connect();
@@ -39,8 +37,7 @@
                 $handler->setPhone($_POST["phone"]);
                 $handler->setStatu($_POST["statu"]);
 
-                $repo = new CommandeRepository($this->conn);
-                $repo->update($handler);
+                $handler->update();
                 $link = explode("/", $_SERVER["HTTP_REFERER"]);
                 header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
                 exit;
@@ -51,63 +48,56 @@
                     $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
                     $offerArrayIndex =  array_key_last($offerArray);
 
-                    $offer = new Offer();
-                    $offer->setId($offerId);
-                    $offer->setStatu("accepted");
+                    $offerHandler = new Offer();
+                    $offerHandler->setId($offerId);
+                    $offerHandler->setStatu("accepted");
 
-                    $repo = new OfferRepository($this->conn);
-                    $repo->update($offer);
+                    $offerHandler->update();
 
-                    $notification = new Notification();
-                    $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been accepted");
-                    $notification->setSender_id($_SESSION["id"]);
-                    $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+                    $NotificationHandler = new Notification($this->conn);
+                    $NotificationHandler->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been accepted");
+                    $NotificationHandler->setSender_id($_SESSION["id"]);
+                    $NotificationHandler->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
 
-                    $notificationRepo = new NotificationRepository($this->conn);
-                    $notificationRepo->create($notification);
+                    $NotificationHandler->create();
                 }else if(isset($_GET["offerId"]) && $_GET["statu"] == "Canceled"){
                     $offerId = (int) $_GET["offerId"];
                     $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
                     $offerArrayIndex =  array_key_last($offerArray);
 
-                    $offer = new Offer();
-                    $offer->setId($offerId);
-                    $offer->setStatu("refused");
+                    $offerHandler = new Offer($this->conn);
+                    $offerHandler->setId($offerId);
+                    $offerHandler->setStatu("refused");
 
-                    $repo = new OfferRepository($this->conn);
-                    $repo->update($offer);
+                    $offerHandler->update();
 
-                    $notification = new Notification();
-                    $notification->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been refused");
-                    $notification->setSender_id($_SESSION["id"]);
-                    $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+                    $NotificationHandler = new Notification($this->conn);
+                    $NotificationHandler->setContenu("Your Offer with the ID " . $_GET['offerId'] . " has been refused");
+                    $NotificationHandler->setSender_id($_SESSION["id"]);
+                    $NotificationHandler->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
 
-                    $notificationRepo = new NotificationRepository($this->conn);
-                    $notificationRepo->create($notification);
+                    $NotificationHandler->create();
                 }elseif ($_GET["statu"] == "Completed") {
                     $offerId = (int) $_GET["offerId"];
                     $offerArray = array_filter($_SESSION["offers"], fn($value) => $value["id"] === $offerId);
                     $offerArrayIndex =  array_key_last($offerArray);
 
-                    $offer = new Offer();
-                    $offer->setId($offerId);
-                    $offer->setStatu("Completed");
+                    $offerHandler = new Offer($this->conn);
+                    $offerHandler->setId($offerId);
+                    $offerHandler->setStatu("Completed");
 
-                    $repo = new OfferRepository($this->conn);
-                    $repo->update($offer);
+                    $offerHandler->update();
 
-                    $notification = new Notification();
-                    $notification->setContenu("Congratulation, Your Offer with the ID " . $_GET['offerId'] . " has been declared Completed");
-                    $notification->setSender_id($_SESSION["id"]);
-                    $notification->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
-                    $notificationRepo = new NotificationRepository($this->conn);
-                    $notificationRepo->create($notification);
+                    $NotificationHandler = new Notification($this->conn);
+                    $NotificationHandler->setContenu("Congratulation, Your Offer with the ID " . $_GET['offerId'] . " has been declared Completed");
+                    $NotificationHandler->setSender_id($_SESSION["id"]);
+                    $NotificationHandler->setReceiverId($offerArray[$offerArrayIndex]["sender_id"]);
+                    $NotificationHandler->create();
                 }
                 $handler->setId($_GET["id"]);
                 $handler->setStatu($_GET["statu"]);
 
-                $repo = new CommandeRepository($this->conn);
-                $repo->update($handler);
+                $handler->update();
                 header("Location: ../../public/client/client_order_dashboard.php");
                 exit;
             }

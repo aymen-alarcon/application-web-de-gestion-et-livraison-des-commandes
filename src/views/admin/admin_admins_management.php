@@ -1,4 +1,6 @@
-  <?php require '../includes/header_admin.php'; ?>
+<?php 
+require '../includes/header_admin.php'; 
+?>
 <div class="container py-5">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
         <div>

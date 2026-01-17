@@ -1,10 +1,7 @@
 <?php
-    $entityClass = $_GET["entityClass"];
-    $repositoryClass = $_GET["entityClass"] . "Repository";
-
-    require_once "../Entity/". $entityClass .".php";
-    require_once "../Repositories/". $repositoryClass .".php";
-    require_once "../Database/DatabaseConnection.php";
+namespace App\Controller;
+use App\Database\DatabaseConnection;
+// use App\Models\. $_GET["entityClass"];
 
     $db = new DatabaseConnection();
     $conn = $db->connect();
@@ -33,11 +30,9 @@
 
             $id = $_GET['id'];
 
-            $entity = new $entityClass();
+            $entity = new $entityClass($this->conn);
             $entity->setId($id);
-
-            $repo = new $repositoryClass($this->conn);
-            $repo->delete($entity);
+            $entity->delete();
 
             $link = explode("/", $_SERVER["HTTP_REFERER"]);
             header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);

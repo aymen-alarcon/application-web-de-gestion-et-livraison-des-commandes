@@ -1,7 +1,7 @@
 <?php 
-    require_once "../Database/DatabaseConnection.php";
-    require_once "../Entity/Notification.php";
-    require_once "../Repositories/NotificationRepository.php";
+    namespace App\Controller;
+    use App\Database\DatabaseConnection;
+    use App\Models\Notification;
 
     $db = new DatabaseConnection;
     $conn = $db->connect();
@@ -15,11 +15,10 @@
 
         function readNotification(){
             session_start();
-            $handler = new Notification();
+            $handler = new Notification($this->conn);
             
             $handler->setReceiverId($_SESSION["id"]);
-            $repo = new NotificationRepository($this->conn);
-            $repo->read($handler);
+            $handler->read();
 
             $link = explode("/", $_SERVER["HTTP_REFERER"]);
             header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);

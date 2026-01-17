@@ -1,33 +1,71 @@
 <?php
+namespace App\Models;
+use PDO;
+use PDOException;
 
-class RoleRepository{
-    protected $conn;
+class Role{
+    private PDO $conn;
+    private ?int $id;
+    private ?string $name;
+    private User $user;
 
-    function __construct($conn)
+    function __construct($conn = NULL, $id = NULL, $name = NULL, $user = NULL)
     {
         $this->conn = $conn;
+        $this->id = $id;
+        $this->name = $name;
+        $this->user = $user;
     }
 
-    function registerRole($role){
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getUser_id()
+    {
+        return $this->user;
+    }
+
+    public function setUser_id($user)
+    {
+        $this->user = $user;
+    }
+    function registerRole(){
         try {
             session_start();
             $sql = "INSERT INTO roles (role_name, user_id) VALUES (:role_name, :user_id)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":role_name", $role->getName());
-            $stmt->bindValue(":user_id", $role->getUser_id());
+            $stmt->bindValue(":role_name", $this->getName());
+            $stmt->bindValue(":user_id", $this->getUser_id());
             $stmt->execute();
-            if ($role->getName() === "admin") {
-                $_SESSION["role"] = $role->getName();
+            if ($this->getName() === "admin") {
+                $_SESSION["role"] = $this->getName();
                 header("Location: ../../public/admin/admin_dashboard.php");
                 exit;
             }
-            else if ($role->getName() === "client") {
-                $_SESSION["role"] = $role->getName();
+            else if ($this->getName() === "client") {
+                $_SESSION["role"] = $this->getName();
                 header("Location: ../../public/client/client_dashboard.php");
                 exit;
             }
-            else if ($role->getName() === "deliverer") {
-                $_SESSION["role"] = $role->getName();
+            else if ($this->getName() === "deliverer") {
+                $_SESSION["role"] = $this->getName();
                 header("Location: ../../public/deliverer/deliverer_dashboard.php");
                 exit;
             }
@@ -36,26 +74,27 @@ class RoleRepository{
         }
     }
 
-    function readRole($user){
+    function readRole(){
         try {
             session_start();
             $sql = "SELECT * FROM roles WHERE user_id = :id";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":id", $user->getUser_id());
+            $stmt->bindValue(":id", $this->getUser_id());
+            $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE ,self::class);
             $stmt->execute(); 
-            $role = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $roles = $stmt->fetchAll();
 
-            if ($role[0]["role_name"] == "admin") {
-                $_SESSION["role"] = $role[0]["role_name"];
+            if ($roles[0]["role_name"] == "admin") {
+                $_SESSION["role"] = $roles[0]["role_name"];
                 header("Location: ../../public/admin/admin_dashboard.php");
                 exit;
-            }else if ($role[0]["role_name"] == "client") {
-                $_SESSION["role"] = $role[0]["role_name"];
+            }else if ($roles[0]["role_name"] == "client") {
+                $_SESSION["role"] = $roles[0]["role_name"];
                 $route = "Location: ../../public/client/client_dashboard.php";
                 header("Location: ../Controller/ReadNotificationHandler.php?route=$route");
                 exit;
-            }else if ($role[0]["role_name"] == "deliverer") {
-                $_SESSION["role"] = $role[0]["role_name"];
+            }else if ($roles[0]["role_name"] == "deliverer") {
+                $_SESSION["role"] = $roles[0]["role_name"];
                 $route = "Location: ../../public/deliverer/deliverer_dashboard.php";
                 header("Location: ../Controller/ReadNotificationHandler.php?route=$route");
                 exit;
@@ -78,12 +117,12 @@ class RoleRepository{
         }
     }
 
-    function update($offer){
+    function update(){
         try {
             $sql = "UPDATE roles set role_name = COALESCE(:role_name, role_name) WHERE user_id = :user_id";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(":user_id", $offer->getUser_id());
-            $stmt->bindValue(":role_name", $offer->getName());
+            $stmt->bindValue(":user_id", $this->getUser_id());
+            $stmt->bindValue(":role_name", $this->getName());
             $stmt->execute();    
         } catch (PDOException) {
             echo $stmt->errorCode();

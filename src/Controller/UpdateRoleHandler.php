@@ -1,7 +1,7 @@
 <?php
-    require_once "../Entity/Role.php";
-    require_once "../Repositories/RoleRepository.php";
-    require_once "../Database/DatabaseConnection.php";
+    namespace App\Controller;
+    use App\Database\DatabaseConnection;
+    use App\Models\Role;
 
     $db = new DatabaseConnection;
     $conn = $db->connect();
@@ -24,12 +24,11 @@
                 exit;
             }
 
-            $handler = new Role();
+            $handler = new Role($this->conn);
             $handler->setUser_id($_POST["user_id"]);
             $handler->setName($_POST["role_name"]);
 
-            $repo = new RoleRepository($this->conn);
-            $repo->update($handler);
+            $handler->update();
 
             $link = explode("/", $_SERVER["HTTP_REFERER"]);
             header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);

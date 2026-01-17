@@ -1,8 +1,7 @@
 <?php
-    require_once "../Entity/Offer.php";
-    require_once "../Repositories/OfferRepository.php";
-    require_once "../Database/DatabaseConnection.php";
-
+namespace App\Controller;
+use App\Database\DatabaseConnection;
+use App\Models\Offer;
     $db = new DatabaseConnection;
     $conn = $db->connect();
     session_start();
@@ -23,15 +22,14 @@
                 exit;
             }
 
-            $handler = new Offer();
+            $handler = new Offer($this->conn);
             $handler->setPrice($_POST["price"]);
             $handler->setVehicule($_POST["vehicle"]);
             $handler->setDuree($_POST["duree"]);
             $handler->setCommande_id($_POST["commande_id"]);
             $handler->setSender_id($_SESSION["id"]);
 
-            $repo = new OfferRepository($this->conn);
-            $repo->create($handler);
+            $handler->create();
         }
     }
 

@@ -1,6 +1,7 @@
 <?php 
-    require_once "../Repositories/CommandeRepository.php";
-    require_once "../Database/DatabaseConnection.php";
+    namespace App\Controller;
+    use App\Database\DatabaseConnection;
+    use App\Models\Commande;
 
     $db = new DatabaseConnection();
     $conn = $db->connect();
@@ -15,7 +16,7 @@
 
         function read(){
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-                $repo = new CommandeRepository($this->conn);
+                $repo = new Commande($this->conn);
                 $repo->read();
                 header("Location: ../../public/client/client_order_dashboard.php");
             }

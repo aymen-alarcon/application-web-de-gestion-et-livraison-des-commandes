@@ -1,10 +1,8 @@
 <?php 
-    require_once "../Entity/Offer.php";
-    require_once "../Entity/CommandeItem.php";
-    require_once "../Repositories/OfferRepository.php";
-    require_once "../Repositories/CommandeItemRepository.php";
-    require_once "../Database/DatabaseConnection.php";
-
+namespace App\Controller;
+use App\Database\DatabaseConnection;
+use App\Models\Offer;
+use App\Models\CommandeItem;
     $db = new DatabaseConnection();
     $conn = $db->connect();
 
@@ -20,18 +18,16 @@
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
                 $commandeId = $_GET["commande_id"];
 
-                $orderHandler = new CommandeItem();
+                $orderHandler = new CommandeItem($this->conn);
                 $orderHandler->setCommandeId($commandeId);
 
-                $repo = new CommandeItemRepository($this->conn);
-                $repo->read($orderHandler);
+                $orderHandler->read();
 
                 if (array_search("client", explode("/", $_SERVER["HTTP_REFERER"]))) {                
-                    $OfferHandler = new Offer();
+                    $OfferHandler = new Offer($this->conn);
                     $OfferHandler->setCommande_id($commandeId);
     
-                    $repo = new OfferRepository($this->conn);
-                    $repo->read($OfferHandler);
+                    $OfferHandler->read();
                     header("Location: ../../public/client/client_order.php");
                     exit;
                 }else if (array_search("deliverer", explode("/", $_SERVER["HTTP_REFERER"]))) {
@@ -39,7 +35,6 @@
                     exit;
                 }
             }
-
         }
     }
 

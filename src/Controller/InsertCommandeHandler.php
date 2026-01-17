@@ -1,7 +1,7 @@
 <?php
-    require_once "../Entity/commande.php";
-    require_once "../Repositories/CommandeRepository.php";
-    require_once "../Database/DatabaseConnection.php";
+namespace App\Controller;
+use App\Database\DatabaseConnection;
+use App\Models\Commande;
 
     $db = new DatabaseConnection();
     $conn = $db->connect();
@@ -27,13 +27,12 @@
                 header("Location: ../../public/client/client_dashboard.php");
             }
 
-            $handler = new Commande();
+            $handler = new Commande($this->conn);
             $handler->setTitre($_POST["titre"]);
             $handler->setAddress($_POST["address"]);
             $handler->setPhone($_POST["phone"]);
             $handler->setUser_id($_SESSION["id"]);
-            $repo = new CommandeRepository($this->conn);
-            $repo->create($handler);
+            $handler->create();
         }
     }
 

@@ -1,7 +1,7 @@
 <?php
-    require_once "../Entity/Role.php";
-    require_once "../Repositories/RoleRepository.php";
-    require_once "../Database/DatabaseConnection.php";
+    namespace App\Controller;
+    use App\Database\DatabaseConnection;
+    use App\Models\Role;
 
     $db = new DatabaseConnection();
     $conn = $db->connect();
@@ -15,10 +15,9 @@
         }
 
         function ReadRole(){
-            $handler = new Role();
+            $handler = new Role($this->conn);
             $handler->setUser_id($_GET["id"]);
-            $repo = new RoleRepository($this->conn);
-            $repo->readRole($handler);
+            $handler->readRole();
         }
     }
 

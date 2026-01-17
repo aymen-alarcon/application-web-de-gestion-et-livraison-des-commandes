@@ -1,7 +1,7 @@
 <?php
-    require_once "../Entity/User.php";
-    require_once "../Repositories/UserRepository.php";
-    require_once "../Database/DatabaseConnection.php";
+    namespace App\Controller;
+    use App\Database\DatabaseConnection;
+    use App\Models\User;
 
     $db = new DatabaseConnection;
     $conn = $db->connect();
@@ -29,7 +29,7 @@
                 header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
                 exit;
             }
-            $handler = new User();
+            $handler = new User($this->conn);
             $handler->setUsername($_POST["username"]);
             $handler->setFirstName($_POST["first_name"]);
             $handler->setLastName($_POST["last_name"]);
@@ -37,8 +37,7 @@
             $handler->setEmail($_POST["email"]);
             $handler->setPhone($_POST["phone"]);
             $handler->setId($_POST["id"]);
-            $repo = new UserRepository($this->conn);
-            $repo->Update($handler);
+            $handler->Update();
             $link = explode("/", $_SERVER["HTTP_REFERER"]);
             header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
             exit;

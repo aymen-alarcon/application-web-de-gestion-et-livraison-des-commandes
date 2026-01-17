@@ -1,8 +1,7 @@
 <?php
-    require_once "../Entity/Offer.php";
-    require_once "../Repositories/OfferRepository.php";
-    require_once "../Database/DatabaseConnection.php";
-
+namespace App\Controller;
+use App\Database\DatabaseConnection;
+use App\Models\Offer;
     $db = new DatabaseConnection();
     $conn = $db->connect();
 
@@ -17,10 +16,9 @@
         }
 
         function ReadOffer(){
-            $handler = new Offer();
+            $handler = new Offer($this->conn);
             $handler->setId($_GET["offerId"]);
-            $repo = new OfferRepository($this->conn);
-            $repo->read($handler);
+            $handler->read();
             header("Location: ../../public/client/client_order_dashboard.php");
         }
     }
