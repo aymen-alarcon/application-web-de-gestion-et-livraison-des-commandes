@@ -55,3 +55,4 @@ use App\Models\User;
             $handler->register($_POST["role"]);
         }
     }
+?>

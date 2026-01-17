@@ -7,12 +7,8 @@
 
     $db = new DatabaseConnection();
     $conn = $db->connect();
-
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    class UpdateCommandHandler{
+    session_start();
+    class CommandeController{
         protected $conn;
 
         function __construct($conn)
@@ -20,7 +16,36 @@
             $this->conn = $conn;
         }
 
-        function updateCommande(){
+        function create(){
+            if (!isset($_POST["titre"]) || !isset($_POST['address']) || !isset($_POST['phone']) || !isset($_SESSION["id"])) {
+                $_SESSION["flash"] = "one of the inputs is empty";
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+
+            if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+                header("Location: ../../public/client/client_dashboard.php");
+            }
+
+            $handler = new Commande($this->conn);
+            $handler->setTitre($_POST["titre"]);
+            $handler->setAddress($_POST["address"]);
+            $handler->setPhone($_POST["phone"]);
+            $handler->setUser_id($_SESSION["id"]);
+            $handler->create();
+        }
+
+        function read(){
+            if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+                $repo = new Commande($this->conn);
+                $repo->readAll();
+                header("Location: ../../public/deliverer/deliverer_orders.php");
+                exit;
+            }
+        }
+
+        function update(){
             if (!isset($_POST["titre"]) || !isset($_POST["address"]) || !isset($_POST["phone"]) || !isset($_POST["statu"])) {
                 $_SESSION["flash"] = "one of the inputs is empty";
                 $link = explode("/", $_SERVER["HTTP_REFERER"]);
@@ -102,7 +127,29 @@
                 exit;
             }
         }
-    }
 
-    $updateCommandeHandler = new UpdateCommandHandler($conn);
-    $updateCommandeHandler->updateCommande();
+        function delete() {
+            if ($_SERVER["REQUEST_METHOD"] !== "GET") {
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+
+            if (!isset($_GET['id'])) {
+                $link = explode("/", $_SERVER["HTTP_REFERER"]);
+                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+                exit;
+            }
+
+            $id = $_GET['id'];
+
+            $handler = new Commande($this->conn);
+            $handler->setId($id);
+            $handler->delete();
+
+            $link = explode("/", $_SERVER["HTTP_REFERER"]);
+            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+            exit;
+        }
+    }
+?>

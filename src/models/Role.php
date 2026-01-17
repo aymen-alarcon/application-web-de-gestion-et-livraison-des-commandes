@@ -128,4 +128,16 @@ class Role{
             echo $stmt->errorCode();
         }
     }
+
+    function delete(){
+        try {
+            $sql = "DELETE FROM roles WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindValue(":id", $this->getId());
+            $stmt->execute();    
+            $this->readAll();  
+        } catch (PDOException) {
+            echo $stmt->errorCode();
+        }
+    }
 }
