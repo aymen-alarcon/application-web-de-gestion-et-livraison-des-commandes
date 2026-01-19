@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header_client.php'; 
+    require 'src/Views/includes/header_client.php'; 
     $commandes = $_SESSION['commandes'] ?? [];
     $countOrders = count($commandes);
     $countPendingOrders = 0;
@@ -106,4 +106,4 @@
             </div>
         </main>
     </div>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

@@ -1,6 +1,4 @@
 <?php 
-    require "../../src/Database/DatabaseConnection.php" ;
-    session_start();
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "client") {
         header("Location: ../logout.php");
     }
@@ -48,6 +46,6 @@
         </nav>
         <div class="d-flex align-items-center gap-3">
             <a href="client_notification.php" class="btn btn-link text-secondary p-0"><i class="bi bi-bell position-relative"><span class="text-primary fs-9" style="position: absolute; bottom: 6px; right: 0px;"><?= $countNotifications ?></span></i></a>
-            <a href="../logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
+            <a href="/Logout"><i class="bi bi-box-arrow-right fs-5"></i></a>
         </div>
     </header>

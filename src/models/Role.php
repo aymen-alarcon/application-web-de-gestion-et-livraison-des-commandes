@@ -7,7 +7,7 @@ class Role{
     private PDO $conn;
     private ?int $id;
     private ?string $name;
-    private User $user;
+    private ?int $user;
 
     function __construct($conn = NULL, $id = NULL, $name = NULL, $user = NULL)
     {
@@ -46,6 +46,7 @@ class Role{
     {
         $this->user = $user;
     }
+    
     function registerRole(){
         try {
             session_start();
@@ -56,17 +57,17 @@ class Role{
             $stmt->execute();
             if ($this->getName() === "admin") {
                 $_SESSION["role"] = $this->getName();
-                header("Location: ../../public/admin/admin_dashboard.php");
+                header("Location: /Admin/Dashboard");
                 exit;
             }
             else if ($this->getName() === "client") {
                 $_SESSION["role"] = $this->getName();
-                header("Location: ../../public/client/client_dashboard.php");
+                header("Location: /Client/Dashboard");
                 exit;
             }
             else if ($this->getName() === "deliverer") {
                 $_SESSION["role"] = $this->getName();
-                header("Location: ../../public/deliverer/deliverer_dashboard.php");
+                header("Location: /Deliverer/Dashboard");
                 exit;
             }
         } catch (PDOException) {
@@ -110,8 +111,6 @@ class Role{
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();   
             $_SESSION["roles"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $link = explode("/", $_SERVER["HTTP_REFERER"]);
-            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

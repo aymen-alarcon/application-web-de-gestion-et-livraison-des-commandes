@@ -12,7 +12,7 @@ class Commande{
     private ?string $status;
     private ?string $created_at;
     private ?bool $is_deleted;
-    private User $user;
+    private ?int $user;
 
     function __construct($conn = NULL, $id = NULL, $titre = NULL, $address = NULL, $phone = NULL, $status = "pending", $created_at = NULL, $is_deleted = 0, $user = NULL)
     {
@@ -142,8 +142,7 @@ class Commande{
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $link = explode("/", $_SERVER["HTTP_REFERER"]);
-            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
+            header("Location: /Admin/Dashboard");
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

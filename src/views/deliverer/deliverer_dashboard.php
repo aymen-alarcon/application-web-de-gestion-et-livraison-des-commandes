@@ -1,4 +1,4 @@
-<?php require "../includes/header_deliverer.php"; ?>
+<?php require "src/Views/includes/header_deliverer.php"; ?>
     <main class="container py-4 py-md-5">
         <div class="mb-4">
             <h1 class="fw-black display-6 mb-1">Welcome back, Alex</h1>
@@ -104,4 +104,4 @@
             </table>
         </div>
     </main>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

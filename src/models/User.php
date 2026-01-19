@@ -4,37 +4,43 @@ use PDO;
 use PDOException;
 
 class User{
-    private PDO $conn;
+    private ?PDO $conn;
     private ?int $id;
     private ?string $username;
-    private ?string $firstName;
-    private ?string $lastName;
+    private ?string $first_name;
+    private ?string $last_name;
     private ?string $email;
     private ?string $password;
     private ?string $phone;
     private ?string $address;
+    private ?string $created_at;
+    private ?bool $is_deleted;
 
     function __construct(
         $conn = NULL, 
         $id = NULL,
         $username = NULL,
-        $firstName = NULL,
-        $lastName = NULL,
+        $first_name = NULL,
+        $last_name = NULL,
         $email = NULL,
         $password = NULL,
         $phone = NULL,
-        $address = NULL
+        $address = NULL,
+        $created_at = NULL,
+        $is_deleted = NULL
     )
     {
         $this->conn = $conn;
         $this->id = $id;
         $this->username = $username;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
+        $this->first_name = $first_name;
+        $this->last_name = $last_name;
         $this->email = $email;
         $this->password = $password;
         $this->phone = $phone;
         $this->address = $address;
+        $this->created_at = $created_at;
+        $this->is_deleted = $is_deleted;
     }
 
     public function getUsername()
@@ -49,22 +55,22 @@ class User{
 
     public function getFirstName()
     {
-        return $this->firstName;
+        return $this->first_name;
     }
 
-    public function setFirstName($firstName)
+    public function setFirstName($first_name)
     {
-        $this->firstName = $firstName;
+        $this->first_name = $first_name;
     }
 
     public function getLastName()
     {
-        return $this->lastName;
+        return $this->last_name;
     }
 
-    public function setLastName($lastName)
+    public function setLastName($last_name)
     {
-        $this->lastName = $lastName;
+        $this->last_name = $last_name;
     }
 
     public function getEmail()
@@ -116,6 +122,27 @@ class User{
     {
         $this->address = $address;
     }
+
+    public function getIs_deleted()
+    {
+        return $this->is_deleted;
+    }
+
+    public function setIs_deleted($is_deleted)
+    {
+        $this->is_deleted = $is_deleted;
+    }
+
+    public function getCreated_at()
+    {
+        return $this->created_at;
+    }
+
+    public function setCreated_at($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
     function login(){ 
         try {
             $sql = "SELECT * FROM users WHERE email = :email";
@@ -163,7 +190,7 @@ class User{
             setcookie("address", $this->getAddress(), time() + 9999, "/");
             $stmt->execute();
             $_SESSION["id"] = $this->conn->lastInsertId();
-            header("Location: ../Controller/RegisterRoleHandler.php?id=" . $_SESSION["id"] . "&name=" . $role);
+            header("Location: /Role/Create?name=" . $role);
         } catch (PDOException) {
             echo $stmt->errorCode();
         }
@@ -200,8 +227,6 @@ class User{
             $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
             $stmt->execute();
             $_SESSION["users"] = $stmt->fetchAll();
-            $link = explode("/", $_SERVER["HTTP_REFERER"]);
-            header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

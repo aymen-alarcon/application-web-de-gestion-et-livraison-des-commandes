@@ -1,6 +1,4 @@
-<?php 
-    session_start();
-    
+<?php     
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "deliverer") {
         header("Location: ../logout.php");
     }
@@ -72,7 +70,7 @@
                 <div class="ms-auto d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-3">
                         <button class="btn btn-link text-secondary p-0"><i class="bi bi-bell"></i></button>
-                        <a href="../logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
+                        <a href="/Logout"><i class="bi bi-box-arrow-right fs-5"></i></a>
                     </div>
                 </div>
             </div>

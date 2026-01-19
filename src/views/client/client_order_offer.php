@@ -1,5 +1,5 @@
 <?php 
-  require '../includes/header_client.php';
+  require 'src/Views/includes/header_client.php';
   $offerId = (int)$_GET["offerId"];
 
   
@@ -107,4 +107,4 @@
     </div>
   </div>
 </main>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

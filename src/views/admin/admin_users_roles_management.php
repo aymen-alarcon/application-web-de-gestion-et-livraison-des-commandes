@@ -1,4 +1,4 @@
-<?php require '../includes/header_admin.php'; ?>
+<?php require 'src/Views/includes/header_admin.php'; ?>
 
 <div class="container-xl py-5">
     <h1 class="fw-black mb-4">User Management</h1>
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

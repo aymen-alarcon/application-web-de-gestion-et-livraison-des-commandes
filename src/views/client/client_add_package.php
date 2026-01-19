@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header_client.php'; 
+    require 'src/Views/includes/header_client.php'; 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['commandes'] = $_POST;
@@ -45,4 +45,4 @@
             <button type="submit" class="btn btn-primary w-100">Next: Route Details</button>
         </form>
     </main>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

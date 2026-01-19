@@ -1,5 +1,5 @@
 <?php
-  require '../includes/header_client.php';
+  require 'src/Views/includes/header_client.php';
 ?>
 
 <main class="container py-4">
@@ -34,4 +34,4 @@
   </form>
 </main>
 
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header_client.php'; 
+    require 'src/Views/includes/header_client.php'; 
     
     $commandes = $_SESSION['commandes'] ?? []; 
     $countOrders = count($commandes);
@@ -157,4 +157,4 @@
     </nav>
     <div class="text-center text-secondary small mt-2 d-md-none">Swipe left to view more details</div>
 </main>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

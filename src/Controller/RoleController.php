@@ -11,22 +11,18 @@
             $this->conn = $conn;
         }
 
-        function Read(){
+        function read(){
             $handler = new Role($this->conn);
             $handler->setUser_id($_GET["id"]);
             $handler->readRole();
         }
 
         function create(){
-            if (!isset($_GET["id"]) || !isset($_GET["name"])) {
-                $_SESSION["flash"] = "one of the inputs is empty";
-                $link = explode("/", $_SERVER["HTTP_REFERER"]);
-                header("Location: ../../" . $link[4] . "/" . $link[5] . "/" . $link[6]);
-                exit;
+            if (!isset($_SESSION["id"], $_GET["name"])) {
+                die("missing data");
             }
-
             $handler = new Role($this->conn);
-            $handler->setUser_id($_GET["id"]);
+            $handler->setUser_id($_SESSION["id"]);
             $handler->setName($_GET["name"]);
             
             $handler->registerRole();

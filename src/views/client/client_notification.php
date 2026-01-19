@@ -1,5 +1,5 @@
 <?php 
-require "../includes/header_client.php";
+require "src/Views/includes/header_client.php";
 
 if (!isset($_SESSION["notifications"]) || empty($_SESSION["notifications"])) {
     header("Location: ../../src/Controller/ReadNotificationHandler.php");
@@ -114,4 +114,4 @@ $route->get
   </div>
 </main>
 
-<?php require "../includes/footer.php"; ?>
+<?php require "src/Views/includes/footer.php"; ?>

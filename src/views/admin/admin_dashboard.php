@@ -1,5 +1,6 @@
 <?php 
-    require '../includes/header_admin.php'; 
+    require 'src/Views/includes/header_admin.php'; 
+    var_dump($_SESSION["user"]);
 
     $OrdersFilteredByAvailability = array_filter($_SESSION["commandes"], fn($value) => $value["is_deleted"] == 0);
     $UsersFilteredByAvailability = array_filter($_SESSION["users"], fn($value) => $value["is_deleted"] == 0);
@@ -188,4 +189,4 @@
             </div>
         </main>
     </div>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

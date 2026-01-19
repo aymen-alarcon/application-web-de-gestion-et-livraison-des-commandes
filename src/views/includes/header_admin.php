@@ -3,11 +3,12 @@
     use App\Models\Commande;
     use App\Models\User;
     use App\Models\Role;
+    use App\Database\DatabaseConnection;
+    $db = new DatabaseConnection;
+    $conn = $db->establishConnection();
     
-    require "../../src/Database/DatabaseConnection.php" ;
-
     if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
-        header("Location: ../logout.php");
+        header("Location: /Logout");
     }
     
     if (!isset($_SESSION["offers"]) || empty($_SESSION["offers"])) {
@@ -102,7 +103,7 @@
                 </ul>
                 <div class="d-flex align-items-center gap-3">
                     <button class="btn btn-link text-secondary p-0"><i class="bi bi-bell"></i></button>
-                    <a href="../logout.php"><i class="bi bi-box-arrow-right fs-5"></i></a>
+                    <a href="/Logout"><i class="bi bi-box-arrow-right fs-5"></i></a>
                 </div>
             </div>
         </div>

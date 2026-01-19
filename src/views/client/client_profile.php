@@ -1,4 +1,4 @@
-<?php require '../includes/header_client.php'; ?>
+<?php require 'src/Views/includes/header_client.php'; ?>
 <div class="container-fluid min-vh-100 pb-5">
   <main class="container py-4" style="max-width: 900px;">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -83,4 +83,4 @@
   </div>
 </div>
 </form>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

@@ -1,5 +1,5 @@
 <?php 
-    require '../includes/header_client.php'; 
+    require 'src/Views/includes/header_client.php'; 
     $commandes = $_SESSION['commandes'] ?? []; 
     
     $commandeItems = $_SESSION["commande_items"] ?? [];
@@ -225,4 +225,4 @@
         There is no product in this order
     </div>
 <?php endif; ?>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

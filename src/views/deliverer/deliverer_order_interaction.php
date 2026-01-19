@@ -1,5 +1,5 @@
 <?php 
-    require "../includes/header_deliverer.php"; 
+require "src/Views/includes/header_deliverer.php";
     $commandeItems = $_SESSION["commande_items"];
 ?>
     <style>
@@ -187,4 +187,4 @@
             </div>
         </div>
     </main>
-<?php require "../includes/footer.php"; ?>
+<?php require "src/Views/includes/footer.php"; ?>

@@ -1,4 +1,4 @@
-    <?php require "../includes/header_deliverer.php"; ?>
+<?php require "src/Views/includes/header_deliverer.php"; ?>
     <main class="container py-4">
         <div class="mb-4">
             <h1 class="fw-bold">Activity Log</h1>
@@ -162,4 +162,4 @@
             </div>
         </div>
     </main>
-<?php require "../includes/footer.php"; ?>
+<?php require "src/Views/includes/footer.php"; ?>

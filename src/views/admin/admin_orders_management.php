@@ -1,4 +1,4 @@
-<?php require '../includes/header_admin.php'; ?>
+<?php require 'src/Views/includes/header_admin.php'; ?>
 <div class="container-xl py-5">
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
         <div>
@@ -119,4 +119,4 @@
         </div>
     </div>
 </div>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>

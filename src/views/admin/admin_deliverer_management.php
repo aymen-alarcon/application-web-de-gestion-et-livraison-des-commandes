@@ -1,4 +1,4 @@
-  <?php require '../includes/header_admin.php'; ?>
+  <?php require 'src/Views/includes/header_admin.php'; ?>
   <main class="flex-fill py-4 bg-transparent">
     <div class="container-lg">
       <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end gap-3 mb-4">
@@ -104,4 +104,4 @@
       </div>
     </div>
   </main>
-<?php require '../includes/footer.php'; ?>
+<?php require 'src/Views/includes/footer.php'; ?>
