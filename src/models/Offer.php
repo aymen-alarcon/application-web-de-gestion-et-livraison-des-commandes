@@ -5,25 +5,27 @@ use PDO;
 use PDOException;
 
 class Offer{
-    private PDO $conn;
+    private ?PDO $conn;
     private ?string $id;
     private ?string $vehicle;
-    private ?string $price;
+    private ?string $prix;
     private ?string $estimated_duration;
     private ?string $commande_id;
     private ?string $sender_id;
     private ?string $status;
+    private ?string $created_at;
     
-    function __construct($conn = NULL, $id = NULL, $vehicle = NULL, $price = NULL, $estimated_duration = NULL, $commande_id = NULL, $sender_id = NULL, $status = "pending")
+    function __construct($conn = NULL, $id = NULL, $vehicle = NULL, $prix = NULL, $estimated_duration = NULL, $commande_id = NULL, $sender_id = NULL, $status = "pending", $created_at = NULL)
     {
         $this->conn = $conn;
         $this->id = $id;
         $this->vehicle = $vehicle;
-        $this->price = $price;
+        $this->prix = $prix;
         $this->estimated_duration = $estimated_duration;
         $this->commande_id = $commande_id;
         $this->sender_id = $sender_id;
         $this->status = $status;
+        $this->created_at = $created_at;
     }
 
     public function getId()
@@ -48,12 +50,12 @@ class Offer{
 
         public function getPrice()
         {
-                return $this->price;
+                return $this->prix;
         }
 
-        public function setPrice($price)
+        public function setPrice($prix)
         {
-                $this->price = $price;
+                $this->prix = $prix;
         }
 
         public function getEstimatedDuration()
@@ -95,6 +97,18 @@ class Offer{
         {
                 $this->status = $status;
         }
+
+    public function getCreated_at()
+    {
+        return $this->created_at;
+    }
+
+    public function setCreated_at($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
 
     function create(){
         try {
@@ -154,8 +168,10 @@ class Offer{
             $sql = "SELECT * FROM offers WHERE commande_id = :commande_id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":commande_id", $this->getCommande_id());
+            $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
             $stmt->execute();    
-            $_SESSION["offers"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $offersByOrder = $stmt->fetchAll();
+            return $offersByOrder;
         } catch (PDOException) {
             echo $stmt->errorCode();
         }
@@ -165,8 +181,10 @@ class Offer{
         try {
             $sql = "SELECT * FROM offers";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute();   
-            $_SESSION["offers"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
+            $stmt->execute();    
+            $offers = $stmt->fetchAll();
+            return $offers;
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

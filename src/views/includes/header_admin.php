@@ -4,31 +4,32 @@
     use App\Models\User;
     use App\Models\Role;
     use App\Database\DatabaseConnection;
+
     $db = new DatabaseConnection;
     $conn = $db->establishConnection();
     
-    if (!isset($_SESSION["id"]) || $_SESSION["role"] !== "admin") {
+    if (!isset($_SESSION["id"])) {
         header("Location: /Logout");
     }
-    
-    if (!isset($_SESSION["offers"]) || empty($_SESSION["offers"])) {
-        $handler = new Offer($conn);
-        $handler->readAll();
+
+    if (!isset($offer) || empty($offer)) {
+        $offerHandler = new Offer($conn);
+        $offers = $offerHandler->readAll();
     }
 
-    if (!isset($_SESSION["commandes"]) || empty($_SESSION["commandes"])) {
-        $handler = new Commande($conn);
-        $handler->readAll();
+    if (!isset($orders) || empty($orders)) {
+        $orderHandler = new Commande($conn);
+        $orders = $orderHandler->readAll();
     }
 
-    if (!isset($_SESSION["users"]) || empty($_SESSION["users"])) {
-        $handler = new User($conn);
-        $handler->readAll();
+    if (!isset($users) || empty($users)) {
+        $userHandler = new User($conn);
+        $users = $userHandler->readAll();
     }
 
-    if (!isset($_SESSION["roles"]) || empty($_SESSION["roles"])) {
-        $handler = new Role($conn);
-        $handler->readAll();
+    if (!isset($roles) || empty($roles)) {
+        $roleHandler = new Role($conn);
+        $roles = $roleHandler->readAll();
     }
 
     if (!empty($_SESSION["flash"])) {
@@ -36,33 +37,33 @@
         unset($_SESSION["flash"]);
     }
 
-    function findUserById($users, $id) {
-        foreach ($users as $user) {
-            if ($user['id'] == $id && $user['is_deleted'] == '0') {
-                return $user;
-            }
-        }
-        return null;
-    }
+    // function findUserById($users, $id) {
+    //     foreach ($users as $user) {
+    //         if ($user['id'] == $id && $user['is_deleted'] == '0') {
+    //             return $user;
+    //         }
+    //     }
+    //     return null;
+    // }
 
-    function findOfferByCommandeId($offers, $commandeId) {
-        foreach ($offers as $offer) {
-            if ($offer['commande_id'] == $commandeId) {
-                return $offer;
-            }
-        }
-        return null;
-    }
+    // function findOfferByCommandeId($offers, $commandeId) {
+    //     foreach ($offers as $offer) {
+    //         if ($offer['commande_id'] == $commandeId) {
+    //             return $offer;
+    //         }
+    //     }
+    //     return null;
+    // }
 
 
-    function findRoleByUserId($roles, $userId) {
-        foreach ($roles as $role) {
-            if ($role['user_id'] == $userId) {
-                return $role['role_name'];
-            }
-        }
-        return null;
-    }
+    // function findRoleByUserId($roles, $userId) {
+    //     foreach ($roles as $role) {
+    //         if ($role['user_id'] == $userId) {
+    //             return $role['role_name'];
+    //         }
+    //     }
+    //     return null;
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">

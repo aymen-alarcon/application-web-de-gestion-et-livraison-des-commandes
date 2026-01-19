@@ -1,7 +1,8 @@
 <?php
     namespace App\Controller;
+
     use App\Models\User;
-            echo 1;
+
         class AuthController {
         protected $conn;
 
@@ -12,7 +13,6 @@
 
         
         function login() {
-            echo "11";
             if ($_SERVER["REQUEST_METHOD"] !== "POST") {
                 header("Location: ../../public/index.php");
             }
@@ -31,7 +31,6 @@
         }
 
         function register() {
-            echo 1;
             if (!isset($_POST['username']) || !isset($_POST['first_name']) || !isset($_POST['last_name']) || !isset($_POST['address']) || !isset($_POST['phone']) || !isset($_POST['password'])) {
                 $_SESSION["flash"] = "one of the inputs is empty";
                 $link = explode("/", $_SERVER["HTTP_REFERER"]);

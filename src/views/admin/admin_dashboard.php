@@ -1,30 +1,29 @@
 <?php 
     require 'src/Views/includes/header_admin.php'; 
-    var_dump($_SESSION["user"]);
 
-    $OrdersFilteredByAvailability = array_filter($_SESSION["commandes"], fn($value) => $value["is_deleted"] == 0);
-    $UsersFilteredByAvailability = array_filter($_SESSION["users"], fn($value) => $value["is_deleted"] == 0);
-    $admins = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "admin");
-    $deliverers = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "deliverer");
-    $clients = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "client");
-    $pendingOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Pending");
-    $CompletedOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Completed");
-    $CanceledOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Canceled");
-    $InProgressOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "In Progress");
-    $PendingOffers = array_filter($_SESSION["offers"], fn($value) => $value["status"] == "pending");
-    $CompletedOffers = array_filter($_SESSION["offers"], fn($value) => $value["status"] == "completed");
+    // $OrdersFilteredByAvailability = array_filter($_SESSION["commandes"], fn($value) => $value["is_deleted"] == 0);
+    // $UsersFilteredByAvailability = array_filter($_SESSION["users"], fn($value) => $value["is_deleted"] == 0);
+    // $admins = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "admin");
+    // $deliverers = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "deliverer");
+    // $clients = array_filter($_SESSION["roles"], fn($value) => $value["role_name"] == "client");
+    // $pendingOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Pending");
+    // $CompletedOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Completed");
+    // $CanceledOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "Canceled");
+    // $InProgressOrders = array_filter($OrdersFilteredByAvailability, fn($value) => $value["status"] == "In Progress");
+    // $PendingOffers = array_filter($_SESSION["offers"], fn($value) => $value["status"] == "pending");
+    // $CompletedOffers = array_filter($_SESSION["offers"], fn($value) => $value["status"] == "completed");
 
-    $countpendingOrders = count($pendingOrders);
-    $countCompletedOrders = count($CompletedOrders);
-    $countCanceledOrders = count($CanceledOrders);
-    $countInProgressOrders = count($InProgressOrders);
-    $countOrders = count($OrdersFilteredByAvailability);
-    $countUsers = count($UsersFilteredByAvailability);
-    $countDeliverers = count($deliverers);
-    $countAdmins = count($admins);
-    $countClients = count($clients);
-    $countPendingOffers = count($PendingOffers);
-    $countCompletedOffers = count($CompletedOffers);
+    // $countpendingOrders = count($pendingOrders);
+    // $countCompletedOrders = count($CompletedOrders);
+    // $countCanceledOrders = count($CanceledOrders);
+    // $countInProgressOrders = count($InProgressOrders);
+    // $countOrders = count($OrdersFilteredByAvailability);
+    // $countUsers = count($UsersFilteredByAvailability);
+    // $countDeliverers = count($deliverers);
+    // $countAdmins = count($admins);
+    // $countClients = count($clients);
+    // $countPendingOffers = count($PendingOffers);
+    // $countCompletedOffers = count($CompletedOffers);
 ?>
     <div class="container-fluid vh-100">
         <main class="container container-max py-5">

@@ -172,7 +172,6 @@ class User{
 
     function register($role){
         try {
-            session_start();
             $sql = "INSERT INTO users (username, first_name, last_name, email, phone, password, address, created_at) VALUES (:username, :first_name, :last_name, :email, :phone, :password, :address, now())";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindValue(":username", $this->getUsername());
@@ -226,7 +225,9 @@ class User{
             $stmt = $this->conn->prepare($sql);
             $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
             $stmt->execute();
-            $_SESSION["users"] = $stmt->fetchAll();
+            $users = $stmt->fetchAll();
+            return $users;
+            var_dump($users);
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

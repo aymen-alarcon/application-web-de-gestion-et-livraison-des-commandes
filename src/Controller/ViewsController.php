@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+
 class ViewsController{
     function redirectToLoginPage(){
         require_once "src/Views/Login.html";

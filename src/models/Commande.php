@@ -4,7 +4,7 @@ use PDO;
 use PDOException;
 
 class Commande{
-    private PDO $conn;
+    private ?PDO $conn;
     private ?int $id;
     private ?string $titre;
     private ?string $address;
@@ -12,9 +12,9 @@ class Commande{
     private ?string $status;
     private ?string $created_at;
     private ?bool $is_deleted;
-    private ?int $user;
+    private ?int $user_id;
 
-    function __construct($conn = NULL, $id = NULL, $titre = NULL, $address = NULL, $phone = NULL, $status = "pending", $created_at = NULL, $is_deleted = 0, $user = NULL)
+    function __construct($conn = NULL, $id = NULL, $titre = NULL, $address = NULL, $phone = NULL, $status = "pending", $created_at = NULL, $is_deleted = 0, $user_id = NULL)
     {
         $this->conn = $conn;
         $this->id = $id;
@@ -24,7 +24,7 @@ class Commande{
         $this->created_at = $created_at;
         $this->is_deleted = $is_deleted;
         $this->phone = $phone;
-        $this->user = $user;
+        $this->user_id = $user_id;
     }
 
     public function getId()
@@ -99,12 +99,12 @@ class Commande{
 
     public function getUser_id()
     {
-        return $this->user;
+        return $this->user_id;
     }
 
-    public function setUser_id($user)
+    public function setUser_id($user_id)
     {
-        $this->user = $user;
+        $this->user_id = $user_id;
     }
     function create(){
         try {
@@ -128,9 +128,11 @@ class Commande{
         try {
             $sql = "SELECT * FROM commandes WHERE user_id = :id AND is_deleted = '0'";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(":id", $_SESSION["id"]);
-            $stmt->execute();
-            $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->bindValue(":id", $_SESSION["id"]);
+            $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
+            $stmt->execute();    
+            $orders = $stmt->fetchAll();
+            return $orders;
         } catch (PDOException) {
             echo $stmt->errorCode();
         }
@@ -140,9 +142,10 @@ class Commande{
         try {
             $sql = "SELECT * FROM commandes";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-            $_SESSION['commandes'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            header("Location: /Admin/Dashboard");
+            $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, self::class);
+            $stmt->execute();    
+            $orders = $stmt->fetchAll();
+            return $orders;
         } catch (PDOException) {
             echo $stmt->errorCode();
         }

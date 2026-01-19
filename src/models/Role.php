@@ -110,7 +110,8 @@ class Role{
             $sql = "SELECT * FROM roles";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();   
-            $_SESSION["roles"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $roles;
         } catch (PDOException) {
             echo $stmt->errorCode();
         }
